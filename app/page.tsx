@@ -103,12 +103,12 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          <a 
+            href="/" 
             className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none"
           >
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
-          </button>
+          </a>
           
           <div className="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
             {["Services", "Advantages", "The Agora"].map((link) => (
@@ -303,7 +303,7 @@ export default function Home() {
               <div className="w-full h-full min-h-[300px] rounded-sm overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
                 <div className="absolute inset-0 bg-[#0055FF]/10 pointer-events-none group-hover:bg-transparent transition duration-700 z-10"></div>
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.541312384976!2d23.693246712347644!3d38.0112461718041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1a3297a783789%3A0xc47e30777e0344f6!2sLeof.%20Andrea%20Papandreou%20179%2C%20Ilion%20131%2021!5e0!3m2!1sen!2sgr!4v1709400000000!5m2!1sen!2sgr"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.123456789!2d23.70!3d38.03!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDAxJzQ4LjAiTiAyM8KwNDInMDAuMCJF!5e0!3m2!1sen!2sgr!4v1234567890"
                   width="100%" 
                   height="100%" 
                   style={{ border: 0, minHeight: '350px' }} 
