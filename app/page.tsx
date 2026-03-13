@@ -136,8 +136,12 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer">
-            RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
+          <h1 
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all"
+>
+  RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
+</h1>
           </h1>
           <div className="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
             {["Services", "Advantages", "The Agora"].map((link) => (
