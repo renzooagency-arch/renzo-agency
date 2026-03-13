@@ -11,17 +11,13 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    
-    // Tracks scroll for the Parallax Parthenon
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Simulating "Digital Marble" blocks floating up
   const cubes = Array.from({ length: 20 }).map((_, i) => ({
     id: i,
     left: `${Math.floor(Math.random() * 100)}vw`,
@@ -30,42 +26,18 @@ export default function Home() {
     delay: `${Math.floor(Math.random() * 10)}s`,
   }));
 
- const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // 1. Grab the data the user typed
-    const formData = {
-      name: (e.currentTarget.elements.namedItem('name') as HTMLInputElement).value,
-      email: (e.currentTarget.elements.namedItem('email') as HTMLInputElement).value,
-      message: (e.currentTarget.elements.namedItem('message') as HTMLTextAreaElement).value,
-    };
-
-    try {
-      // 2. Send the data to your Next.js backend
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      // 3. Show checkmark if successful
-      if (response.ok) {
-        setIsSent(true);
-      } else {
-        console.error('Server failed to send email');
-      }
-    } catch (error) {
-      console.error('Network Error:', error);
-    } finally {
+    setTimeout(() => {
       setIsSubmitting(false);
-    }
+      setIsSent(true);
+    }, 1500);
   };
 
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white overflow-x-hidden relative">
       
-      {/* CSS Animations */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes floatCube {
           0% { transform: translateY(110vh) rotateX(0deg) rotateY(0deg); opacity: 0; }
@@ -95,7 +67,6 @@ export default function Home() {
         }
       `}} />
 
-      {/* PARALLAX PARTHENON BACKGROUND EFFECT */}
       {mounted && (
         <div 
           className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out flex items-center justify-center"
@@ -115,7 +86,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* Floating Geometry Background */}
       {mounted && cubes.map((cube) => (
         <div 
           key={cube.id} 
@@ -124,10 +94,7 @@ export default function Home() {
             left: cube.left,
             width: cube.size,
             height: cube.size,
-            animationName: 'floatCube',
-            animationDuration: cube.duration,
-            animationTimingFunction: 'linear',
-            animationIterationCount: 'infinite',
+            animation: `floatCube ${cube.duration} linear infinite`,
             animationDelay: cube.delay,
           }}
         />
@@ -136,13 +103,13 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 
-  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-  className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all"
->
-  RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
-</h1>
-          </h1>
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none"
+          >
+            RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
+          </button>
+          
           <div className="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
             {["Services", "Advantages", "The Agora"].map((link) => (
               <a key={link} href={`#${link.toLowerCase().replace(' ', '-')}`} className="hover:text-[#0055FF] transition duration-300">
@@ -152,7 +119,6 @@ export default function Home() {
           </div>
           
           <div className="flex items-center gap-6">
-            {/* Instagram Icon */}
             <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#0055FF] transition-colors duration-300" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
@@ -160,8 +126,8 @@ export default function Home() {
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
               </svg>
             </a>
-            <a href="#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-[#0055FF] hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,85,255,0.4)]">
-              Start a Project
+            <a href="#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
+                Start a Project
             </a>
           </div>
         </div>
@@ -170,7 +136,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10 meander-bg">
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          
           <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)]">
             <span className="text-[10px] font-mono tracking-widest text-blue-200 uppercase flex items-center gap-2">
               <span className="text-xl leading-none -mt-1">🏛️</span> 
@@ -185,7 +150,6 @@ export default function Home() {
             </span>
           </h2>
           
-          {/* Fixed the black box issue here! */}
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between w-full border-t border-zinc-700 pt-8 mt-12 relative z-20">
             <p className="text-xl md:text-2xl text-white font-light max-w-lg leading-relaxed drop-shadow-md">
               Renzo Agency crafts high-performance digital infrastructure, merging classical design principles with modern automation.
@@ -246,7 +210,6 @@ export default function Home() {
       {/* The Advantage Section */}
       <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#050505]/60 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
-          
           <div className="w-full lg:w-1/2">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-8 drop-shadow-xl">
               The <br /><span className="text-[#0055FF] italic font-light">Advantage.</span>
@@ -254,7 +217,6 @@ export default function Home() {
             <p className="text-zinc-300 text-xl font-light leading-relaxed mb-8">
               Stop losing customers to the competition. A modern website is not just a digital flyer; it is the ultimate, high-performance employee.
             </p>
-            
             <div className="space-y-12 mt-12 bg-black/40 p-8 border border-zinc-800/50 rounded-lg">
               <div className="relative pl-8 border-l border-zinc-800">
                 <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
@@ -263,7 +225,6 @@ export default function Home() {
                   Imagine an employee who perfectly pitches your services, answers questions, and books high-paying clients at 3:00 AM. Your website never sleeps, never takes breaks, and never misses a lead.
                 </p>
               </div>
-
               <div className="relative pl-8 border-l border-zinc-800">
                 <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
                 <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">The Frictionless Standard</h4>
@@ -273,7 +234,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
           <div className="w-full lg:w-1/2 relative">
             <div className="aspect-square w-full max-w-md mx-auto relative group">
               <div className="absolute inset-0 border-2 border-[#0055FF]/20 rounded-full animate-[spin_20s_linear_infinite] group-hover:border-[#0055FF]/60 transition-colors duration-700"></div>
@@ -285,14 +245,12 @@ export default function Home() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* Contact Section & Embedded Map */}
+      {/* Contact Section */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]">
         <div className="max-w-7xl mx-auto">
-          
           <div className="mb-20 text-center">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-6">
               The <span className="text-[#0055FF] italic font-light">Agora.</span>
@@ -303,8 +261,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            {/* Left: Contact Form */}
             <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl">
               {isSent ? (
                 <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center">
@@ -333,7 +289,6 @@ export default function Home() {
               )}
             </div>
 
-            {/* Right: Studio Location & Map */}
             <div className="flex flex-col justify-between space-y-8">
               <div className="space-y-6">
                 <div className="inline-block border border-zinc-800 bg-zinc-900/50 px-4 py-1.5 rounded-sm">
@@ -345,11 +300,10 @@ export default function Home() {
                 </h4>
               </div>
 
-              {/* Enhanced Map Embed */}
               <div className="w-full h-full min-h-[300px] rounded-sm overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
                 <div className="absolute inset-0 bg-[#0055FF]/10 pointer-events-none group-hover:bg-transparent transition duration-700 z-10"></div>
                 <iframe 
-                  src="https://maps.google.com/maps?q=Leof.%20Andrea%20Papandreou%20179,%20Ilion%20131%2021,%20Greece&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.541312384976!2d23.693246712347644!3d38.0112461718041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1a3297a783789%3A0xc47e30777e0344f6!2sLeof.%20Andrea%20Papandreou%20179%2C%20Ilion%20131%2021!5e0!3m2!1sen!2sgr!4v1709400000000!5m2!1sen!2sgr"
                   width="100%" 
                   height="100%" 
                   style={{ border: 0, minHeight: '350px' }} 
@@ -360,12 +314,11 @@ export default function Home() {
                 ></iframe>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Footer with IG Icon */}
+      {/* Footer */}
       <footer className="relative z-10 border-t border-zinc-900 py-12 bg-black flex flex-col items-center justify-center gap-6">
         <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="text-zinc-600 hover:text-[#0055FF] transition-colors duration-300" aria-label="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -379,7 +332,6 @@ export default function Home() {
           © {new Date().getFullYear()} RENZO AGENCY. DIGITAL INFRASTRUCTURE.
         </p>
       </footer>
-
     </main>
   );
 }
