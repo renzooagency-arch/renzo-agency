@@ -70,6 +70,7 @@ export default function Home() {
         }
       `}} />
 
+      {/* Background Effects */}
       {mounted && (
         <div 
           className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out flex items-center justify-center"
@@ -114,20 +115,18 @@ export default function Home() {
           </a>
           
           <div className="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'The Agora' : 'Επικοινωνια'}
+            </a>
             <a href="#services" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Services' : 'Υπηρεσιες'}
             </a>
             <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}
             </a>
-            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'The Agora' : 'Επικοινωνια'}
-            </a>
           </div>
           
           <div className="flex items-center gap-4">
-            
-            {/* NEW: Language Switcher */}
             <div className="flex bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden text-[10px] font-bold tracking-widest uppercase">
               <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
               <button onClick={() => setLang('GR')} className={`px-3 py-2 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
@@ -171,7 +170,7 @@ export default function Home() {
                 : 'Η Renzo Agency δημιουργεί ψηφιακές υποδομές υψηλής απόδοσης, συνδυάζοντας κλασικές αρχές σχεδιασμού με σύγχρονους αυτοματισμούς.'}
             </p>
             <div className="flex gap-4">
-              <a href="#advantages" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
+              <a href="#the-agora" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
                 {lang === 'EN' ? 'Discover The Edge' : 'Το Πλεονεκτημα'}
               </a>
             </div>
@@ -179,89 +178,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Scrolling Banner */}
-      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
-        <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase">
-          DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • 
-        </div>
-      </div>
-
-      {/* Services Section */}
-      <section id="services" className="py-32 px-6 bg-[#030303]/80 backdrop-blur-xl relative z-10 mt-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-20 text-center md:text-left border-b border-zinc-800 pb-10">
-            <h3 className="text-4xl md:text-5xl font-serif tracking-wide uppercase mb-4">The Pillars</h3>
-            <p className="text-[#0055FF] font-mono tracking-widest text-sm uppercase">Foundational systems for modern brands.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">I.</div>
-              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">Design</h4>
-              <p className="text-zinc-400 leading-relaxed font-light">
-                Immersive, high-conversion user interfaces structured with the precision of classical architecture.
-              </p>
-            </div>
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">II.</div>
-              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">Automation</h4>
-              <p className="text-zinc-400 leading-relaxed font-light">
-                Connecting APIs and workflows to build digital systems that operate flawlessly on autopilot.
-              </p>
-            </div>
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">III.</div>
-              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">Engineering</h4>
-              <p className="text-zinc-400 leading-relaxed font-light">
-                Lightning-fast, highly scalable development using the absolute latest edge network technologies.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The Advantage Section (Spinning Circle Removed, Centered) */}
-      <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#050505]/60 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="w-full text-center md:text-left">
-            <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-8 drop-shadow-xl">
-              The <br /><span className="text-[#0055FF] italic font-light">Advantage.</span>
-            </h2>
-            <p className="text-zinc-300 text-xl font-light leading-relaxed mb-8 max-w-2xl">
-              Stop losing customers to the competition. A modern website is not just a digital flyer; it is the ultimate, high-performance employee.
-            </p>
-            <div className="space-y-12 mt-12 bg-black/40 p-8 border border-zinc-800/50 rounded-lg text-left">
-              <div className="relative pl-8 border-l border-zinc-800">
-                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
-                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">The Sleepless Agent</h4>
-                <p className="text-zinc-400 leading-relaxed font-light">
-                  Imagine an employee who perfectly pitches your services, answers questions, and books high-paying clients at 3:00 AM. Your website never sleeps, never takes breaks, and never misses a lead.
-                </p>
-              </div>
-              <div className="relative pl-8 border-l border-zinc-800">
-                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
-                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">The Frictionless Standard</h4>
-                <p className="text-zinc-400 leading-relaxed font-light">
-                  Modern consumers demand autonomy. Studies show a massive shift toward businesses that offer instant, frictionless online booking. People prefer tapping a button over making a phone call. We give them exactly what they want.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]">
+      {/* The Agora (MOVED TO BE THE FIRST SECTION AFTER HERO) */}
+      <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-6">
-              The <span className="text-[#0055FF] italic font-light">Agora.</span>
+              {lang === 'EN' ? 'The' : 'Η'} <span className="text-[#0055FF] italic font-light">{lang === 'EN' ? 'Agora.' : 'Αγορά.'}</span>
             </h2>
             <p className="text-zinc-400 text-lg max-w-xl mx-auto">
-              Ready to construct your digital future? Reach out to our studio in Athens, or drop by our coordinates.
+              {lang === 'EN' 
+                ? 'Ready to construct your digital future? Reach out to our studio in Athens, or drop by our coordinates.' 
+                : 'Είστε έτοιμοι να κατασκευάσετε το ψηφιακό σας μέλλον; Επικοινωνήστε με το στούντιο μας στην Αθήνα ή επισκεφθείτε μας.'}
             </p>
           </div>
 
@@ -270,25 +197,27 @@ export default function Home() {
               {isSent ? (
                 <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center">
                   <div className="w-20 h-20 rounded-full border border-[#0055FF] flex items-center justify-center mb-6 text-[#0055FF] text-4xl shadow-[0_0_30px_rgba(0,85,255,0.2)]">✓</div>
-                  <h3 className="text-2xl font-serif italic mb-4">Transmission Successful</h3>
-                  <p className="text-zinc-400 font-light">Our architects will review your request and make contact shortly.</p>
+                  <h3 className="text-2xl font-serif italic mb-4">{lang === 'EN' ? 'Transmission Successful' : 'Επιτυχής Μετάδοση'}</h3>
+                  <p className="text-zinc-400 font-light">{lang === 'EN' ? 'Our architects will review your request and make contact shortly.' : 'Οι αρχιτέκτονες μας θα εξετάσουν το αίτημά σας και θα επικοινωνήσουν σύντομα μαζί σας.'}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">Name</label>
-                    <input type="text" id="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm" placeholder="Your name..." />
+                    <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label>
+                    <input type="text" id="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">Email</label>
+                    <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label>
                     <input type="email" id="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm" placeholder="hello@example.com" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">Project Details</label>
-                    <textarea id="message" required rows={5} className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all resize-none rounded-sm" placeholder="Tell us what we are building..."></textarea>
+                    <label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Project Details' : 'Λεπτομέρειες Έργου'}</label>
+                    <textarea id="message" required rows={5} className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all resize-none rounded-sm" placeholder={lang === 'EN' ? 'Tell us what we are building...' : 'Πείτε μας τι χτίζουμε...'}></textarea>
                   </div>
                   <button type="submit" disabled={isSubmitting} className="mt-6 bg-[#0055FF] text-white px-8 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(0,85,255,0.2)]">
-                    {isSubmitting ? 'Transmitting...' : 'Send to Studio'}
+                    {isSubmitting 
+                      ? (lang === 'EN' ? 'Transmitting...' : 'Αποστολή...') 
+                      : (lang === 'EN' ? 'Send to Studio' : 'Αποστολή στο Στούντιο')}
                   </button>
                 </form>
               )}
@@ -297,7 +226,7 @@ export default function Home() {
             <div className="flex flex-col justify-between space-y-8">
               <div className="space-y-6">
                 <div className="inline-block border border-zinc-800 bg-zinc-900/50 px-4 py-1.5 rounded-sm">
-                  <span className="text-[10px] font-mono tracking-widest text-[#0055FF] uppercase">Coordinates</span>
+                  <span className="text-[10px] font-mono tracking-widest text-[#0055FF] uppercase">{lang === 'EN' ? 'Coordinates' : 'Συντεταγμένες'}</span>
                 </div>
                 <h4 className="text-3xl font-serif text-white leading-snug">
                   Leof. Andrea Papandreou 179<br />
@@ -308,7 +237,7 @@ export default function Home() {
               <div className="w-full h-full min-h-[300px] rounded-sm overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
                 <div className="absolute inset-0 bg-[#0055FF]/10 pointer-events-none group-hover:bg-transparent transition duration-700 z-10"></div>
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.123456789!2d23.70!3d38.03!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDAxJzQ4LjAiTiAyM8KwNDInMDAuMCJF!5e0!3m2!1sen!2sgr!4v1234567890"
+                  src="https://maps.google.com/?cid=606688609220185407&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ"
                   width="100%" 
                   height="100%" 
                   style={{ border: 0, minHeight: '350px' }} 
@@ -317,6 +246,94 @@ export default function Home() {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Renzo Agency Location"
                 ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scrolling Banner */}
+      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
+        <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase">
+          {lang === 'EN' 
+            ? 'DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • ' 
+            : 'ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • '}
+        </div>
+      </div>
+
+      {/* Services Section */}
+      <section id="services" className="py-32 px-6 bg-[#030303]/80 backdrop-blur-xl relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-20 text-center md:text-left border-b border-zinc-800 pb-10">
+            <h3 className="text-4xl md:text-5xl font-serif tracking-wide uppercase mb-4">{lang === 'EN' ? 'The Pillars' : 'Οι Πυλώνες'}</h3>
+            <p className="text-[#0055FF] font-mono tracking-widest text-sm uppercase">{lang === 'EN' ? 'Foundational systems for modern brands.' : 'Βασικά συστήματα για σύγχρονα brands.'}</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">I.</div>
+              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">{lang === 'EN' ? 'Design' : 'Σχεδιασμός'}</h4>
+              <p className="text-zinc-400 leading-relaxed font-light">
+                {lang === 'EN' 
+                  ? 'Immersive, high-conversion user interfaces structured with the precision of classical architecture.' 
+                  : 'Καθηλωτικές διεπαφές χρήστη υψηλής μετατροπής, δομημένες με την ακρίβεια της κλασικής αρχιτεκτονικής.'}
+              </p>
+            </div>
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">II.</div>
+              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">{lang === 'EN' ? 'Automation' : 'Αυτοματισμός'}</h4>
+              <p className="text-zinc-400 leading-relaxed font-light">
+                {lang === 'EN' 
+                  ? 'Connecting APIs and workflows to build digital systems that operate flawlessly on autopilot.' 
+                  : 'Σύνδεση API και ροών εργασίας για την κατασκευή ψηφιακών συστημάτων που λειτουργούν άψογα στον αυτόματο πιλότο.'}
+              </p>
+            </div>
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">III.</div>
+              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">{lang === 'EN' ? 'Engineering' : 'Μηχανική'}</h4>
+              <p className="text-zinc-400 leading-relaxed font-light">
+                {lang === 'EN' 
+                  ? 'Lightning-fast, highly scalable development using the absolute latest edge network technologies.' 
+                  : 'Αστραπιαία, εξαιρετικά κλιμακούμενη ανάπτυξη χρησιμοποιώντας τις πιο σύγχρονες τεχνολογίες web.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Advantage Section */}
+      <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#050505]/60 backdrop-blur-md">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
+          <div className="w-full text-center md:text-left">
+            <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-8 drop-shadow-xl">
+              {lang === 'EN' ? 'The' : 'Το'} <br /><span className="text-[#0055FF] italic font-light">{lang === 'EN' ? 'Advantage.' : 'Πλεονέκτημα.'}</span>
+            </h2>
+            <p className="text-zinc-300 text-xl font-light leading-relaxed mb-8 max-w-2xl">
+              {lang === 'EN' 
+                ? 'Stop losing customers to the competition. A modern website is not just a digital flyer; it is the ultimate, high-performance employee.' 
+                : 'Σταματήστε να χάνετε πελάτες από τον ανταγωνισμό. Ένας σύγχρονος ιστότοπος δεν είναι απλώς ένα ψηφιακό φυλλάδιο· είναι ο απόλυτος υπάλληλος υψηλής απόδοσης.'}
+            </p>
+            <div className="space-y-12 mt-12 bg-black/40 p-8 border border-zinc-800/50 rounded-lg text-left">
+              <div className="relative pl-8 border-l border-zinc-800">
+                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
+                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">{lang === 'EN' ? 'The Sleepless Agent' : 'Ο Άγρυπνος Αντιπρόσωπος'}</h4>
+                <p className="text-zinc-400 leading-relaxed font-light">
+                  {lang === 'EN' 
+                    ? 'Imagine an employee who perfectly pitches your services, answers questions, and books high-paying clients at 3:00 AM. Your website never sleeps, never takes breaks, and never misses a lead.' 
+                    : 'Φανταστείτε έναν υπάλληλο που παρουσιάζει τέλεια τις υπηρεσίες σας, απαντά σε ερωτήσεις και κλείνει πελάτες υψηλής αξίας στις 3:00 π.μ. Ο ιστότοπός σας δεν κοιμάται ποτέ, δεν κάνει ποτέ διαλείμματα και δεν χάνει ποτέ κανένα lead.'}
+                </p>
+              </div>
+              <div className="relative pl-8 border-l border-zinc-800">
+                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
+                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">{lang === 'EN' ? 'The Frictionless Standard' : 'Το Ανεμπόδιστο Πρότυπο'}</h4>
+                <p className="text-zinc-400 leading-relaxed font-light">
+                  {lang === 'EN' 
+                    ? 'Modern consumers demand autonomy. Studies show a massive shift toward businesses that offer instant, frictionless online booking. People prefer tapping a button over making a phone call. We give them exactly what they want.' 
+                    : 'Οι σύγχρονοι καταναλωτές απαιτούν αυτονομία. Μελέτες δείχνουν μια τεράστια στροφή προς επιχειρήσεις που προσφέρουν άμεσες online κρατήσεις. Οι άνθρωποι προτιμούν το πάτημα ενός κουμπιού παρά ένα τηλεφώνημα. Τους δίνουμε ακριβώς αυτό που θέλουν.'}
+                </p>
               </div>
             </div>
           </div>
@@ -334,7 +351,7 @@ export default function Home() {
         </a>
         <p className="text-zinc-600 text-[10px] font-bold tracking-[0.3em] uppercase text-center">
           <span className="text-[#0055FF] mr-2">🏛️</span> 
-          © {new Date().getFullYear()} RENZO AGENCY. DIGITAL INFRASTRUCTURE.
+          © {new Date().getFullYear()} RENZO AGENCY. {lang === 'EN' ? 'DIGITAL INFRASTRUCTURE.' : 'ΨΗΦΙΑΚΗ ΥΠΟΔΟΜΗ.'}
         </p>
       </footer>
     </main>
