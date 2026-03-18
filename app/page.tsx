@@ -6,6 +6,9 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   
+  // Language State: 'EN' for English, 'GR' for Greek
+  const [lang, setLang] = useState<'EN' | 'GR'>('EN');
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
@@ -111,15 +114,26 @@ export default function Home() {
           </a>
           
           <div className="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
-            {["Services", "Advantages", "The Agora"].map((link) => (
-              <a key={link} href={`#${link.toLowerCase().replace(' ', '-')}`} className="hover:text-[#0055FF] transition duration-300">
-                {link}
-              </a>
-            ))}
+            <a href="#services" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Services' : 'Υπηρεσιες'}
+            </a>
+            <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}
+            </a>
+            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'The Agora' : 'Επικοινωνια'}
+            </a>
           </div>
           
-          <div className="flex items-center gap-6">
-            <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#0055FF] transition-colors duration-300" aria-label="Instagram">
+          <div className="flex items-center gap-4">
+            
+            {/* NEW: Language Switcher */}
+            <div className="flex bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden text-[10px] font-bold tracking-widest uppercase">
+              <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
+              <button onClick={() => setLang('GR')} className={`px-3 py-2 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
+            </div>
+
+            <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#0055FF] transition-colors duration-300 ml-2" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -127,7 +141,7 @@ export default function Home() {
               </svg>
             </a>
             <a href="#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
-                Start a Project
+                {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
             </a>
           </div>
         </div>
@@ -139,24 +153,26 @@ export default function Home() {
           <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)]">
             <span className="text-[10px] font-mono tracking-widest text-blue-200 uppercase flex items-center gap-2">
               <span className="text-xl leading-none -mt-1">🏛️</span> 
-              Engineered in Hellas. Building globally.
+              {lang === 'EN' ? 'Engineered in Hellas. Building globally.' : 'Σχεδιασμενο στην Ελλαδα. Δημιουργουμε παγκοσμιως.'}
             </span>
           </div>
 
           <h2 className="text-6xl md:text-[8rem] font-serif leading-[0.95] tracking-tight mb-8 drop-shadow-2xl">
-            Architects of <br />
+            {lang === 'EN' ? 'Architects of' : 'Αρχιτεκτονες του'} <br />
             <span className="font-sans font-black italic text-transparent bg-clip-text bg-gradient-to-r from-white via-[#0055FF] to-[#002266]">
-              The Web.
+              {lang === 'EN' ? 'The Web.' : 'Ιστου.'}
             </span>
           </h2>
           
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between w-full border-t border-zinc-700 pt-8 mt-12 relative z-20">
             <p className="text-xl md:text-2xl text-white font-light max-w-lg leading-relaxed drop-shadow-md">
-              Renzo Agency crafts high-performance digital infrastructure, merging classical design principles with modern automation.
+              {lang === 'EN' 
+                ? 'Renzo Agency crafts high-performance digital infrastructure, merging classical design principles with modern automation.' 
+                : 'Η Renzo Agency δημιουργεί ψηφιακές υποδομές υψηλής απόδοσης, συνδυάζοντας κλασικές αρχές σχεδιασμού με σύγχρονους αυτοματισμούς.'}
             </p>
             <div className="flex gap-4">
               <a href="#advantages" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
-                Discover The Edge
+                {lang === 'EN' ? 'Discover The Edge' : 'Το Πλεονεκτημα'}
               </a>
             </div>
           </div>
@@ -207,17 +223,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Advantage Section */}
+      {/* The Advantage Section (Spinning Circle Removed, Centered) */}
       <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#050505]/60 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
-          <div className="w-full lg:w-1/2">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
+          <div className="w-full text-center md:text-left">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-8 drop-shadow-xl">
               The <br /><span className="text-[#0055FF] italic font-light">Advantage.</span>
             </h2>
-            <p className="text-zinc-300 text-xl font-light leading-relaxed mb-8">
+            <p className="text-zinc-300 text-xl font-light leading-relaxed mb-8 max-w-2xl">
               Stop losing customers to the competition. A modern website is not just a digital flyer; it is the ultimate, high-performance employee.
             </p>
-            <div className="space-y-12 mt-12 bg-black/40 p-8 border border-zinc-800/50 rounded-lg">
+            <div className="space-y-12 mt-12 bg-black/40 p-8 border border-zinc-800/50 rounded-lg text-left">
               <div className="relative pl-8 border-l border-zinc-800">
                 <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
                 <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">The Sleepless Agent</h4>
@@ -231,17 +247,6 @@ export default function Home() {
                 <p className="text-zinc-400 leading-relaxed font-light">
                   Modern consumers demand autonomy. Studies show a massive shift toward businesses that offer instant, frictionless online booking. People prefer tapping a button over making a phone call. We give them exactly what they want.
                 </p>
-              </div>
-            </div>
-          </div>
-          <div className="w-full lg:w-1/2 relative">
-            <div className="aspect-square w-full max-w-md mx-auto relative group">
-              <div className="absolute inset-0 border-2 border-[#0055FF]/20 rounded-full animate-[spin_20s_linear_infinite] group-hover:border-[#0055FF]/60 transition-colors duration-700"></div>
-              <div className="absolute inset-4 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-              <div className="absolute inset-0 flex items-center justify-center flex-col text-center p-8 backdrop-blur-md bg-black/60 rounded-full border border-zinc-800/80 shadow-2xl">
-                <span className="text-5xl mb-4 text-[#0055FF]">⚡</span>
-                <h5 className="text-3xl font-serif italic mb-2">Always On.</h5>
-                <p className="text-zinc-400 font-mono text-[10px] tracking-[0.3em] uppercase">Scale Without Limits</p>
               </div>
             </div>
           </div>
