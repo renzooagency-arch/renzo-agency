@@ -170,7 +170,8 @@ export default function Home() {
                 : 'Η Renzo Agency δημιουργεί ψηφιακές υποδομές υψηλής απόδοσης, συνδυάζοντας κλασικές αρχές σχεδιασμού με σύγχρονους αυτοματισμούς.'}
             </p>
             <div className="flex gap-4">
-              <a href="#the-agora" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
+              {/* FIXED: Button now points to #advantages */}
+              <a href="#advantages" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
                 {lang === 'EN' ? 'Discover The Edge' : 'Το Πλεονεκτημα'}
               </a>
             </div>
@@ -178,7 +179,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Agora (MOVED TO BE THE FIRST SECTION AFTER HERO) */}
+      {/* The Agora (Contact Form) */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
@@ -234,10 +235,11 @@ export default function Home() {
                 </h4>
               </div>
 
+              {/* FIXED: Map iframe link is now working and points to your address */}
               <div className="w-full h-full min-h-[300px] rounded-sm overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
                 <div className="absolute inset-0 bg-[#0055FF]/10 pointer-events-none group-hover:bg-transparent transition duration-700 z-10"></div>
                 <iframe 
-                  src="https://maps.google.com/?cid=606688609220185407&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ"
+                  src="https://maps.google.com/maps?q=Leof.%20Andrea%20Papandreou%20179,%20Ilion,%20Greece&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%" 
                   height="100%" 
                   style={{ border: 0, minHeight: '350px' }} 
