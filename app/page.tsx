@@ -66,25 +66,23 @@ export default function Home() {
           white-space: nowrap;
           animation: marquee 20s linear infinite;
         }
-        .meander-bg {
-          background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 85, 255, 0.03) 10px, rgba(0, 85, 255, 0.03) 20px);
-        }
       `}} />
 
-      {/* Global Background (SYNCED - Now covers everything) */}
-      <div className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out"
+      {/* Global Background (Clear for top sections, darker at the bottom) */}
+      <div 
+        className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out"
         style={{
           transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`,
-          opacity: mounted ? Math.min(0.6, 0.1 + scrollY / 1500) : 0
+          opacity: mounted ? Math.min(0.8, 0.3 + scrollY / 1500) : 0
         }}
       >
         <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-transparent to-[#030303] z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030303] via-transparent to-[#030303] z-10"></div>
+        {/* Lighter gradient at the top, fading to black at the bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/60 to-[#030303] z-10"></div>
         <img 
           src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" 
           alt="The Parthenon" 
-          className="w-full h-[120vh] object-cover opacity-20 grayscale contrast-150"
+          className="w-full h-[120vh] object-cover opacity-30 grayscale contrast-125"
         />
       </div>
 
@@ -148,14 +146,13 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10 meander-bg">
+      <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10">
         <div className="max-w-7xl mx-auto w-full relative z-10">
           
-          {/* Green Circle Fix (Badge) */}
           <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)]">
             <span className="text-[10px] font-sans font-black tracking-widest text-blue-200 uppercase flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> 
-              {lang === 'EN' ? 'Engineered in Hellas. Building globally.' : 'Σχεδιασμένο στην Ελλάδα. Δημιουργούμε παγκοσμίως.'}
+              {lang === 'EN' ? 'Engineered in Hellas. Building globally.' : 'Σχεδιασμενο στην Ελλαδα. Δημιουργουμε παγκοσμιως.'}
             </span>
           </div>
 
@@ -166,7 +163,6 @@ export default function Home() {
             </span>
           </h2>
           
-          {/* Red Circle Fix (Simplifying and Title-like appearance) */}
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between w-full border-t border-zinc-700 pt-8 mt-12 relative z-20">
             <p className="text-xl md:text-2xl text-white font-serif tracking-tight leading-snug drop-shadow-md">
               {lang === 'EN' 
@@ -182,7 +178,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blue Circle Fix (Synced and Endless Tech Stack) */}
+      {/* TECH STACK BANNER */}
       <div className="w-full overflow-hidden bg-[#0055FF] py-6 border-y border-blue-400/30 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)]">
         <div className="max-w-7xl mx-auto px-6 mb-2">
           <p className="text-white text-[10px] font-bold tracking-widest uppercase text-center mb-4 opacity-80">
@@ -201,27 +197,26 @@ export default function Home() {
         </div>
       </div>
 
-      {/* The Studio (About Us) Section (Synced with blurred background) */}
-      <section id="studio" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-zinc-950/70 backdrop-blur-md">
+      {/* The Studio (About Us) Section - Background is now clear so Acropolis shows */}
+      <section id="studio" className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
           
           <div className="lg:w-1/3 lg:sticky lg:top-32">
             <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">
               {lang === 'EN' ? 'The Studio' : 'Το Στουντιο'}
             </h2>
-            <h3 className="text-4xl md:text-6xl font-serif tracking-tight text-white mb-6 leading-tight">
-              {lang === 'EN' ? 'Digital' : 'Ψηφιακή'} <br/>
-              <span className="italic font-light text-zinc-500">{lang === 'EN' ? 'Craftsmanship.' : 'Δεξιοτεχνία.'}</span>
+            <h3 className="text-5xl md:text-6xl font-sans font-black tracking-tighter uppercase text-white mb-6 leading-tight drop-shadow-xl">
+              {lang === 'EN' ? 'DIGITAL CRAFTSMANSHIP.' : 'ΨΗΦΙΑΚΗ ΔΕΞΙΟΤΕΧΝΙΑ.'}
             </h3>
           </div>
 
-          <div className="lg:w-2/3 space-y-8 text-lg md:text-xl text-zinc-400 font-light leading-relaxed">
-            <p className="text-white font-medium text-2xl md:text-3xl leading-snug">
+          <div className="lg:w-2/3 space-y-8 text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
+            <h4 className="text-[#0055FF] font-bold text-xl md:text-2xl tracking-wider uppercase leading-snug mb-8 drop-shadow-md">
               {lang === 'EN' 
-                ? 'At Renzo, we don\'t just build websites; we engineer digital ecosystems. What others see as a simple project, we see as digital architecture. We turned our obsession with high-performance code into a studio that delivers absolute growth.' 
-                : 'Στη Renzo, δεν φτιάχνουμε απλώς ιστοσελίδες· κατασκευάζουμε ψηφιακά οικοσυστήματα. Αυτό που για άλλους είναι ένα απλό project, για εμάς είναι ψηφιακή αρχιτεκτονική. Κάναμε την εμμονή μας με τον κώδικα υψηλής απόδοσης, ένα στούντιο που φέρνει απόλυτη ανάπτυξη.'}
-            </p>
-            <div className="w-16 h-px bg-[#0055FF]/50 my-8"></div>
+                ? 'We engineer digital ecosystems. Turning high-performance code into absolute growth.' 
+                : 'Κατασκευάζουμε ψηφιακά οικοσυστήματα. Μετατρέπουμε τον κώδικα σε απόλυτη ανάπτυξη.'}
+            </h4>
+            <div className="w-16 h-px bg-[#0055FF] my-8 shadow-[0_0_10px_#0055FF]"></div>
             <p>
               {lang === 'EN' 
                 ? 'Excellence is never an accident. It is the result of relentless refinement, architectural precision, and an uncompromising dedication to the final product. You see it in our code, in the conversion rates of our partners, and in the digital empires we help them build.' 
@@ -237,8 +232,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Scrolling Text Banner (Synced and Endless) */}
-      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
+      {/* Scrolling Text Banner */}
+      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30 my-10">
         <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase flex gap-16 whitespace-nowrap">
           {Array(2).fill(
             lang === 'EN' 
@@ -253,14 +248,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* SERVICES SECTION */}
-      <section id="services" className="py-32 px-6 relative z-10 bg-zinc-950/70 backdrop-blur-md">
+      {/* SERVICES SECTION - Background is clear to let image show */}
+      <section id="services" className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
-            <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white">
+            <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white drop-shadow-xl">
               {lang === 'EN' ? 'DEVELOPMENT' : 'ΑΝΑΠΤΥΞΗ'}
             </h3>
-            <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mt-4 md:mt-0">
+            <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mt-4 md:mt-0 drop-shadow-md">
               {lang === 'EN' ? 'Premium Code & Custom Solutions.' : 'PREMIUM ΚΩΔΙΚΑΣ & CUSTOM ΛΥΣΕΙΣ.'}
             </p>
           </div>
@@ -327,8 +322,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Advantage Section */}
-      <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#050505]/60 backdrop-blur-md">
+      {/* The Advantage Section (Transitioning into Blur!) */}
+      <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#030303]/80 backdrop-blur-xl">
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           <div className="w-full text-center md:text-left">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-8 drop-shadow-xl">
@@ -363,8 +358,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Agora (Contact Form) */}
-      <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-zinc-950/70 backdrop-blur-md">
+      {/* The Agora (Contact Form) - Still Blurred */}
+      <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-6">
