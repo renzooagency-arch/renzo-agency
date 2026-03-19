@@ -41,10 +41,8 @@ export default function Home() {
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white overflow-x-hidden relative">
       
-      {/* ADDED: html { scroll-behavior: smooth; } for gliding links! */}
       <style dangerouslySetInnerHTML={{__html: `
         html { scroll-behavior: smooth; }
-        
         @keyframes floatCube {
           0% { transform: translateY(110vh) rotateX(0deg) rotateY(0deg); opacity: 0; }
           20% { opacity: 0.1; }
@@ -66,7 +64,7 @@ export default function Home() {
         .animate-marquee {
           display: inline-block;
           white-space: nowrap;
-          animation: marquee 25s linear infinite;
+          animation: marquee 20s linear infinite;
         }
         .meander-bg {
           background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 85, 255, 0.03) 10px, rgba(0, 85, 255, 0.03) 20px);
@@ -184,11 +182,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NEW: THE TECH STACK BANNER */}
+      <div className="w-full overflow-hidden bg-black/50 py-6 border-y border-zinc-900 z-20 relative backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 mb-2">
+          <p className="text-[#0055FF] text-[10px] font-bold tracking-widest uppercase text-center mb-4">
+            {lang === 'EN' ? 'Powered by Elite Technology' : 'Τεχνολογιες Αιχμης'}
+          </p>
+        </div>
+        <div className="flex gap-16 animate-marquee whitespace-nowrap text-zinc-600 font-mono text-xl tracking-widest opacity-70">
+          <span>NEXT.JS</span> <span>•</span>
+          <span>REACT</span> <span>•</span>
+          <span>TYPESCRIPT</span> <span>•</span>
+          <span>TAILWIND CSS</span> <span>•</span>
+          <span>VERCEL</span> <span>•</span>
+          <span>STRIPE</span> <span>•</span>
+          <span>NODE.JS</span> <span>•</span>
+          {/* Duplicated for seamless loop */}
+          <span>NEXT.JS</span> <span>•</span>
+          <span>REACT</span> <span>•</span>
+          <span>TYPESCRIPT</span> <span>•</span>
+          <span>TAILWIND CSS</span> <span>•</span>
+          <span>VERCEL</span> <span>•</span>
+          <span>STRIPE</span> <span>•</span>
+          <span>NODE.JS</span>
+        </div>
+      </div>
+
       {/* The Studio (About Us) Section */}
-      <section id="studio" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#020202]/80 backdrop-blur-sm">
+      <section id="studio" className="py-32 px-6 relative z-10 bg-[#020202]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
           
-          {/* Sticky Left Title */}
           <div className="lg:w-1/3 lg:sticky lg:top-32">
             <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">
               {lang === 'EN' ? 'The Studio' : 'Το Στουντιο'}
@@ -199,7 +222,6 @@ export default function Home() {
             </h3>
           </div>
 
-          {/* Manifesto Text */}
           <div className="lg:w-2/3 space-y-8 text-lg md:text-xl text-zinc-400 font-light leading-relaxed">
             <p className="text-white font-medium text-2xl md:text-3xl leading-snug">
               {lang === 'EN' 
@@ -223,7 +245,7 @@ export default function Home() {
       </section>
 
       {/* Scrolling Banner */}
-      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30 mt-10">
+      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
         <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase">
           {lang === 'EN' 
             ? 'DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • ' 
