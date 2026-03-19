@@ -41,7 +41,10 @@ export default function Home() {
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white overflow-x-hidden relative">
       
+      {/* ADDED: html { scroll-behavior: smooth; } for gliding links! */}
       <style dangerouslySetInnerHTML={{__html: `
+        html { scroll-behavior: smooth; }
+        
         @keyframes floatCube {
           0% { transform: translateY(110vh) rotateX(0deg) rotateY(0deg); opacity: 0; }
           20% { opacity: 0.1; }
@@ -181,7 +184,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW: The Studio (About Us) Section */}
+      {/* The Studio (About Us) Section */}
       <section id="studio" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#020202]/80 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
           
