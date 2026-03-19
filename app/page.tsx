@@ -66,9 +66,6 @@ export default function Home() {
           white-space: nowrap;
           animation: marquee 20s linear infinite;
         }
-        .meander-bg {
-          background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 85, 255, 0.03) 10px, rgba(0, 85, 255, 0.03) 20px);
-        }
       `}} />
 
       {/* Global Background */}
@@ -105,15 +102,26 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <a href="/" className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none">
+          <a 
+            href="/" 
+            className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none"
+          >
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
           </a>
           
           <div className="hidden md:flex space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="#studio" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Studio' : 'Στουντιο'}</a>
-            <a href="#services" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Services' : 'Υπηρεσιες'}</a>
-            <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}</a>
-            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Agora' : 'Επικοινωνια'}</a>
+            <a href="#studio" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Studio' : 'Στουντιο'}
+            </a>
+            <a href="#services" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Services' : 'Υπηρεσιες'}
+            </a>
+            <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}
+            </a>
+            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Agora' : 'Επικοινωνια'}
+            </a>
           </div>
           
           <div className="flex items-center gap-4">
@@ -121,8 +129,13 @@ export default function Home() {
               <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
               <button onClick={() => setLang('GR')} className={`px-3 py-2 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
             </div>
+
             <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#0055FF] transition-colors duration-300 ml-2" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
             </a>
             <a href="#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
                 {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
@@ -134,6 +147,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10">
         <div className="max-w-7xl mx-auto w-full relative z-10">
+          
           <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)]">
             <span className="text-[10px] font-sans font-black tracking-widest text-blue-200 uppercase flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> 
@@ -182,22 +196,19 @@ export default function Home() {
         </div>
       </div>
 
-      {/* The Studio (About Us) Section - FIXED OVERLAP */}
+      {/* The Studio (About Us) Section */}
       <section id="studio" className="py-40 px-6 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
           
-          {/* Changed from lg:w-1/3 to lg:w-5/12 to give the massive text more room */}
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32">
             <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">
               {lang === 'EN' ? 'The Studio' : 'Το Στουντιο'}
             </h2>
-            {/* Added break-words and adjusted font size so it scales properly on laptops */}
             <h3 className="text-5xl lg:text-5xl xl:text-6xl font-sans font-black tracking-tighter uppercase text-white mb-6 leading-none drop-shadow-xl break-words">
               {lang === 'EN' ? <>DIGITAL <br className="hidden lg:block"/>CRAFTSMANSHIP.</> : <>ΨΗΦΙΑΚΗ <br className="hidden lg:block"/>ΔΕΞΙΟΤΕΧΝΙΑ.</>}
             </h3>
           </div>
 
-          {/* Changed from lg:w-2/3 to lg:w-7/12 to balance the columns perfectly */}
           <div className="w-full lg:w-7/12 space-y-8 text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
             <h4 className="text-[#0055FF] font-bold text-xl md:text-2xl tracking-wider uppercase leading-snug mb-8 drop-shadow-md">
               {lang === 'EN' 
@@ -237,7 +248,7 @@ export default function Home() {
       </div>
 
       {/* SERVICES SECTION */}
-      <section id="services" className="py-32 px-6 relative z-10">
+      <section id="services" className="py-32 px-6 relative z-10 bg-zinc-950/70 backdrop-blur-md border-y border-zinc-900/50">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
             <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white drop-shadow-xl">
@@ -250,7 +261,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
-            {/* Card 1: Web Development (CLICKABLE ENTIRE ROW TO AGORA) */}
+            {/* Card 1: Web Development (NOW LINKS TO /packages IN A NEW TAB) */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
               
@@ -265,12 +276,14 @@ export default function Home() {
                   ? "We build modern, custom websites that load instantly. We don't use ready-made templates. We build from scratch with the latest technologies." 
                   : "Κατασκευάζουμε σύγχρονες, custom ιστοσελίδες που φορτώνουν αστραπιαία. Δεν χρησιμοποιούμε έτοιμα templates. Χτίζουμε από το μηδέν με τις πιο σύγχρονες τεχνολογίες."}
               </p>
-              <ul className="space-y-4 mb-16">
+              <ul className="space-y-4 mb-16 flex-grow">
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Custom UI/UX Design</li>
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Next.js / React Architecture</li>
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Ultimate Speed & SEO-Ready Code' : 'Απόλυτη Ταχύτητα & SEO-Ready Κώδικας'}</li>
               </ul>
-              <a href="#the-agora" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
+              
+              {/* THE BUTTON TO NEW TAB -> /packages */}
+              <a href="/packages" target="_blank" rel="noopener noreferrer" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'Website Packages' : 'ΠΑΚΕΤΑ WEBSITES'}</span>
                 <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] group-hover/btn:bg-[#0055FF]/10 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -278,7 +291,7 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Card 2: E-Shops (CLICKABLE ENTIRE ROW TO AGORA) */}
+            {/* Card 2: E-Shops (NOW LINKS TO /packages IN A NEW TAB) */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
@@ -293,12 +306,14 @@ export default function Home() {
                   ? "We design e-commerce stores built 100% around Conversion Rate. We minimize checkout friction and optimize sales processes." 
                   : "Σχεδιάζουμε ηλεκτρονικά καταστήματα στημένα 100% γύρω από το Conversion Rate. Ελαχιστοποιούμε το friction στο checkout και βελτιστοποιούμε τις διαδικασίες πώλησης."}
               </p>
-              <ul className="space-y-4 mb-16">
+              <ul className="space-y-4 mb-16 flex-grow">
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Custom E-commerce Solutions' : 'Custom E-commerce Λύσεις'}</li>
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Conversion Rate Optimization (CRO)</li>
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> High-Volume Traffic Handling</li>
               </ul>
-              <a href="#the-agora" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
+              
+              {/* THE BUTTON TO NEW TAB -> /packages */}
+              <a href="/packages" target="_blank" rel="noopener noreferrer" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'E-Shop Packages' : 'ΠΑΚΕΤΑ E-SHOPS'}</span>
                 <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] group-hover/btn:bg-[#0055FF]/10 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -346,7 +361,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Agora (Contact Form) - Form Selector Added! */}
+      {/* The Agora (Contact Form) */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
