@@ -114,7 +114,10 @@ export default function Home() {
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
           </a>
           
-          <div className="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+          <div className="hidden md:flex space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+            <a href="#studio" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Studio' : 'Στουντιο'}
+            </a>
             <a href="#services" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Services' : 'Υπηρεσιες'}
             </a>
@@ -122,7 +125,7 @@ export default function Home() {
               {lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}
             </a>
             <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'The Agora' : 'Επικοινωνια'}
+              {lang === 'EN' ? 'Agora' : 'Επικοινωνια'}
             </a>
           </div>
           
@@ -178,8 +181,46 @@ export default function Home() {
         </div>
       </section>
 
+      {/* NEW: The Studio (About Us) Section */}
+      <section id="studio" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#020202]/80 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
+          
+          {/* Sticky Left Title */}
+          <div className="lg:w-1/3 lg:sticky lg:top-32">
+            <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">
+              {lang === 'EN' ? 'The Studio' : 'Το Στουντιο'}
+            </h2>
+            <h3 className="text-4xl md:text-6xl font-serif tracking-tight text-white mb-6 leading-tight">
+              {lang === 'EN' ? 'Digital' : 'Ψηφιακή'} <br/>
+              <span className="italic font-light text-zinc-500">{lang === 'EN' ? 'Craftsmanship.' : 'Δεξιοτεχνία.'}</span>
+            </h3>
+          </div>
+
+          {/* Manifesto Text */}
+          <div className="lg:w-2/3 space-y-8 text-lg md:text-xl text-zinc-400 font-light leading-relaxed">
+            <p className="text-white font-medium text-2xl md:text-3xl leading-snug">
+              {lang === 'EN' 
+                ? 'At Renzo, we don\'t just build websites; we engineer digital ecosystems. What others see as a simple project, we see as digital architecture. We turned our obsession with high-performance code into a studio that delivers absolute growth.' 
+                : 'Στη Renzo, δεν φτιάχνουμε απλώς ιστοσελίδες· κατασκευάζουμε ψηφιακά οικοσυστήματα. Αυτό που για άλλους είναι ένα απλό project, για εμάς είναι ψηφιακή αρχιτεκτονική. Κάναμε την εμμονή μας με τον κώδικα υψηλής απόδοσης, ένα στούντιο που φέρνει απόλυτη ανάπτυξη.'}
+            </p>
+            <div className="w-16 h-px bg-[#0055FF]/50 my-8"></div>
+            <p>
+              {lang === 'EN' 
+                ? 'Excellence is never an accident. It is the result of relentless refinement, architectural precision, and an uncompromising dedication to the final product. You see it in our code, in the conversion rates of our partners, and in the digital empires we help them build.' 
+                : 'Η αριστεία δεν είναι ποτέ τυχαία. Προέρχεται από αδιάκοπη εξέλιξη, αρχιτεκτονική ακρίβεια και αδιαπραγμάτευτη αφοσίωση στο τελικό αποτέλεσμα. Και αυτό αποτυπώνεται στον κώδικά μας, στα conversion rates των συνεργατών μας και στις ψηφιακές αυτοκρατορίες που τους βοηθάμε να χτίσουν.'}
+            </p>
+            <p>
+              {lang === 'EN' 
+                ? 'From lightning-fast Next.js infrastructures to conversion-obsessed E-shops, we merge classical aesthetics with elite engineering. We are the silent force behind brands that refuse to be second best.' 
+                : 'Από αστραπιαίες υποδομές Next.js μέχρι E-shops εστιασμένα αποκλειστικά στις πωλήσεις, συνδυάζουμε την κλασική αισθητική με την κορυφαία μηχανική. Είμαστε η αθόρυβη δύναμη πίσω από επιχειρήσεις που αρνούνται να είναι δεύτερες.'}
+            </p>
+          </div>
+
+        </div>
+      </section>
+
       {/* Scrolling Banner */}
-      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
+      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30 mt-10">
         <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase">
           {lang === 'EN' 
             ? 'DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • ' 
@@ -187,7 +228,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* NEW SERVICES SECTION (Obsidian / Blue Greek Style) */}
+      {/* SERVICES SECTION */}
       <section id="services" className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
