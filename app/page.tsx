@@ -71,25 +71,22 @@ export default function Home() {
         }
       `}} />
 
-      {/* Background Effects */}
-      {mounted && (
-        <div 
-          className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out flex items-center justify-center"
-          style={{
-            transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`,
-            opacity: Math.min(0.6, 0.1 + scrollY / 1500)
-          }}
-        >
-          <div className="absolute inset-0 bg-[#0055FF]/20 mix-blend-color z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-transparent to-[#030303] z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#030303] via-transparent to-[#030303] z-10"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" 
-            alt="The Parthenon" 
-            className="w-full h-[120vh] object-cover opacity-20 grayscale contrast-150"
-          />
-        </div>
-      )}
+      {/* Global Background (SYNCED - Now covers everything) */}
+      <div className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out"
+        style={{
+          transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`,
+          opacity: mounted ? Math.min(0.6, 0.1 + scrollY / 1500) : 0
+        }}
+      >
+        <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303] via-transparent to-[#030303] z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030303] via-transparent to-[#030303] z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" 
+          alt="The Parthenon" 
+          className="w-full h-[120vh] object-cover opacity-20 grayscale contrast-150"
+        />
+      </div>
 
       {mounted && cubes.map((cube) => (
         <div 
@@ -153,10 +150,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10 meander-bg">
         <div className="max-w-7xl mx-auto w-full relative z-10">
+          
+          {/* Green Circle Fix (Badge) */}
           <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)]">
-            <span className="text-[10px] font-mono tracking-widest text-blue-200 uppercase flex items-center gap-2">
-              <span className="text-xl leading-none -mt-1">🏛️</span> 
-              {lang === 'EN' ? 'Engineered in Hellas. Building globally.' : 'Σχεδιασμενο στην Ελλαδα. Δημιουργουμε παγκοσμιως.'}
+            <span className="text-[10px] font-sans font-black tracking-widest text-blue-200 uppercase flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> 
+              {lang === 'EN' ? 'Engineered in Hellas. Building globally.' : 'Σχεδιασμένο στην Ελλάδα. Δημιουργούμε παγκοσμίως.'}
             </span>
           </div>
 
@@ -167,11 +166,12 @@ export default function Home() {
             </span>
           </h2>
           
+          {/* Red Circle Fix (Simplifying and Title-like appearance) */}
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between w-full border-t border-zinc-700 pt-8 mt-12 relative z-20">
-            <p className="text-xl md:text-2xl text-white font-light max-w-lg leading-relaxed drop-shadow-md">
+            <p className="text-xl md:text-2xl text-white font-serif tracking-tight leading-snug drop-shadow-md">
               {lang === 'EN' 
-                ? 'Renzo Agency crafts high-performance digital infrastructure, merging classical design principles with modern automation.' 
-                : 'Η Renzo Agency δημιουργεί ψηφιακές υποδομές υψηλής απόδοσης, συνδυάζοντας κλασικές αρχές σχεδιασμού με σύγχρονους αυτοματισμούς.'}
+                ? 'We engineer high-performance digital infrastructure for modern brands.' 
+                : 'Σχεδιάζουμε ψηφιακές υποδομές υψηλής απόδοσης για σύγχρονα brands.'}
             </p>
             <div className="flex gap-4">
               <a href="#services" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
@@ -182,34 +182,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW: THE TECH STACK BANNER */}
-      <div className="w-full overflow-hidden bg-black/50 py-6 border-y border-zinc-900 z-20 relative backdrop-blur-md">
+      {/* Blue Circle Fix (Synced and Endless Tech Stack) */}
+      <div className="w-full overflow-hidden bg-[#0055FF] py-6 border-y border-blue-400/30 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)]">
         <div className="max-w-7xl mx-auto px-6 mb-2">
-          <p className="text-[#0055FF] text-[10px] font-bold tracking-widest uppercase text-center mb-4">
+          <p className="text-white text-[10px] font-bold tracking-widest uppercase text-center mb-4 opacity-80">
             {lang === 'EN' ? 'Powered by Elite Technology' : 'Τεχνολογιες Αιχμης'}
           </p>
         </div>
-        <div className="flex gap-16 animate-marquee whitespace-nowrap text-zinc-600 font-mono text-xl tracking-widest opacity-70">
-          <span>NEXT.JS</span> <span>•</span>
-          <span>REACT</span> <span>•</span>
-          <span>TYPESCRIPT</span> <span>•</span>
-          <span>TAILWIND CSS</span> <span>•</span>
-          <span>VERCEL</span> <span>•</span>
-          <span>STRIPE</span> <span>•</span>
-          <span>NODE.JS</span> <span>•</span>
-          {/* Duplicated for seamless loop */}
-          <span>NEXT.JS</span> <span>•</span>
-          <span>REACT</span> <span>•</span>
-          <span>TYPESCRIPT</span> <span>•</span>
-          <span>TAILWIND CSS</span> <span>•</span>
-          <span>VERCEL</span> <span>•</span>
-          <span>STRIPE</span> <span>•</span>
-          <span>NODE.JS</span>
+        <div className="flex gap-16 animate-marquee whitespace-nowrap text-white font-mono text-xl tracking-widest">
+          {[
+            'NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'VERCEL', 'STRIPE', 'NODE.JS',
+            'NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'VERCEL', 'STRIPE', 'NODE.JS'
+          ].map((item, idx) => (
+            <React.Fragment key={idx}>
+              <span>{item}</span> {idx < 13 && <span>•</span>}
+            </React.Fragment>
+          ))}
         </div>
       </div>
 
-      {/* The Studio (About Us) Section */}
-      <section id="studio" className="py-32 px-6 relative z-10 bg-[#020202]">
+      {/* The Studio (About Us) Section (Synced with blurred background) */}
+      <section id="studio" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-zinc-950/70 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
           
           <div className="lg:w-1/3 lg:sticky lg:top-32">
@@ -244,17 +237,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Scrolling Banner */}
+      {/* Scrolling Text Banner (Synced and Endless) */}
       <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
-        <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase">
-          {lang === 'EN' 
-            ? 'DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • ' 
-            : 'ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • '}
+        <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase flex gap-16 whitespace-nowrap">
+          {Array(2).fill(
+            lang === 'EN' 
+              ? 'DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING' 
+              : 'ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING'
+          ).map((item, idx) => (
+            <React.Fragment key={idx}>
+              <span>{item}</span>
+              {idx < 1 && <span className="mr-16">•</span>}
+            </React.Fragment>
+          ))}
         </div>
       </div>
 
       {/* SERVICES SECTION */}
-      <section id="services" className="py-32 px-6 relative z-10">
+      <section id="services" className="py-32 px-6 relative z-10 bg-zinc-950/70 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
             <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white">
@@ -364,7 +364,7 @@ export default function Home() {
       </section>
 
       {/* The Agora (Contact Form) */}
-      <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-md">
+      <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-zinc-950/70 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-6">
@@ -378,7 +378,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl">
+            <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl rounded-xl">
               {isSent ? (
                 <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center">
                   <div className="w-20 h-20 rounded-full border border-[#0055FF] flex items-center justify-center mb-6 text-[#0055FF] text-4xl shadow-[0_0_30px_rgba(0,85,255,0.2)]">✓</div>
@@ -389,15 +389,15 @@ export default function Home() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label>
-                    <input type="text" id="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} />
+                    <input type="text" id="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label>
-                    <input type="email" id="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm" placeholder="hello@example.com" />
+                    <input type="email" id="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder="hello@example.com" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Project Details' : 'Λεπτομέρειες Έργου'}</label>
-                    <textarea id="message" required rows={5} className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all resize-none rounded-sm" placeholder={lang === 'EN' ? 'Tell us what we are building...' : 'Πείτε μας τι χτίζουμε...'}></textarea>
+                    <textarea id="message" required rows={5} className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all resize-none rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Tell us what we are building...' : 'Πείτε μας τι χτίζουμε...'}></textarea>
                   </div>
                   <button type="submit" disabled={isSubmitting} className="mt-6 bg-[#0055FF] text-white px-8 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(0,85,255,0.2)]">
                     {isSubmitting 
@@ -419,7 +419,7 @@ export default function Home() {
                 </h4>
               </div>
 
-              <div className="w-full h-full min-h-[300px] rounded-sm overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
+              <div className="w-full h-full min-h-[350px] rounded-xl overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
                 <div className="absolute inset-0 bg-[#0055FF]/10 pointer-events-none group-hover:bg-transparent transition duration-700 z-10"></div>
                 <iframe 
                   src="https://maps.google.com/maps?q=Leof.%20Andrea%20Papandreou%20179,%20Ilion,%20Greece&t=&z=15&ie=UTF8&iwloc=&output=embed"
