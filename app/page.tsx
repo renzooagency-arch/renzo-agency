@@ -187,14 +187,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* NEW SERVICES SECTION (White Bento Box Cards) */}
+      {/* NEW SERVICES SECTION (Obsidian / Blue Greek Style) */}
       <section id="services" className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
             <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white">
               {lang === 'EN' ? 'DEVELOPMENT' : 'ΑΝΑΠΤΥΞΗ'}
             </h3>
-            <p className="text-zinc-400 font-bold tracking-widest text-[10px] uppercase mt-4 md:mt-0">
+            <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mt-4 md:mt-0">
               {lang === 'EN' ? 'Premium Code & Custom Solutions.' : 'PREMIUM ΚΩΔΙΚΑΣ & CUSTOM ΛΥΣΕΙΣ.'}
             </p>
           </div>
@@ -202,52 +202,56 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
             {/* Card 1: Web Development */}
-            <div className="bg-[#fcfcfc] text-black rounded-[2rem] p-10 md:p-14 flex flex-col hover:scale-[1.02] transition-transform duration-500 shadow-2xl">
-              <div className="text-zinc-400 mb-8 flex gap-2 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+              
+              <div className="text-[#0055FF] mb-8 flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
               </div>
-              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase">
+              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase text-white">
                 CUSTOM WEB<br/>DEVELOPMENT
               </h4>
-              <p className="text-zinc-600 text-sm md:text-base mb-10 leading-relaxed font-medium">
+              <p className="text-zinc-400 text-sm md:text-base mb-10 leading-relaxed font-light">
                 {lang === 'EN' 
                   ? "We build modern, custom websites that load instantly. We don't use ready-made templates. We build from scratch with the latest technologies." 
                   : "Κατασκευάζουμε σύγχρονες, custom ιστοσελίδες που φορτώνουν αστραπιαία. Δεν χρησιμοποιούμε έτοιμα templates. Χτίζουμε από το μηδέν με τις πιο σύγχρονες τεχνολογίες."}
               </p>
               <ul className="space-y-4 mb-16">
-                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> Custom UI/UX Design</li>
-                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> Next.js / React Architecture</li>
-                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> {lang === 'EN' ? 'Ultimate Speed & SEO-Ready Code' : 'Απόλυτη Ταχύτητα & SEO-Ready Κώδικας'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Custom UI/UX Design</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Next.js / React Architecture</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Ultimate Speed & SEO-Ready Code' : 'Απόλυτη Ταχύτητα & SEO-Ready Κώδικας'}</li>
               </ul>
-              <div className="mt-auto pt-6 border-t border-zinc-200 flex items-center justify-between group cursor-pointer">
-                <span className="text-[10px] font-black tracking-widest uppercase">{lang === 'EN' ? 'Website Packages' : 'ΠΑΚΕΤΑ WEBSITES'}</span>
-                <div className="w-10 h-10 rounded-full border border-zinc-300 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+              <div className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'Website Packages' : 'ΠΑΚΕΤΑ WEBSITES'}</span>
+                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover:border-[#0055FF] group-hover:text-[#0055FF] group-hover:bg-[#0055FF]/10 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </div>
               </div>
             </div>
 
             {/* Card 2: E-Shops */}
-            <div className="bg-[#fcfcfc] text-black rounded-[2rem] p-10 md:p-14 flex flex-col hover:scale-[1.02] transition-transform duration-500 shadow-2xl">
-              <div className="text-zinc-400 mb-8 flex gap-2 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
+
+              <div className="text-[#0055FF] mb-8 flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
               </div>
-              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase">
+              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase text-white">
                 HIGH-PERFORMANCE<br/>E-SHOPS
               </h4>
-              <p className="text-zinc-600 text-sm md:text-base mb-10 leading-relaxed font-medium">
+              <p className="text-zinc-400 text-sm md:text-base mb-10 leading-relaxed font-light">
                 {lang === 'EN' 
                   ? "We design e-commerce stores built 100% around Conversion Rate. We minimize checkout friction and optimize sales processes." 
                   : "Σχεδιάζουμε ηλεκτρονικά καταστήματα στημένα 100% γύρω από το Conversion Rate. Ελαχιστοποιούμε το friction στο checkout και βελτιστοποιούμε τις διαδικασίες πώλησης."}
               </p>
               <ul className="space-y-4 mb-16">
-                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> {lang === 'EN' ? 'Custom E-commerce Solutions' : 'Custom E-commerce Λύσεις'}</li>
-                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> Conversion Rate Optimization (CRO)</li>
-                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> High-Volume Traffic Handling</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Custom E-commerce Solutions' : 'Custom E-commerce Λύσεις'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Conversion Rate Optimization (CRO)</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> High-Volume Traffic Handling</li>
               </ul>
-              <div className="mt-auto pt-6 border-t border-zinc-200 flex items-center justify-between group cursor-pointer">
-                <span className="text-[10px] font-black tracking-widest uppercase">{lang === 'EN' ? 'E-Shop Packages' : 'ΠΑΚΕΤΑ E-SHOPS'}</span>
-                <div className="w-10 h-10 rounded-full border border-zinc-300 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+              <div className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'E-Shop Packages' : 'ΠΑΚΕΤΑ E-SHOPS'}</span>
+                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover:border-[#0055FF] group-hover:text-[#0055FF] group-hover:bg-[#0055FF]/10 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </div>
               </div>
@@ -293,7 +297,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Agora (Contact Form - Moved back to Bottom) */}
+      {/* The Agora (Contact Form) */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
