@@ -66,9 +66,12 @@ export default function Home() {
           white-space: nowrap;
           animation: marquee 20s linear infinite;
         }
+        .meander-bg {
+          background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 85, 255, 0.03) 10px, rgba(0, 85, 255, 0.03) 20px);
+        }
       `}} />
 
-      {/* Global Background (Clear for top sections, darker at the bottom) */}
+      {/* Global Background */}
       <div 
         className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out"
         style={{
@@ -77,7 +80,6 @@ export default function Home() {
         }}
       >
         <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
-        {/* Lighter gradient at the top, fading to black at the bottom */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/60 to-[#030303] z-10"></div>
         <img 
           src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" 
@@ -103,26 +105,15 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <a 
-            href="/" 
-            className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none"
-          >
+          <a href="/" className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none">
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
           </a>
           
           <div className="hidden md:flex space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="#studio" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'Studio' : 'Στουντιο'}
-            </a>
-            <a href="#services" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'Services' : 'Υπηρεσιες'}
-            </a>
-            <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}
-            </a>
-            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'Agora' : 'Επικοινωνια'}
-            </a>
+            <a href="#studio" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Studio' : 'Στουντιο'}</a>
+            <a href="#services" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Services' : 'Υπηρεσιες'}</a>
+            <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}</a>
+            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Agora' : 'Επικοινωνια'}</a>
           </div>
           
           <div className="flex items-center gap-4">
@@ -130,13 +121,8 @@ export default function Home() {
               <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
               <button onClick={() => setLang('GR')} className={`px-3 py-2 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
             </div>
-
             <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="text-zinc-400 hover:text-[#0055FF] transition-colors duration-300 ml-2" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             <a href="#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
                 {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
@@ -148,7 +134,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10">
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          
           <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)]">
             <span className="text-[10px] font-sans font-black tracking-widest text-blue-200 uppercase flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> 
@@ -197,10 +182,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* The Studio (About Us) Section - Background is now clear so Acropolis shows */}
+      {/* The Studio (About Us) Section */}
       <section id="studio" className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
-          
           <div className="lg:w-1/3 lg:sticky lg:top-32">
             <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">
               {lang === 'EN' ? 'The Studio' : 'Το Στουντιο'}
@@ -209,7 +193,6 @@ export default function Home() {
               {lang === 'EN' ? 'DIGITAL CRAFTSMANSHIP.' : 'ΨΗΦΙΑΚΗ ΔΕΞΙΟΤΕΧΝΙΑ.'}
             </h3>
           </div>
-
           <div className="lg:w-2/3 space-y-8 text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
             <h4 className="text-[#0055FF] font-bold text-xl md:text-2xl tracking-wider uppercase leading-snug mb-8 drop-shadow-md">
               {lang === 'EN' 
@@ -228,7 +211,6 @@ export default function Home() {
                 : 'Από αστραπιαίες υποδομές Next.js μέχρι E-shops εστιασμένα αποκλειστικά στις πωλήσεις, συνδυάζουμε την κλασική αισθητική με την κορυφαία μηχανική. Είμαστε η αθόρυβη δύναμη πίσω από επιχειρήσεις που αρνούνται να είναι δεύτερες.'}
             </p>
           </div>
-
         </div>
       </section>
 
@@ -248,7 +230,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* SERVICES SECTION - Background is clear to let image show */}
+      {/* SERVICES SECTION */}
       <section id="services" className="py-32 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
@@ -262,7 +244,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
-            {/* Card 1: Web Development */}
+            {/* Card 1: Web Development (CLICKABLE ENTIRE ROW TO AGORA) */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
               
@@ -282,15 +264,15 @@ export default function Home() {
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Next.js / React Architecture</li>
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Ultimate Speed & SEO-Ready Code' : 'Απόλυτη Ταχύτητα & SEO-Ready Κώδικας'}</li>
               </ul>
-              <div className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'Website Packages' : 'ΠΑΚΕΤΑ WEBSITES'}</span>
-                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover:border-[#0055FF] group-hover:text-[#0055FF] group-hover:bg-[#0055FF]/10 transition-all duration-300">
+              <a href="#the-agora" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'Website Packages' : 'ΠΑΚΕΤΑ WEBSITES'}</span>
+                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] group-hover/btn:bg-[#0055FF]/10 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </div>
-              </div>
+              </a>
             </div>
 
-            {/* Card 2: E-Shops */}
+            {/* Card 2: E-Shops (CLICKABLE ENTIRE ROW TO AGORA) */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
@@ -310,12 +292,12 @@ export default function Home() {
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Conversion Rate Optimization (CRO)</li>
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> High-Volume Traffic Handling</li>
               </ul>
-              <div className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'E-Shop Packages' : 'ΠΑΚΕΤΑ E-SHOPS'}</span>
-                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover:border-[#0055FF] group-hover:text-[#0055FF] group-hover:bg-[#0055FF]/10 transition-all duration-300">
+              <a href="#the-agora" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'E-Shop Packages' : 'ΠΑΚΕΤΑ E-SHOPS'}</span>
+                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] group-hover/btn:bg-[#0055FF]/10 transition-all duration-300">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </div>
-              </div>
+              </a>
             </div>
 
           </div>
@@ -358,7 +340,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Agora (Contact Form) - Still Blurred */}
+      {/* The Agora (Contact Form) - Form Selector Added! */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
@@ -390,6 +372,23 @@ export default function Home() {
                     <label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label>
                     <input type="email" id="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder="hello@example.com" />
                   </div>
+
+                  {/* NEW: Project Type Dropdown */}
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="project_type" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">
+                        {lang === 'EN' ? 'Project Type' : 'ΤΥΠΟΣ ΕΡΓΟΥ'}
+                    </label>
+                    <div className="relative">
+                        <select id="project_type" className="w-full bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm appearance-none cursor-pointer">
+                            <option value="website">{lang === 'EN' ? 'Custom Website' : 'Custom Ιστοσελίδα'}</option>
+                            <option value="eshop">{lang === 'EN' ? 'E-Shop Development' : 'Κατασκευή E-Shop'}</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center px-5 pointer-events-none text-[#0055FF]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                  </div>
+
                   <div className="flex flex-col gap-2">
                     <label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Project Details' : 'Λεπτομέρειες Έργου'}</label>
                     <textarea id="message" required rows={5} className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all resize-none rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Tell us what we are building...' : 'Πείτε μας τι χτίζουμε...'}></textarea>
