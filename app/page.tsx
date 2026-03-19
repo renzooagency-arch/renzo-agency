@@ -182,18 +182,23 @@ export default function Home() {
         </div>
       </div>
 
-      {/* The Studio (About Us) Section */}
-      <section id="studio" className="py-32 px-6 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
-          <div className="lg:w-1/3 lg:sticky lg:top-32">
+      {/* The Studio (About Us) Section - FIXED OVERLAP */}
+      <section id="studio" className="py-40 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+          
+          {/* Changed from lg:w-1/3 to lg:w-5/12 to give the massive text more room */}
+          <div className="w-full lg:w-5/12 lg:sticky lg:top-32">
             <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">
               {lang === 'EN' ? 'The Studio' : 'Το Στουντιο'}
             </h2>
-            <h3 className="text-5xl md:text-6xl font-sans font-black tracking-tighter uppercase text-white mb-6 leading-tight drop-shadow-xl">
-              {lang === 'EN' ? 'DIGITAL CRAFTSMANSHIP.' : 'ΨΗΦΙΑΚΗ ΔΕΞΙΟΤΕΧΝΙΑ.'}
+            {/* Added break-words and adjusted font size so it scales properly on laptops */}
+            <h3 className="text-5xl lg:text-5xl xl:text-6xl font-sans font-black tracking-tighter uppercase text-white mb-6 leading-none drop-shadow-xl break-words">
+              {lang === 'EN' ? <>DIGITAL <br className="hidden lg:block"/>CRAFTSMANSHIP.</> : <>ΨΗΦΙΑΚΗ <br className="hidden lg:block"/>ΔΕΞΙΟΤΕΧΝΙΑ.</>}
             </h3>
           </div>
-          <div className="lg:w-2/3 space-y-8 text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
+
+          {/* Changed from lg:w-2/3 to lg:w-7/12 to balance the columns perfectly */}
+          <div className="w-full lg:w-7/12 space-y-8 text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
             <h4 className="text-[#0055FF] font-bold text-xl md:text-2xl tracking-wider uppercase leading-snug mb-8 drop-shadow-md">
               {lang === 'EN' 
                 ? 'We engineer digital ecosystems. Turning high-performance code into absolute growth.' 
@@ -211,6 +216,7 @@ export default function Home() {
                 : 'Από αστραπιαίες υποδομές Next.js μέχρι E-shops εστιασμένα αποκλειστικά στις πωλήσεις, συνδυάζουμε την κλασική αισθητική με την κορυφαία μηχανική. Είμαστε η αθόρυβη δύναμη πίσω από επιχειρήσεις που αρνούνται να είναι δεύτερες.'}
             </p>
           </div>
+
         </div>
       </section>
 
@@ -373,7 +379,7 @@ export default function Home() {
                     <input type="email" id="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder="hello@example.com" />
                   </div>
 
-                  {/* NEW: Project Type Dropdown */}
+                  {/* Project Type Dropdown */}
                   <div className="flex flex-col gap-2">
                     <label htmlFor="project_type" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">
                         {lang === 'EN' ? 'Project Type' : 'ΤΥΠΟΣ ΕΡΓΟΥ'}
