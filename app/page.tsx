@@ -115,14 +115,14 @@ export default function Home() {
           </a>
           
           <div className="hidden md:flex space-x-10 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'The Agora' : 'Επικοινωνια'}
-            </a>
             <a href="#services" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Services' : 'Υπηρεσιες'}
             </a>
             <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}
+            </a>
+            <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'The Agora' : 'Επικοινωνια'}
             </a>
           </div>
           
@@ -170,8 +170,7 @@ export default function Home() {
                 : 'Η Renzo Agency δημιουργεί ψηφιακές υποδομές υψηλής απόδοσης, συνδυάζοντας κλασικές αρχές σχεδιασμού με σύγχρονους αυτοματισμούς.'}
             </p>
             <div className="flex gap-4">
-              {/* FIXED: Button now points to #advantages */}
-              <a href="#advantages" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
+              <a href="#services" className="bg-[#0055FF] text-white px-8 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.5)] hover:scale-105">
                 {lang === 'EN' ? 'Discover The Edge' : 'Το Πλεονεκτημα'}
               </a>
             </div>
@@ -179,7 +178,122 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Agora (Contact Form) */}
+      {/* Scrolling Banner */}
+      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
+        <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase">
+          {lang === 'EN' 
+            ? 'DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • ' 
+            : 'ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • '}
+        </div>
+      </div>
+
+      {/* NEW SERVICES SECTION (White Bento Box Cards) */}
+      <section id="services" className="py-32 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
+            <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white">
+              {lang === 'EN' ? 'DEVELOPMENT' : 'ΑΝΑΠΤΥΞΗ'}
+            </h3>
+            <p className="text-zinc-400 font-bold tracking-widest text-[10px] uppercase mt-4 md:mt-0">
+              {lang === 'EN' ? 'Premium Code & Custom Solutions.' : 'PREMIUM ΚΩΔΙΚΑΣ & CUSTOM ΛΥΣΕΙΣ.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {/* Card 1: Web Development */}
+            <div className="bg-[#fcfcfc] text-black rounded-[2rem] p-10 md:p-14 flex flex-col hover:scale-[1.02] transition-transform duration-500 shadow-2xl">
+              <div className="text-zinc-400 mb-8 flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase">
+                CUSTOM WEB<br/>DEVELOPMENT
+              </h4>
+              <p className="text-zinc-600 text-sm md:text-base mb-10 leading-relaxed font-medium">
+                {lang === 'EN' 
+                  ? "We build modern, custom websites that load instantly. We don't use ready-made templates. We build from scratch with the latest technologies." 
+                  : "Κατασκευάζουμε σύγχρονες, custom ιστοσελίδες που φορτώνουν αστραπιαία. Δεν χρησιμοποιούμε έτοιμα templates. Χτίζουμε από το μηδέν με τις πιο σύγχρονες τεχνολογίες."}
+              </p>
+              <ul className="space-y-4 mb-16">
+                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> Custom UI/UX Design</li>
+                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> Next.js / React Architecture</li>
+                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> {lang === 'EN' ? 'Ultimate Speed & SEO-Ready Code' : 'Απόλυτη Ταχύτητα & SEO-Ready Κώδικας'}</li>
+              </ul>
+              <div className="mt-auto pt-6 border-t border-zinc-200 flex items-center justify-between group cursor-pointer">
+                <span className="text-[10px] font-black tracking-widest uppercase">{lang === 'EN' ? 'Website Packages' : 'ΠΑΚΕΤΑ WEBSITES'}</span>
+                <div className="w-10 h-10 rounded-full border border-zinc-300 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: E-Shops */}
+            <div className="bg-[#fcfcfc] text-black rounded-[2rem] p-10 md:p-14 flex flex-col hover:scale-[1.02] transition-transform duration-500 shadow-2xl">
+              <div className="text-zinc-400 mb-8 flex gap-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              </div>
+              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase">
+                HIGH-PERFORMANCE<br/>E-SHOPS
+              </h4>
+              <p className="text-zinc-600 text-sm md:text-base mb-10 leading-relaxed font-medium">
+                {lang === 'EN' 
+                  ? "We design e-commerce stores built 100% around Conversion Rate. We minimize checkout friction and optimize sales processes." 
+                  : "Σχεδιάζουμε ηλεκτρονικά καταστήματα στημένα 100% γύρω από το Conversion Rate. Ελαχιστοποιούμε το friction στο checkout και βελτιστοποιούμε τις διαδικασίες πώλησης."}
+              </p>
+              <ul className="space-y-4 mb-16">
+                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> {lang === 'EN' ? 'Custom E-commerce Solutions' : 'Custom E-commerce Λύσεις'}</li>
+                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> Conversion Rate Optimization (CRO)</li>
+                <li className="flex items-center gap-4 text-sm font-bold"><span className="w-1.5 h-1.5 bg-black rounded-full"></span> High-Volume Traffic Handling</li>
+              </ul>
+              <div className="mt-auto pt-6 border-t border-zinc-200 flex items-center justify-between group cursor-pointer">
+                <span className="text-[10px] font-black tracking-widest uppercase">{lang === 'EN' ? 'E-Shop Packages' : 'ΠΑΚΕΤΑ E-SHOPS'}</span>
+                <div className="w-10 h-10 rounded-full border border-zinc-300 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* The Advantage Section */}
+      <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#050505]/60 backdrop-blur-md">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
+          <div className="w-full text-center md:text-left">
+            <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-8 drop-shadow-xl">
+              {lang === 'EN' ? 'The' : 'Το'} <br /><span className="text-[#0055FF] italic font-light">{lang === 'EN' ? 'Advantage.' : 'Πλεονέκτημα.'}</span>
+            </h2>
+            <p className="text-zinc-300 text-xl font-light leading-relaxed mb-8 max-w-2xl">
+              {lang === 'EN' 
+                ? 'Stop losing customers to the competition. A modern website is not just a digital flyer; it is the ultimate, high-performance employee.' 
+                : 'Σταματήστε να χάνετε πελάτες από τον ανταγωνισμό. Ένας σύγχρονος ιστότοπος δεν είναι απλώς ένα ψηφιακό φυλλάδιο· είναι ο απόλυτος υπάλληλος υψηλής απόδοσης.'}
+            </p>
+            <div className="space-y-12 mt-12 bg-black/40 p-8 border border-zinc-800/50 rounded-lg text-left">
+              <div className="relative pl-8 border-l border-zinc-800">
+                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
+                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">{lang === 'EN' ? 'The Sleepless Agent' : 'Ο Άγρυπνος Αντιπρόσωπος'}</h4>
+                <p className="text-zinc-400 leading-relaxed font-light">
+                  {lang === 'EN' 
+                    ? 'Imagine an employee who perfectly pitches your services, answers questions, and books high-paying clients at 3:00 AM. Your website never sleeps, never takes breaks, and never misses a lead.' 
+                    : 'Φανταστείτε έναν υπάλληλο που παρουσιάζει τέλεια τις υπηρεσίες σας, απαντά σε ερωτήσεις και κλείνει πελάτες υψηλής αξίας στις 3:00 π.μ. Ο ιστότοπός σας δεν κοιμάται ποτέ, δεν κάνει ποτέ διαλείμματα και δεν χάνει ποτέ κανένα lead.'}
+                </p>
+              </div>
+              <div className="relative pl-8 border-l border-zinc-800">
+                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
+                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">{lang === 'EN' ? 'The Frictionless Standard' : 'Το Ανεμπόδιστο Πρότυπο'}</h4>
+                <p className="text-zinc-400 leading-relaxed font-light">
+                  {lang === 'EN' 
+                    ? 'Modern consumers demand autonomy. Studies show a massive shift toward businesses that offer instant, frictionless online booking. People prefer tapping a button over making a phone call. We give them exactly what they want.' 
+                    : 'Οι σύγχρονοι καταναλωτές απαιτούν αυτονομία. Μελέτες δείχνουν μια τεράστια στροφή προς επιχειρήσεις που προσφέρουν άμεσες online κρατήσεις. Οι άνθρωποι προτιμούν το πάτημα ενός κουμπιού παρά ένα τηλεφώνημα. Τους δίνουμε ακριβώς αυτό που θέλουν.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* The Agora (Contact Form - Moved back to Bottom) */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
@@ -235,7 +349,6 @@ export default function Home() {
                 </h4>
               </div>
 
-              {/* FIXED: Map iframe link is now working and points to your address */}
               <div className="w-full h-full min-h-[300px] rounded-sm overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
                 <div className="absolute inset-0 bg-[#0055FF]/10 pointer-events-none group-hover:bg-transparent transition duration-700 z-10"></div>
                 <iframe 
@@ -248,94 +361,6 @@ export default function Home() {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Renzo Agency Location"
                 ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Scrolling Banner */}
-      <div className="w-full overflow-hidden bg-[#0055FF] text-white py-4 transform -rotate-1 scale-105 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] border-y border-blue-400/30">
-        <div className="animate-marquee font-serif italic text-2xl tracking-widest uppercase">
-          {lang === 'EN' 
-            ? 'DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • DIGITAL ODYSSEY • UI/UX DESIGN • AUTOMATION • FRONTEND ENGINEERING • ' 
-            : 'ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • ΨΗΦΙΑΚΗ ΟΔΥΣΣΕΙΑ • ΣΧΕΔΙΑΣΜΟΣ UI/UX • ΑΥΤΟΜΑΤΙΣΜΟΣ • FRONTEND ENGINEERING • '}
-        </div>
-      </div>
-
-      {/* Services Section */}
-      <section id="services" className="py-32 px-6 bg-[#030303]/80 backdrop-blur-xl relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-20 text-center md:text-left border-b border-zinc-800 pb-10">
-            <h3 className="text-4xl md:text-5xl font-serif tracking-wide uppercase mb-4">{lang === 'EN' ? 'The Pillars' : 'Οι Πυλώνες'}</h3>
-            <p className="text-[#0055FF] font-mono tracking-widest text-sm uppercase">{lang === 'EN' ? 'Foundational systems for modern brands.' : 'Βασικά συστήματα για σύγχρονα brands.'}</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">I.</div>
-              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">{lang === 'EN' ? 'Design' : 'Σχεδιασμός'}</h4>
-              <p className="text-zinc-400 leading-relaxed font-light">
-                {lang === 'EN' 
-                  ? 'Immersive, high-conversion user interfaces structured with the precision of classical architecture.' 
-                  : 'Καθηλωτικές διεπαφές χρήστη υψηλής μετατροπής, δομημένες με την ακρίβεια της κλασικής αρχιτεκτονικής.'}
-              </p>
-            </div>
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">II.</div>
-              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">{lang === 'EN' ? 'Automation' : 'Αυτοματισμός'}</h4>
-              <p className="text-zinc-400 leading-relaxed font-light">
-                {lang === 'EN' 
-                  ? 'Connecting APIs and workflows to build digital systems that operate flawlessly on autopilot.' 
-                  : 'Σύνδεση API και ροών εργασίας για την κατασκευή ψηφιακών συστημάτων που λειτουργούν άψογα στον αυτόματο πιλότο.'}
-              </p>
-            </div>
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 p-12 hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <div className="text-[#0055FF] text-4xl mb-8 font-serif italic">III.</div>
-              <h4 className="text-2xl font-bold mb-4 tracking-wider uppercase">{lang === 'EN' ? 'Engineering' : 'Μηχανική'}</h4>
-              <p className="text-zinc-400 leading-relaxed font-light">
-                {lang === 'EN' 
-                  ? 'Lightning-fast, highly scalable development using the absolute latest edge network technologies.' 
-                  : 'Αστραπιαία, εξαιρετικά κλιμακούμενη ανάπτυξη χρησιμοποιώντας τις πιο σύγχρονες τεχνολογίες web.'}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The Advantage Section */}
-      <section id="advantages" className="py-32 px-6 relative z-10 border-t border-zinc-900/50 bg-[#050505]/60 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto flex flex-col items-center">
-          <div className="w-full text-center md:text-left">
-            <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-8 drop-shadow-xl">
-              {lang === 'EN' ? 'The' : 'Το'} <br /><span className="text-[#0055FF] italic font-light">{lang === 'EN' ? 'Advantage.' : 'Πλεονέκτημα.'}</span>
-            </h2>
-            <p className="text-zinc-300 text-xl font-light leading-relaxed mb-8 max-w-2xl">
-              {lang === 'EN' 
-                ? 'Stop losing customers to the competition. A modern website is not just a digital flyer; it is the ultimate, high-performance employee.' 
-                : 'Σταματήστε να χάνετε πελάτες από τον ανταγωνισμό. Ένας σύγχρονος ιστότοπος δεν είναι απλώς ένα ψηφιακό φυλλάδιο· είναι ο απόλυτος υπάλληλος υψηλής απόδοσης.'}
-            </p>
-            <div className="space-y-12 mt-12 bg-black/40 p-8 border border-zinc-800/50 rounded-lg text-left">
-              <div className="relative pl-8 border-l border-zinc-800">
-                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
-                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">{lang === 'EN' ? 'The Sleepless Agent' : 'Ο Άγρυπνος Αντιπρόσωπος'}</h4>
-                <p className="text-zinc-400 leading-relaxed font-light">
-                  {lang === 'EN' 
-                    ? 'Imagine an employee who perfectly pitches your services, answers questions, and books high-paying clients at 3:00 AM. Your website never sleeps, never takes breaks, and never misses a lead.' 
-                    : 'Φανταστείτε έναν υπάλληλο που παρουσιάζει τέλεια τις υπηρεσίες σας, απαντά σε ερωτήσεις και κλείνει πελάτες υψηλής αξίας στις 3:00 π.μ. Ο ιστότοπός σας δεν κοιμάται ποτέ, δεν κάνει ποτέ διαλείμματα και δεν χάνει ποτέ κανένα lead.'}
-                </p>
-              </div>
-              <div className="relative pl-8 border-l border-zinc-800">
-                <div className="absolute w-3 h-3 bg-[#0055FF] rounded-full -left-[6.5px] top-2 shadow-[0_0_10px_#0055FF]"></div>
-                <h4 className="text-2xl font-bold mb-3 tracking-wide uppercase">{lang === 'EN' ? 'The Frictionless Standard' : 'Το Ανεμπόδιστο Πρότυπο'}</h4>
-                <p className="text-zinc-400 leading-relaxed font-light">
-                  {lang === 'EN' 
-                    ? 'Modern consumers demand autonomy. Studies show a massive shift toward businesses that offer instant, frictionless online booking. People prefer tapping a button over making a phone call. We give them exactly what they want.' 
-                    : 'Οι σύγχρονοι καταναλωτές απαιτούν αυτονομία. Μελέτες δείχνουν μια τεράστια στροφή προς επιχειρήσεις που προσφέρουν άμεσες online κρατήσεις. Οι άνθρωποι προτιμούν το πάτημα ενός κουμπιού παρά ένα τηλεφώνημα. Τους δίνουμε ακριβώς αυτό που θέλουν.'}
-                </p>
               </div>
             </div>
           </div>
