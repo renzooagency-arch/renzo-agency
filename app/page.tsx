@@ -62,8 +62,8 @@ export default function Home() {
             <a href="#services" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Services' : 'Υπηρεσιες'}</a>
             <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}</a>
             
-            {/* NEW: WHY US TAB */}
-            <a href="/why-us" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300 text-white">
+            {/* FIXED: Removed the bright text-white class here so it matches the rest! */}
+            <a href="/why-us" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Why Us' : 'Γιατι Εμας'}
             </a>
             
