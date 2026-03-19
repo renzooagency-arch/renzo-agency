@@ -119,6 +119,10 @@ export default function Home() {
             <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}
             </a>
+            {/* NEW: PRICES TAB LINKED TO PACKAGES */}
+            <a href="/packages" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">
+              {lang === 'EN' ? 'Prices' : 'Τιμες'}
+            </a>
             <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">
               {lang === 'EN' ? 'Agora' : 'Επικοινωνια'}
             </a>
@@ -261,7 +265,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             
-            {/* Card 1: Web Development (NOW LINKS TO /packages IN A NEW TAB) */}
+            {/* Card 1: Web Development (LINKS TO /packages IN A NEW TAB) */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
               
@@ -282,7 +286,6 @@ export default function Home() {
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Ultimate Speed & SEO-Ready Code' : 'Απόλυτη Ταχύτητα & SEO-Ready Κώδικας'}</li>
               </ul>
               
-              {/* THE BUTTON TO NEW TAB -> /packages */}
               <a href="/packages" target="_blank" rel="noopener noreferrer" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'Website Packages' : 'ΠΑΚΕΤΑ WEBSITES'}</span>
                 <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] group-hover/btn:bg-[#0055FF]/10 transition-all duration-300">
@@ -291,7 +294,7 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Card 2: E-Shops (NOW LINKS TO /packages IN A NEW TAB) */}
+            {/* Card 2: E-Shops (LINKS TO /packages IN A NEW TAB) */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
@@ -312,7 +315,6 @@ export default function Home() {
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> High-Volume Traffic Handling</li>
               </ul>
               
-              {/* THE BUTTON TO NEW TAB -> /packages */}
               <a href="/packages" target="_blank" rel="noopener noreferrer" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors duration-300">{lang === 'EN' ? 'E-Shop Packages' : 'ΠΑΚΕΤΑ E-SHOPS'}</span>
                 <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] group-hover/btn:bg-[#0055FF]/10 transition-all duration-300">
@@ -361,7 +363,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Agora (Contact Form) */}
+      {/* The Agora (Contact Form) - Form Selector Added! */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
