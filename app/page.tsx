@@ -8,6 +8,9 @@ export default function Home() {
   const [lang, setLang] = useState<'EN' | 'GR'>('EN');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  
+  // NEW: State to control the mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -15,6 +18,15 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // NEW: Lock background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
 
   const cubes = Array.from({ length: 20 }).map((_, i) => ({
     id: i,
@@ -27,10 +39,33 @@ export default function Home() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      project_type: formData.get('project_type'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setIsSent(true); 
+      } else {
+        alert("Transmission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Network error. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      setIsSent(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -43,6 +78,7 @@ export default function Home() {
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; }
       `}} />
 
+      {/* Global Background */}
       <div className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out" style={{ transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`, opacity: mounted ? Math.min(0.8, 0.3 + scrollY / 1500) : 0 }}>
         <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/60 to-[#030303] z-10"></div>
@@ -51,33 +87,66 @@ export default function Home() {
 
       {mounted && cubes.map((cube) => <div key={cube.id} className="cube backdrop-blur-sm bg-white/5" style={{ left: cube.left, width: cube.size, height: cube.size, animation: `floatCube ${cube.duration} linear infinite`, animationDelay: cube.delay }} />)}
 
+      {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="max-w-7xl mx-auto flex justify-between items-center relative z-50">
           <a href="/" className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none">
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
           </a>
           
+          {/* Desktop Links (Hidden on Mobile) */}
           <div className="hidden md:flex space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
             <a href="#studio" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Studio' : 'Στουντιο'}</a>
             <a href="#services" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Services' : 'Υπηρεσιες'}</a>
             <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}</a>
-            
-            {/* FIXED: Removed the bright text-white class here so it matches the rest! */}
-            <a href="/why-us" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">
-              {lang === 'EN' ? 'Why Us' : 'Γιατι Εμας'}
-            </a>
-            
+            <a href="/why-us" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Why Us' : 'Γιατι Εμας'}</a>
             <a href="/packages" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
             <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Agora' : 'Επικοινωνια'}</a>
           </div>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 md:gap-4">
             <div className="flex bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden text-[10px] font-bold tracking-widest uppercase">
               <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
               <button onClick={() => setLang('GR')} className={`px-3 py-2 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
             </div>
+            
+            <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="hidden md:block text-zinc-400 hover:text-[#0055FF] transition-colors duration-300 ml-2" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            
             <a href="#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
                 {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
+            </a>
+
+            {/* NEW: Mobile Hamburger Button */}
+            <button 
+              className="md:hidden text-zinc-400 hover:text-white p-2 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* NEW: Full Screen Mobile Menu Overlay */}
+        <div className={`md:hidden fixed inset-0 h-screen w-screen bg-[#030303]/98 backdrop-blur-3xl z-40 flex flex-col items-center justify-center transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          <div className="flex flex-col items-center space-y-8 text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">
+            <a href="#studio" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Studio' : 'Στουντιο'}</a>
+            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Services' : 'Υπηρεσιες'}</a>
+            <a href="#advantages" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}</a>
+            <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Why Us' : 'Γιατι Εμας'}</a>
+            <a href="/packages" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
+            <a href="#the-agora" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] border border-[#0055FF] px-8 py-3 rounded-sm hover:bg-[#0055FF] hover:text-white transition duration-300 mt-4">{lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}</a>
+          </div>
+          
+          <div className="absolute bottom-12 flex gap-6 text-zinc-500">
+            <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="hover:text-[#0055FF] transition-colors duration-300" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
           </div>
         </div>
@@ -194,19 +263,19 @@ export default function Home() {
                 <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center"><div className="w-20 h-20 rounded-full border border-[#0055FF] flex items-center justify-center mb-6 text-[#0055FF] text-4xl shadow-[0_0_30px_rgba(0,85,255,0.2)]">✓</div><h3 className="text-2xl font-serif italic mb-4">{lang === 'EN' ? 'Transmission Successful' : 'Επιτυχής Μετάδοση'}</h3><p className="text-zinc-400 font-light">{lang === 'EN' ? 'Our architects will review your request and make contact shortly.' : 'Οι αρχιτέκτονες μας θα εξετάσουν το αίτημά σας και θα επικοινωνήσουν σύντομα μαζί σας.'}</p></div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  <div className="flex flex-col gap-2"><label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label><input type="text" id="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} /></div>
-                  <div className="flex flex-col gap-2"><label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label><input type="email" id="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder="hello@example.com" /></div>
+                  <div className="flex flex-col gap-2"><label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label><input type="text" id="name" name="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} /></div>
+                  <div className="flex flex-col gap-2"><label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label><input type="email" id="email" name="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder="hello@example.com" /></div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="project_type" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Project Type' : 'ΤΥΠΟΣ ΕΡΓΟΥ'}</label>
                     <div className="relative">
-                        <select id="project_type" className="w-full bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm appearance-none cursor-pointer">
+                        <select id="project_type" name="project_type" className="w-full bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm appearance-none cursor-pointer">
                             <option value="website">{lang === 'EN' ? 'Custom Website' : 'Custom Ιστοσελίδα'}</option>
                             <option value="eshop">{lang === 'EN' ? 'E-Shop Development' : 'Κατασκευή E-Shop'}</option>
                         </select>
                         <div className="absolute inset-y-0 right-0 flex items-center px-5 pointer-events-none text-[#0055FF]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg></div>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2"><label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Project Details' : 'Λεπτομέρειες Έργου'}</label><textarea id="message" required rows={5} className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all resize-none rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Tell us what we are building...' : 'Πείτε μας τι χτίζουμε...'}></textarea></div>
+                  <div className="flex flex-col gap-2"><label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Project Details' : 'Λεπτομέρειες Έργου'}</label><textarea id="message" name="message" required rows={5} className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all resize-none rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Tell us what we are building...' : 'Πείτε μας τι χτίζουμε...'}></textarea></div>
                   <button type="submit" disabled={isSubmitting} className="mt-6 bg-[#0055FF] text-white px-8 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(0,85,255,0.2)]">{isSubmitting ? (lang === 'EN' ? 'Transmitting...' : 'Αποστολή...') : (lang === 'EN' ? 'Send to Studio' : 'Αποστολή στο Στούντιο')}</button>
                 </form>
               )}
