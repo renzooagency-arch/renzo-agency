@@ -9,7 +9,7 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   
-  // NEW: State to control the mobile menu
+  // State to control the mobile menu
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // NEW: Lock background scrolling when mobile menu is open
+  // Lock background scrolling when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -46,6 +46,7 @@ export default function Home() {
       email: formData.get('email'),
       project_type: formData.get('project_type'),
       message: formData.get('message'),
+      honeypot: formData.get('honeypot'), // Bot trap
     };
 
     try {
@@ -118,7 +119,7 @@ export default function Home() {
                 {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
             </a>
 
-            {/* NEW: Mobile Hamburger Button */}
+            {/* Mobile Hamburger Button */}
             <button 
               className="md:hidden text-zinc-400 hover:text-white p-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -133,7 +134,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* NEW: Full Screen Mobile Menu Overlay */}
+        {/* Full Screen Mobile Menu Overlay */}
         <div className={`md:hidden fixed inset-0 h-screen w-screen bg-[#030303]/98 backdrop-blur-3xl z-40 flex flex-col items-center justify-center transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
           <div className="flex flex-col items-center space-y-8 text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">
             <a href="#studio" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Studio' : 'Στουντιο'}</a>
@@ -258,11 +259,16 @@ export default function Home() {
             <p className="text-zinc-400 text-lg max-w-xl mx-auto">{lang === 'EN' ? 'Ready to construct your digital future? Reach out to our studio in Athens, or drop by our coordinates.' : 'Είστε έτοιμοι να κατασκευάσετε το ψηφιακό σας μέλλον; Επικοινωνήστε με το στούντιο μας στην Αθήνα ή επισκεφθείτε μας.'}</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            {/* THIS IS WHERE THE FORM IS NOW PERFECTLY FIXED */}
             <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl rounded-xl">
               {isSent ? (
                 <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center"><div className="w-20 h-20 rounded-full border border-[#0055FF] flex items-center justify-center mb-6 text-[#0055FF] text-4xl shadow-[0_0_30px_rgba(0,85,255,0.2)]">✓</div><h3 className="text-2xl font-serif italic mb-4">{lang === 'EN' ? 'Transmission Successful' : 'Επιτυχής Μετάδοση'}</h3><p className="text-zinc-400 font-light">{lang === 'EN' ? 'Our architects will review your request and make contact shortly.' : 'Οι αρχιτέκτονες μας θα εξετάσουν το αίτημά σας και θα επικοινωνήσουν σύντομα μαζί σας.'}</p></div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                  {/* ANTI-BOT HONEYPOT (Invisible to humans) */}
+                  <input type="text" name="honeypot" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
                   <div className="flex flex-col gap-2"><label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label><input type="text" id="name" name="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} /></div>
                   <div className="flex flex-col gap-2"><label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label><input type="email" id="email" name="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder="hello@example.com" /></div>
                   <div className="flex flex-col gap-2">
@@ -280,6 +286,7 @@ export default function Home() {
                 </form>
               )}
             </div>
+
             <div className="flex flex-col justify-between space-y-8">
               <div className="space-y-6">
                 <div className="inline-block border border-zinc-800 bg-zinc-900/50 px-4 py-1.5 rounded-sm"><span className="text-[10px] font-mono tracking-widest text-[#0055FF] uppercase">{lang === 'EN' ? 'Coordinates' : 'Συντεταγμένες'}</span></div>
