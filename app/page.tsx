@@ -11,6 +11,9 @@ export default function Home() {
   
   // State to control the mobile menu
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // State to control the FAQ accordion
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -69,6 +72,30 @@ export default function Home() {
     }
   };
 
+  // FAQ Data (Bilingual) - Updated with 1-3 business days!
+  const faqs = [
+    {
+      en: { q: "How long does it take to build a custom website?", a: "Most digital infrastructures are designed, developed, and launched within 1 to 3 business days, depending on the complexity and scope of the project." },
+      gr: { q: "Πόσος χρόνος χρειάζεται για την κατασκευή μιας ιστοσελίδας;", a: "Οι περισσότερες ψηφιακές υποδομές σχεδιάζονται, αναπτύσσονται και παραδίδονται μέσα σε 1 με 3 εργάσιμες ημέρες, ανάλογα με την πολυπλοκότητα του έργου." }
+    },
+    {
+      en: { q: "Do I need technical knowledge to manage my website?", a: "Not at all. We build ecosystems that are extremely easy to manage. We handle the complex engineering, so you can focus purely on scaling your business." },
+      gr: { q: "Χρειάζεται να έχω τεχνικές γνώσεις για τη διαχείριση;", a: "Καθόλου. Δημιουργούμε οικοσυστήματα που είναι εξαιρετικά εύκολα στη διαχείριση. Εμείς αναλαμβάνουμε το τεχνικό κομμάτι, για να εστιάσετε στην επιχείρησή σας." }
+    },
+    {
+      en: { q: "Do you use ready-made templates like WordPress?", a: "No. We engineer from scratch using modern frameworks like Next.js and React. This guarantees ultimate speed, elite security, and a digital presence tailored perfectly to your brand." },
+      gr: { q: "Χρησιμοποιείτε έτοιμα templates όπως το WordPress;", a: "Όχι. Κατασκευάζουμε από το μηδέν χρησιμοποιώντας σύγχρονα frameworks όπως Next.js και React. Αυτό εγγυάται απόλυτη ταχύτητα, κορυφαία ασφάλεια και προσαρμογή στο brand σας." }
+    },
+    {
+      en: { q: "Can you build custom features specifically for me?", a: "Absolutely. From dynamic booking systems to custom client portals, if you can imagine it, our architects can code it." },
+      gr: { q: "Μπορείτε να φτιάξετε custom λειτουργίες αποκλειστικά για εμένα;", a: "Απολύτως. Από δυναμικά συστήματα κρατήσεων μέχρι custom client portals, αν μπορείτε να το φανταστείτε, οι αρχιτέκτονές μας μπορούν να το προγραμματίσουν." }
+    },
+    {
+      en: { q: "Where can I see your pricing?", a: "You can find our standard architecture packages in the 'Prices' section. For enterprise or highly custom requirements, contact the studio directly for a tailored quote." },
+      gr: { q: "Πού μπορώ να δω τις τιμές σας;", a: "Μπορείτε να βρείτε τα βασικά μας πακέτα στην ενότητα 'Τιμές'. Για enterprise ή highly custom απαιτήσεις, επικοινωνήστε με το στούντιο για εξατομικευμένη προσφορά." }
+    }
+  ];
+
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white overflow-x-hidden relative">
       <style dangerouslySetInnerHTML={{__html: `
@@ -96,12 +123,13 @@ export default function Home() {
           </a>
           
           {/* Desktop Links (Hidden on Mobile) */}
-          <div className="hidden md:flex space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+          <div className="hidden md:flex space-x-6 lg:space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
             <a href="#studio" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Studio' : 'Στουντιο'}</a>
             <a href="#services" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Services' : 'Υπηρεσιες'}</a>
             <a href="#advantages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}</a>
             <a href="/why-us" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Why Us' : 'Γιατι Εμας'}</a>
             <a href="/packages" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
+            <a href="#faq" className="hover:text-[#0055FF] transition duration-300">FAQ</a>
             <a href="#the-agora" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Agora' : 'Επικοινωνια'}</a>
           </div>
           
@@ -111,7 +139,7 @@ export default function Home() {
               <button onClick={() => setLang('GR')} className={`px-3 py-2 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
             </div>
             
-            <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="hidden md:block text-zinc-400 hover:text-[#0055FF] transition-colors duration-300 ml-2" aria-label="Instagram">
+            <a href="https://www.instagram.com/renzoo.agency/" target="_blank" rel="noreferrer" className="hidden lg:block text-zinc-400 hover:text-[#0055FF] transition-colors duration-300 ml-2" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             
@@ -142,6 +170,7 @@ export default function Home() {
             <a href="#advantages" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Advantages' : 'Πλεονεκτηματα'}</a>
             <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Why Us' : 'Γιατι Εμας'}</a>
             <a href="/packages" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
+            <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">FAQ</a>
             <a href="#the-agora" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] border border-[#0055FF] px-8 py-3 rounded-sm hover:bg-[#0055FF] hover:text-white transition duration-300 mt-4">{lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}</a>
           </div>
           
@@ -252,6 +281,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ SECTION */}
+      <section id="faq" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-zinc-950/30 backdrop-blur-md">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-16 text-center">
+            <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">FAQ</h2>
+            <h3 className="text-4xl md:text-6xl font-serif tracking-tight text-white mb-2">{lang === 'EN' ? 'Frequently Asked' : 'Συχνές'} <span className="italic font-light text-zinc-500">{lang === 'EN' ? 'Questions.' : 'Ερωτήσεις.'}</span></h3>
+          </div>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className={`border ${openFaq === index ? 'border-zinc-700 bg-zinc-900/50' : 'border-zinc-800/80 bg-black/40'} rounded-xl overflow-hidden transition-all duration-300 hover:border-zinc-700`}>
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                >
+                  <span className="text-white font-medium tracking-wide pr-4">{lang === 'EN' ? faq.en.q : faq.gr.q}</span>
+                  <span className={`transform transition-transform duration-300 flex-shrink-0 text-zinc-500 ${openFaq === index ? 'rotate-180 text-[#0055FF]' : ''}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </span>
+                </button>
+                <div 
+                  className={`px-6 transition-all duration-300 ease-in-out ${openFaq === index ? 'max-h-48 pb-6 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+                >
+                  <p className="text-zinc-400 font-light leading-relaxed text-sm md:text-base">{lang === 'EN' ? faq.en.a : faq.gr.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
@@ -260,13 +319,12 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
-            {/* THIS IS WHERE THE FORM IS NOW PERFECTLY FIXED */}
             <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl rounded-xl">
               {isSent ? (
                 <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center"><div className="w-20 h-20 rounded-full border border-[#0055FF] flex items-center justify-center mb-6 text-[#0055FF] text-4xl shadow-[0_0_30px_rgba(0,85,255,0.2)]">✓</div><h3 className="text-2xl font-serif italic mb-4">{lang === 'EN' ? 'Transmission Successful' : 'Επιτυχής Μετάδοση'}</h3><p className="text-zinc-400 font-light">{lang === 'EN' ? 'Our architects will review your request and make contact shortly.' : 'Οι αρχιτέκτονες μας θα εξετάσουν το αίτημά σας και θα επικοινωνήσουν σύντομα μαζί σας.'}</p></div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  {/* ANTI-BOT HONEYPOT (Invisible to humans) */}
+                  {/* ANTI-BOT HONEYPOT */}
                   <input type="text" name="honeypot" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
 
                   <div className="flex flex-col gap-2"><label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label><input type="text" id="name" name="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} /></div>
@@ -294,7 +352,7 @@ export default function Home() {
               </div>
               <div className="w-full h-full min-h-[350px] rounded-xl overflow-hidden border border-zinc-800 grayscale hover:grayscale-0 transition-all duration-700 shadow-[0_0_30px_rgba(0,85,255,0.1)] relative group">
                 <div className="absolute inset-0 bg-[#0055FF]/10 pointer-events-none group-hover:bg-transparent transition duration-700 z-10"></div>
-                <iframe src="https://maps.google.com/maps?q=Leof.%20Andrea%20Papandreou%20179,%20Ilion,%20Greece&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style={{ border: 0, minHeight: '350px' }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Renzo Agency Location"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.682855219438!2d23.6961445!3d38.0312061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1a367d264f331%3A0x63daab72e70e30d1!2sLeof.%20Andrea%20Papandreou%20179%2C%20Ilion%20131%2021%2C%20Greece!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="100%" style={{ border: 0, minHeight: '350px' }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Renzo Agency Location"></iframe>
               </div>
             </div>
           </div>
