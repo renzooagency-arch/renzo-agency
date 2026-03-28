@@ -113,7 +113,22 @@ export default function Home() {
         <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" alt="The Parthenon" className="w-full h-[120vh] object-cover opacity-30 grayscale contrast-125" />
       </div>
 
-      {mounted && cubes.map((cube) => <div key={cube.id} className="cube backdrop-blur-sm bg-white/5" style={{ left: cube.left, width: cube.size, height: cube.size, animation: `floatCube ${cube.duration} linear infinite`, animationDelay: cube.delay }} />)}
+    {mounted && cubes.map((cube) => (
+        <div 
+          key={cube.id} 
+          className="cube backdrop-blur-sm bg-white/5" 
+          style={{ 
+            left: cube.left, 
+            width: cube.size, 
+            height: cube.size, 
+            animationName: 'floatCube',
+            animationDuration: cube.duration,
+            animationTimingFunction: 'linear',
+            animationIterationCount: 'infinite',
+            animationDelay: cube.delay 
+          }} 
+        />
+      ))}
 
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">

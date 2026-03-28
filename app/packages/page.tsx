@@ -1,178 +1,168 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
-export default function PackagesPage() {
-  const [mounted, setMounted] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+// Component function to create a unified blue checkmark style like the reference
+const BlueCheckmark = () => (
+  <div className="w-4 h-4 rounded-full bg-[#0055FF] flex items-center justify-center flex-shrink-0 shadow-[0_0_10px_rgba(0,85,255,0.5)]">
+    <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  </div>
+);
+
+export default function PricesPage() {
   const [lang, setLang] = useState<'EN' | 'GR'>('EN');
+  const [scrollY, setScrollY] = useState(0);
 
+  // Track the user's scroll position to dynamically change background visibility
   useEffect(() => {
-    setMounted(true);
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white relative overflow-x-hidden">
+    <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white relative overflow-hidden">
       
-      {/* Global Background (Matches Home Page Exactly) */}
-      <div 
-        className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out"
-        style={{
-          transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`,
-          opacity: mounted ? Math.min(0.8, 0.4 + scrollY / 1500) : 0
-        }}
-      >
-        <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/80 to-[#030303] z-10"></div>
+      {/* Dynamic Scrolling Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-[#030303]/90 to-[#030303] z-10"></div>
         <img 
           src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" 
-          alt="The Parthenon" 
-          className="w-full h-[120vh] object-cover opacity-20 grayscale contrast-125"
+          alt="Background" 
+          className="w-full h-[120vh] object-cover grayscale transition-opacity duration-100 ease-out" 
+          // Opacity starts at 15% and increases up to 60% as you scroll down
+          style={{ opacity: Math.min(0.6, 0.15 + scrollY / 800) }}
         />
       </div>
 
-      {/* Navigation */}
-      <nav className="w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 sticky">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <a href="/" className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none">
-            RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 shadow-[0_0_10px_#0055FF]"></span>
-          </a>
+      {/* Navigation - Simplified for Subpage */}
+      <nav className="relative z-50 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
+        <Link href="/" className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group">
+          RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 shadow-[0_0_10px_#0055FF]"></span>
+        </Link>
+        
+        <div className="flex items-center gap-4 md:gap-6">
+          <Link href="/" className="text-xs font-bold tracking-[0.2em] text-zinc-400 hover:text-white transition-colors uppercase items-center gap-2">
+            &larr; {lang === 'EN' ? 'BACK TO HOME' : 'ΠΙΣΩ ΣΤΗΝ ΑΡΧΙΚΗ'}
+          </Link>
           
-          <div className="flex items-center gap-6">
-            <a href="/" className="hidden md:block text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-[#0055FF] transition-colors">
-              {lang === 'EN' ? '← Back to Home' : '← Πίσω στην Αρχική'}
-            </a>
-            <div className="flex bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden text-[10px] font-bold tracking-widest uppercase">
-              <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
-              <button onClick={() => setLang('GR')} className={`px-3 py-2 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
-            </div>
-            <a href="/#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
-                {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
-            </a>
+          <div className="flex bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden text-[10px] font-bold tracking-widest uppercase">
+            <button onClick={() => setLang('EN')} className={`px-3 py-1.5 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
+            <button onClick={() => setLang('GR')} className={`px-3 py-1.5 transition-all ${lang === 'GR' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>GR</button>
           </div>
         </div>
       </nav>
 
-      {/* Header */}
-      <section className="pt-32 pb-16 px-6 text-center relative z-10">
-        <h1 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase mb-6 text-white drop-shadow-2xl">
-          {lang === 'EN' ? 'WEBSITE' : 'ΙΣΤΟΣΕΛΙΔΕΣ'} <br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0055FF] to-blue-400">
-            {lang === 'EN' ? 'PACKAGES' : 'ΠΑΚΕΤΑ'}
-          </span>
-        </h1>
-        <p className="text-zinc-400 font-light max-w-xl mx-auto text-lg mt-6">
-          {lang === 'EN' 
-            ? 'Transparent pricing for high-performance digital infrastructure.' 
-            : 'Διαφανής τιμολόγηση για ψηφιακές υποδομές υψηλής απόδοσης.'}
-        </p>
-      </section>
-
-      {/* Pricing Grid */}
-      <section className="pb-32 px-6 relative z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-          
-          {/* Essential Tier */}
-          <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:border-zinc-700 transition-all duration-300 group">
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-2 text-white">Essential</h3>
-            <p className="text-zinc-500 text-sm font-light mb-8 h-10">
-              {lang === 'EN' ? 'The foundation for a strong corporate identity.' : 'Η βάση για μια ισχυρή εταιρική ταυτότητα.'}
+      {/* Main Content */}
+      <section className="relative z-10 pt-20 pb-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-20">
+            <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
+              {lang === 'EN' ? 'WEBSITE' : 'ΠΑΚΕΤΑ'}<br/>
+              <span className="text-[#0055FF]">{lang === 'EN' ? 'PACKAGES' : 'ΙΣΤΟΣΕΛΙΔΩΝ'}</span>
+            </h1>
+            <p className="text-zinc-400 text-sm md:text-base font-light tracking-wide">
+              {lang === 'EN' ? 'Transparent pricing for high-performance digital infrastructure.' : 'Διαφανής τιμολόγηση για ψηφιακές υποδομές υψηλής απόδοσης.'}
             </p>
-            <div className="mb-8 border-b border-zinc-800/50 pb-8">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500">Investment</span>
-              <h4 className="text-5xl font-black mt-2 text-white">500€</h4>
-            </div>
-            <ul className="space-y-4 mb-12 flex-grow text-sm font-medium text-zinc-300">
-              <li className="flex items-center gap-3"><CheckIcon /> Custom UI/UX Design</li>
-              <li className="flex items-center gap-3"><CheckIcon /> Responsive Architecture</li>
-              <li className="flex items-center gap-3"><CheckIcon /> Basic SEO</li>
-              <li className="flex items-center gap-3"><CheckIcon /> Contact Systems</li>
-              <li className="flex items-center gap-3"><CheckIcon /> High Speed Hosting Setup</li>
-            </ul>
-            <a href="/#the-agora" className="w-full py-4 border border-zinc-800 text-zinc-300 text-center rounded-sm text-[10px] font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300">
-              {lang === 'EN' ? 'Get Started' : 'Ξεκινηστε'}
-            </a>
           </div>
 
-          {/* Professional Tier (Highlighted Blue Accent) */}
-          <div className="bg-[#050505]/90 backdrop-blur-xl border border-[#0055FF]/50 rounded-[2rem] p-10 flex flex-col shadow-[0_0_30px_rgba(0,85,255,0.15)] relative transform md:-translate-y-4 hover:border-[#0055FF] transition-all duration-300">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-100"></div>
-            <div className="absolute top-6 right-6 bg-[#0055FF] text-white text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-sm shadow-[0_0_10px_rgba(0,85,255,0.5)]">
-              {lang === 'EN' ? 'Most Wanted' : 'Δημοφιλεστερο'}
-            </div>
+          {/* Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-2 text-white">Professional</h3>
-            <p className="text-zinc-400 text-sm font-light mb-8 h-10">
-              {lang === 'EN' ? 'The choice of Market Leaders.' : 'Η επιλογή των Market Leaders.'}
-            </p>
-            <div className="mb-8 border-b border-zinc-800 pb-8">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-[#0055FF]">Investment</span>
-              <h4 className="text-5xl font-black mt-2 text-white">1.200€</h4>
+            {/* Essential Card */}
+            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors">
+              <h3 className="text-2xl font-black uppercase tracking-wide mb-2">ESSENTIAL</h3>
+              <p className="text-zinc-500 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'The foundation for a strong corporate identity.' : 'Τα θεμέλια για μια ισχυρή εταιρική ταυτότητα.'}</p>
+              
+              <div className="mb-10">
+                <p className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase mb-1">INVESTMENT</p>
+                <p className="text-5xl font-black">350€</p>
+              </div>
+
+              <ul className="space-y-4 flex-grow">
+                {[
+                  lang === 'EN' ? 'Custom UI/UX Design' : 'Custom Σχεδιασμός UI/UX',
+                  lang === 'EN' ? 'Responsive Architecture' : 'Responsive Αρχιτεκτονική',
+                  lang === 'EN' ? 'Basic SEO' : 'Βασικό SEO',
+                  lang === 'EN' ? 'Contact Systems' : 'Συστήματα Επικοινωνίας',
+                  lang === 'EN' ? 'High Speed Hosting Setup' : 'Ρύθμιση High Speed Hosting'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-xs text-zinc-300 font-medium">
+                    <BlueCheckmark /> {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="space-y-4 mb-12 flex-grow text-sm font-medium text-zinc-200">
-              <li className="flex items-center gap-3"><CheckIcon accent /> Advanced Framer/React Motion</li>
-              <li className="flex items-center gap-3"><CheckIcon accent /> Dynamic CMS</li>
-              <li className="flex items-center gap-3"><CheckIcon accent /> Full SEO Strategy</li>
-              <li className="flex items-center gap-3"><CheckIcon accent /> Premium Animations</li>
-              <li className="flex items-center gap-3"><CheckIcon accent /> Conversion Optimization</li>
-            </ul>
-            <a href="/#the-agora" className="w-full py-4 bg-[#0055FF] text-white text-center rounded-sm text-[10px] font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.3)]">
-              {lang === 'EN' ? 'Get Started' : 'Ξεκινηστε'}
-            </a>
+
+            {/* Professional Card (Glowing) */}
+            <div className="bg-[#080808]/90 backdrop-blur-md border border-[#0055FF] rounded-2xl p-8 flex flex-col relative shadow-[0_0_40px_rgba(0,85,255,0.2)] transform lg:-translate-y-4 z-10">
+              <div className="absolute top-6 right-6 bg-[#0055FF] text-white text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-sm">
+                {lang === 'EN' ? 'MOST WANTED' : 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ'}
+              </div>
+              
+              <h3 className="text-2xl font-black uppercase tracking-wide mb-2 mt-2">PROFESSIONAL</h3>
+              <p className="text-zinc-400 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'The choice of Market Leaders.' : 'Η επιλογή των Market Leaders.'}</p>
+              
+              <div className="mb-10">
+                <p className="text-[10px] text-[#0055FF] font-bold tracking-[0.2em] uppercase mb-1">INVESTMENT</p>
+                <p className="text-5xl font-black">450€</p>
+              </div>
+
+              <ul className="space-y-4 flex-grow">
+                {[
+                  lang === 'EN' ? 'Advanced Framer/React Motion' : 'Προηγμένα Animations',
+                  lang === 'EN' ? 'Dynamic CMS' : 'Δυναμικό CMS',
+                  lang === 'EN' ? 'Full SEO Strategy' : 'Πλήρης Στρατηγική SEO',
+                  lang === 'EN' ? 'Premium Animations' : 'Premium Animations',
+                  lang === 'EN' ? 'Conversion Optimization' : 'Βελτιστοποίηση Μετατροπών'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-xs text-white font-medium">
+                    <BlueCheckmark /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Enterprise Card */}
+            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors">
+              <h3 className="text-2xl font-black uppercase tracking-wide mb-2">ENTERPRISE</h3>
+              <p className="text-zinc-500 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'Cutting-edge technology without limits.' : 'Τεχνολογία αιχμής χωρίς όρια.'}</p>
+              
+              <div className="mb-10">
+                <p className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase mb-1">INVESTMENT</p>
+                <p className="text-5xl font-black">Custom</p>
+              </div>
+
+              <ul className="space-y-4 flex-grow">
+                {[
+                  lang === 'EN' ? 'Custom Web Applications' : 'Custom Web Εφαρμογές',
+                  lang === 'EN' ? 'Database Logic' : 'Λογική Βάσης Δεδομένων',
+                  lang === 'EN' ? 'Unrivaled Load Times' : 'Ασυναγώνιστοι Χρόνοι Φόρτωσης',
+                  lang === 'EN' ? 'Full API Integration' : 'Πλήρης Διασύνδεση API',
+                  lang === 'EN' ? '24/7 Priority Ops' : '24/7 Υποστήριξη Priority'
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-xs text-zinc-300 font-medium">
+                    <BlueCheckmark /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
           </div>
 
-          {/* Enterprise Tier */}
-          <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col shadow-2xl hover:border-zinc-700 transition-all duration-300 group">
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-2 text-zinc-400">Enterprise</h3>
-            <p className="text-zinc-500 text-sm font-light mb-8 h-10">
-              {lang === 'EN' ? 'Cutting-edge technology without limits.' : 'Τεχνολογία αιχμής χωρίς περιορισμούς.'}
-            </p>
-            <div className="mb-8 border-b border-zinc-800/50 pb-8">
-              <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500">Investment</span>
-              <h4 className="text-5xl font-black mt-2 text-zinc-400">Custom</h4>
-            </div>
-            <ul className="space-y-4 mb-12 flex-grow text-sm font-medium text-zinc-400">
-              <li className="flex items-center gap-3"><CheckIcon dim /> Custom Web Applications</li>
-              <li className="flex items-center gap-3"><CheckIcon dim /> Database Logic</li>
-              <li className="flex items-center gap-3"><CheckIcon dim /> Unrivaled Load Times</li>
-              <li className="flex items-center gap-3"><CheckIcon dim /> Full API Integration</li>
-              <li className="flex items-center gap-3"><CheckIcon dim /> 24/7 Priority Ops</li>
-            </ul>
-            <a href="/#the-agora" className="w-full py-4 border border-zinc-800 text-zinc-400 text-center rounded-sm text-[10px] font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300">
-              {lang === 'EN' ? 'Get Started' : 'Ξεκινηστε'}
+          {/* NEW BOOKING BUTTON - Smooth glides back to landing page booking form */}
+          <div className="mt-20 text-center">
+            <a href="/#the-agora" className="inline-block bg-[#0055FF] text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-sm shadow-[0_0_20px_rgba(0,85,255,0.3)] hover:scale-105">
+              {lang === 'EN' ? 'Book My Digital Architecture' : 'ΚΡΑΤΗΣΗ ΨΗΦΙΑΚΗΣ ΑΡΧΙΤΕΚΤΟΝΙΚΗΣ'}
             </a>
           </div>
 
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-zinc-900 py-12 bg-black flex flex-col items-center justify-center gap-6">
-        <p className="text-zinc-600 text-[10px] font-bold tracking-[0.3em] uppercase text-center">
-          <span className="text-[#0055FF] mr-2">🏛️</span> 
-          © {new Date().getFullYear()} RENZO AGENCY. {lang === 'EN' ? 'DIGITAL INFRASTRUCTURE.' : 'ΨΗΦΙΑΚΗ ΥΠΟΔΟΜΗ.'}
-        </p>
-      </footer>
     </main>
-  );
-}
-
-// Custom Glowing Checkmark for Dark Theme
-function CheckIcon({ accent = false, dim = false }: { accent?: boolean, dim?: boolean }) {
-  let bgColor = "bg-zinc-800 text-zinc-400";
-  if (accent) bgColor = "bg-[#0055FF]/20 text-[#0055FF] shadow-[0_0_10px_rgba(0,85,255,0.3)]";
-  if (dim) bgColor = "bg-zinc-900 text-zinc-600";
-
-  return (
-    <div className={`min-w-[20px] h-5 rounded-full flex items-center justify-center ${bgColor}`}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="20 6 9 17 4 12"></polyline>
-      </svg>
-    </div>
   );
 }
