@@ -132,7 +132,6 @@ export default function Home() {
           
           <div className="flex items-center gap-3 md:gap-4">
             
-            {/* INSTAGRAM ICON (Navbar) */}
             <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#0055FF] transition-colors p-1" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -193,9 +192,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* PILLAR 1: WEB ARCHITECTURE */}
+      {/* PILLAR 1: WEB ARCHITECTURE (MASSIVE SINGLE CARD) */}
       <section id="web" className="py-32 px-6 relative z-10 bg-zinc-950/70 backdrop-blur-md border-y border-zinc-900/50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
             <div>
               <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mb-2">PILLAR 01 • ENGINEERING</p>
@@ -203,57 +202,65 @@ export default function Home() {
             </div>
             <a href="#prices" className="hidden md:block text-zinc-400 hover:text-[#0055FF] text-xs font-bold tracking-widest uppercase transition-colors">{lang === 'EN' ? 'VIEW PACKAGES →' : 'ΔΕΙΤΕ ΤΑ ΠΑΚΕΤΑ →'}</a>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* 🔥 THE ULTIMATE STANDOUT OFFER CARD 🔥 */}
+          <div className="bg-black border-2 border-[#0055FF] rounded-[2rem] p-8 md:p-14 flex flex-col shadow-[0_0_50px_rgba(0,85,255,0.2)] relative overflow-hidden group">
+            {/* Glowing background flares */}
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#0055FF]/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-[#0055FF]/20 transition-all duration-700"></div>
             
-            {/* Card 1: Custom Web Development */}
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase text-white">CUSTOM WEB<br/>DEVELOPMENT</h4>
-              <p className="text-zinc-400 text-sm md:text-base mb-10 leading-relaxed font-light">{lang === 'EN' ? "We build modern, custom websites that load instantly. We build from scratch with the latest technologies." : "Κατασκευάζουμε σύγχρονες ιστοσελίδες που φορτώνουν αστραπιαία. Χτίζουμε από το μηδέν με τις πιο σύγχρονες τεχνολογίες."}</p>
-              <ul className="space-y-4 mb-16 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Custom UI/UX Design</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Next.js / React Architecture</li>
-              </ul>
-              <a href="#prices" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors">{lang === 'EN' ? 'From €350' : 'Από €350'}</span>
-                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] transition-all">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-              </a>
+            <div className="mb-8 inline-block border border-[#0055FF] text-[#0055FF] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase px-6 py-2 rounded-full shadow-[0_0_20px_rgba(0,85,255,0.4)] animate-pulse bg-[#0055FF]/10 self-start">
+              {lang === 'EN' ? 'LIMITED TIME OFFER' : 'ΠΡΟΣΦΟΡΑ ΓΙΑ ΛΙΓΟ ΚΑΙΡΟ'}
             </div>
-            
-            {/* 🔥 NEW CARD: LANDING PAGE 🔥 */}
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#0055FF]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              
-              {/* Glowing Urgency Badge */}
-              <div className="mb-6 self-start border border-[#0055FF] text-[#0055FF] text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full shadow-[0_0_15px_rgba(0,85,255,0.3)] animate-pulse bg-[#0055FF]/5">
-                {lang === 'EN' ? 'LIMITED TIME OFFER' : 'ΠΡΟΣΦΟΡΑ ΓΙΑ ΛΙΓΟ ΚΑΙΡΟ'}
+
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center relative z-10">
+              <div className="w-full lg:w-1/2">
+                <h4 className="text-4xl md:text-5xl font-black mb-4 leading-tight tracking-tighter uppercase text-white">
+                  {lang === 'EN' ? 'Professional Website' : 'Επαγγελματικη Ιστοσελιδα'}
+                </h4>
+                <div className="text-[#0055FF] text-6xl font-sans font-black mb-6">€350</div>
+                <p className="text-zinc-400 text-lg leading-relaxed font-light mb-8">
+                  {lang === 'EN' 
+                    ? 'A high-converting, fully custom web platform engineered to dominate your market and turn visitors into paying clients instantly.' 
+                    : 'Μια custom ιστοσελίδα υψηλής μετατρεψιμότητας, σχεδιασμένη να κυριαρχήσει στην αγορά σας και να φέρνει άμεσα πελάτες.'}
+                </p>
+                <a href="#the-agora" className="hidden lg:inline-block bg-[#0055FF] text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.4)] rounded-sm">
+                  {lang === 'EN' ? 'CLAIM THIS OFFER' : 'ΚΑΤΟΧΥΡΩΣΗ ΠΡΟΣΦΟΡΑΣ'}
+                </a>
               </div>
 
-              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase text-white">
-                LANDING<br/>PAGE
-              </h4>
-              <p className="text-zinc-400 text-sm md:text-base mb-10 leading-relaxed font-light">
-                {lang === 'EN' 
-                  ? 'We design high-converting, single-page websites built specifically to capture leads and drive instant sales. Zero friction.' 
-                  : 'Σχεδιάζουμε μονοσέλιδα websites υψηλής μετατρεψιμότητας, στημένα 100% για να φέρνουν leads και άμεσες πωλήσεις. Zero friction.'}
-              </p>
-              <ul className="space-y-4 mb-16 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Conversion-Optimized Design' : 'Conversion-Optimized Σχεδιασμός'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Lead Generation Forms' : 'Φόρμες Lead Generation'}</li>
-              </ul>
-              <a href="#prices" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors">
-                  {lang === 'EN' ? 'From €199' : 'Από €199'}
-                </span>
-                <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] transition-all">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
-              </a>
+              <div className="w-full lg:w-1/2">
+                <ul className="space-y-6">
+                  {/* Irresistible Trigger 1 */}
+                  <li className="flex items-start gap-4 text-base font-medium text-white">
+                    <div className="mt-1.5 w-2 h-2 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF] flex-shrink-0"></div>
+                    <span className="leading-snug">{lang === 'EN' ? '1 Year Free Domain & Premium Hosting' : '1 Χρόνος Δωρεάν Domain & Premium Hosting'}</span>
+                  </li>
+                  {/* Irresistible Trigger 2 */}
+                  <li className="flex items-start gap-4 text-base font-medium text-white">
+                    <div className="mt-1.5 w-2 h-2 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF] flex-shrink-0"></div>
+                    <span className="leading-snug">{lang === 'EN' ? 'Blazing Fast Load Speeds (Zero Lag)' : 'Αστραπιαία Ταχύτητα Φόρτωσης (Zero Lag)'}</span>
+                  </li>
+                  {/* Irresistible Trigger 3 */}
+                  <li className="flex items-start gap-4 text-base font-medium text-white">
+                    <div className="mt-1.5 w-2 h-2 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF] flex-shrink-0"></div>
+                    <span className="leading-snug">{lang === 'EN' ? 'Integrated Booking & Appointment System' : 'Ενσωματωμένο Σύστημα Κρατήσεων (Booking)'}</span>
+                  </li>
+                  {/* Irresistible Trigger 4 */}
+                  <li className="flex items-start gap-4 text-base font-medium text-zinc-300">
+                    <div className="mt-1.5 w-2 h-2 bg-zinc-700 rounded-full flex-shrink-0"></div>
+                    <span className="leading-snug text-zinc-400">{lang === 'EN' ? 'UI/UX Engineered to Maximize Sales' : 'UI/UX Σχεδιασμός Για Μέγιστες Πωλήσεις'}</span>
+                  </li>
+                  {/* Irresistible Trigger 5 */}
+                  <li className="flex items-start gap-4 text-base font-medium text-zinc-300">
+                    <div className="mt-1.5 w-2 h-2 bg-zinc-700 rounded-full flex-shrink-0"></div>
+                    <span className="leading-snug text-zinc-400">{lang === 'EN' ? 'Advanced SEO Setup for Google Ranking' : 'Βελτιστοποίηση SEO Για Την Google'}</span>
+                  </li>
+                </ul>
+                <a href="#the-agora" className="w-full mt-10 lg:hidden text-center block bg-[#0055FF] text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.4)] rounded-sm">
+                  {lang === 'EN' ? 'CLAIM THIS OFFER' : 'ΚΑΤΟΧΥΡΩΣΗ ΠΡΟΣΦΟΡΑΣ'}
+                </a>
+              </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -270,15 +277,12 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-5 bg-black border border-[#0055FF]/50 rounded-2xl p-10 relative shadow-[0_0_40px_rgba(0,85,255,0.15)] hover:border-[#0055FF] transition-colors duration-500 flex flex-col">
-              <div className="absolute top-0 left-8 transform -translate-y-1/2 bg-[#0055FF] text-white px-4 py-1 text-[9px] font-black tracking-widest uppercase rounded-sm shadow-[0_0_15px_rgba(0,85,255,0.4)]">
-                {lang === 'EN' ? 'MOST POPULAR' : 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ'}
-              </div>
+            <div className="lg:col-span-5 bg-black border border-zinc-800 rounded-2xl p-10 relative hover:border-[#0055FF]/50 transition-colors duration-500 flex flex-col">
               <h4 className="text-3xl font-serif text-white mb-2 mt-4">{lang === 'EN' ? 'Social Media Pack' : 'Πακέτο Social Media'}</h4>
               <p className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase mb-8">{lang === 'EN' ? 'AI-ENHANCED VIDEO PRODUCTION' : 'ΠΑΡΑΓΩΓΗ ΒΙΝΤΕΟ ΜΕ AI'}</p>
               
               <div className="mb-8 border-b border-zinc-800 pb-8">
-                <span className="text-6xl font-sans font-black tracking-tighter text-[#0055FF]">500€</span>
+                <span className="text-6xl font-sans font-black tracking-tighter text-white">500€</span>
                 <span className="text-zinc-500 text-sm block mt-2">{lang === 'EN' ? '10 videos — one-time investment' : '10 βίντεο — εφάπαξ επένδυση'}</span>
               </div>
 
@@ -349,7 +353,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Top Stats Bar */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-y border-zinc-800 bg-black py-8 px-4 mb-16">
             <div className="flex flex-col items-center justify-center text-center p-4">
               <span className="text-5xl font-serif text-white mb-2">3</span>
@@ -370,9 +373,6 @@ export default function Home() {
               <p className="text-xl text-zinc-300 font-light leading-relaxed">
                 {lang === 'EN' ? 'This is not a course. This is a private mentorship. You work directly with a Renzo expert across three intensive live sessions — leaving each one with skills, not just theory.' : 'Δεν είναι απλά ένα μάθημα. Είναι ιδιωτικό mentorship. Δουλεύετε απευθείας με έναν expert του Renzo σε τρεις εντατικές συνεδρίες — φεύγοντας με πρακτικές ικανότητες.'}
               </p>
-              <p className="text-xl text-zinc-300 font-light leading-relaxed">
-                {lang === 'EN' ? 'You will learn to generate, edit, and recreate videos exactly the way leading creators do — using the most powerful AI tools available today.' : 'Θα μάθετε να δημιουργείτε βίντεο ακριβώς όπως οι κορυφαίοι creators, χρησιμοποιώντας τα πιο ισχυρά AI εργαλεία του σήμερα.'}
-              </p>
               <ul className="space-y-6 pt-6 border-t border-zinc-800">
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-400">
                   <div className="w-8 h-px bg-[#0055FF]"></div> {lang === 'EN' ? 'All sessions recorded for you to keep' : 'Όλες οι συνεδρίες καταγράφονται'}
@@ -388,49 +388,31 @@ export default function Home() {
 
             <div className="lg:col-span-8 flex flex-col justify-between">
               <div className="space-y-12">
-                {/* Module 1 */}
                 <div className="flex gap-6">
                   <div className="text-4xl font-serif text-zinc-700 italic">01</div>
                   <div>
                     <h4 className="text-lg font-bold tracking-widest uppercase text-white mb-2">{lang === 'EN' ? 'AI IMAGE MASTERY' : 'MASTERY ΕΙΚΟΝΑΣ AI'}</h4>
                     <p className="text-zinc-400 text-sm mb-4 leading-relaxed">{lang === 'EN' ? 'Learn to prompt, generate, edit, and stylise images with professional precision. From product shots to cinematic stills.' : 'Μάθετε να δημιουργείτε και να επεξεργάζεστε εικόνες με επαγγελματική ακρίβεια.'}</p>
-                    <div className="flex gap-2 flex-wrap">
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">Nano Banana</span>
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">Seeddream</span>
-                    </div>
                   </div>
                 </div>
 
-                {/* Module 2 */}
                 <div className="flex gap-6">
                   <div className="text-4xl font-serif text-zinc-700 italic">02</div>
                   <div>
                     <h4 className="text-lg font-bold tracking-widest uppercase text-white mb-2">{lang === 'EN' ? 'AI VIDEO PRODUCTION' : 'ΠΑΡΑΓΩΓΗ AI VIDEO'}</h4>
                     <p className="text-zinc-400 text-sm mb-4 leading-relaxed">{lang === 'EN' ? 'Generate and recreate video content using text-to-video and image-to-video workflows. Recreate viral formats exactly.' : 'Δημιουργήστε βίντεο χρησιμοποιώντας text-to-video. Αναπαράγετε ακριβώς viral formats.'}</p>
-                    <div className="flex gap-2 flex-wrap">
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">Kling</span>
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">Hedra</span>
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">Sora</span>
-                    </div>
                   </div>
                 </div>
 
-                {/* Module 3 */}
                 <div className="flex gap-6">
                   <div className="text-4xl font-serif text-zinc-700 italic">03</div>
                   <div>
                     <h4 className="text-lg font-bold tracking-widest uppercase text-white mb-2">{lang === 'EN' ? 'FULL WORKFLOW & AUTOMATION' : 'ΠΛΗΡΕΣ WORKFLOW & AUTOMATION'}</h4>
                     <p className="text-zinc-400 text-sm mb-4 leading-relaxed">{lang === 'EN' ? 'Combine all tools into a complete content production pipeline. Create branded video series independently from day one.' : 'Συνδυάστε τα εργαλεία σε ένα πλήρες σύστημα παραγωγής. Δημιουργήστε branded βίντεο ανεξάρτητα.'}</p>
-                    <div className="flex gap-2 flex-wrap">
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">CapCut</span>
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">ChatGPT</span>
-                      <span className="px-3 py-1 border border-zinc-800 text-[9px] tracking-widest text-zinc-500 uppercase">ElevenLabs</span>
-                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Atelier Price Card */}
               <div className="mt-12 border border-[#0055FF]/40 bg-[#0055FF]/5 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                   <p className="text-[10px] text-[#0055FF] font-bold tracking-[0.3em] uppercase mb-2">{lang === 'EN' ? 'PROGRAM INVESTMENT' : 'ΕΠΕΝΔΥΣΗ ΠΡΟΓΡΑΜΜΑΤΟΣ'}</p>
@@ -446,7 +428,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING SECTION (3 PILLARS) */}
+      {/* PRICING SECTION (REORDERED: WEBSITE FIRST, HIGHLIGHTED) */}
       <section id="prices" className="py-32 px-6 relative z-10 bg-[#030303] border-b border-zinc-900/50">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
@@ -458,43 +440,43 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             
-            {/* Pillar 1: Marketing */}
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl relative overflow-hidden h-full">
-              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Marketing' : 'Marketing'}</h4>
-              <div className="text-[#0055FF] text-4xl font-sans font-black mb-8">€500<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'Per project / month' : 'Ανά project / μήνα'}</span></div>
+            {/* 1. Website (HIGHLIGHTED) */}
+            <div className="bg-black border-2 border-[#0055FF] rounded-[2rem] p-10 flex flex-col shadow-[0_0_40px_rgba(0,85,255,0.25)] relative transform md:-translate-y-4 h-full">
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#0055FF] text-white px-4 py-1 text-[9px] font-black tracking-widest uppercase rounded-sm whitespace-nowrap shadow-[0_0_15px_rgba(0,85,255,0.5)]">
+                {lang === 'EN' ? 'MOST POPULAR' : 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ'}
+              </div>
+              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Professional Website' : 'Ιστοσελίδα'}</h4>
+              <div className="text-[#0055FF] text-4xl font-sans font-black mb-8">€350<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'Complete setup included' : 'Πλήρης κατασκευή'}</span></div>
               <ul className="space-y-4 mb-10 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full"></span> {lang === 'EN' ? 'Social Media Strategy' : 'Στρατηγική Social Media'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full"></span> {lang === 'EN' ? 'Content Planning' : 'Σχεδιασμός Περιεχομένου'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full"></span> {lang === 'EN' ? 'Growth Campaigns' : 'Καμπάνιες Ανάπτυξης'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? '1 Year Free Domain & Hosting' : '1 Χρόνος Δωρεάν Hosting'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Blazing Fast Load Speeds' : 'Αστραπιαία Ταχύτητα'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Integrated Booking System' : 'Σύστημα Κρατήσεων (Booking)'}</li>
+              </ul>
+              <a href="#the-agora" className="w-full mt-auto text-center bg-[#0055FF] text-white py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(0,85,255,0.4)] rounded-sm">{lang === 'EN' ? 'Get Started' : 'Ξεκινήστε'}</a>
+            </div>
+
+            {/* 2. Marketing */}
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-zinc-600 transition-all duration-500 shadow-2xl relative overflow-hidden h-full">
+              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Marketing' : 'Marketing'}</h4>
+              <div className="text-white text-4xl font-sans font-black mb-8">€500<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'Per project / month' : 'Ανά project / μήνα'}</span></div>
+              <ul className="space-y-4 mb-10 flex-grow">
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Social Media Strategy' : 'Στρατηγική Social Media'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Content Planning' : 'Σχεδιασμός Περιεχομένου'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Growth Campaigns' : 'Καμπάνιες Ανάπτυξης'}</li>
               </ul>
               <a href="#the-agora" className="w-full mt-auto text-center border border-zinc-700 text-zinc-400 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:border-[#0055FF] hover:text-[#0055FF] transition-all rounded-sm">{lang === 'EN' ? 'Select Plan' : 'Επιλογή'}</a>
             </div>
 
-            {/* Pillar 2: AI Learner */}
-            <div className="bg-black border border-[#0055FF] rounded-[2rem] p-10 flex flex-col shadow-[0_0_30px_rgba(0,85,255,0.15)] relative transform md:-translate-y-4 h-full">
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#0055FF] text-white px-4 py-1 text-[9px] font-black tracking-widest uppercase rounded-sm whitespace-nowrap">
-                {lang === 'EN' ? 'MOST POPULAR' : 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ'}
-              </div>
+            {/* 3. AI Learner */}
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-zinc-600 transition-all duration-500 shadow-2xl relative overflow-hidden h-full">
               <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'AI Learner' : 'AI Learner'}</h4>
-              <div className="text-[#0055FF] text-4xl font-sans font-black mb-8">€500<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'One-time investment' : 'Εφάπαξ επένδυση'}</span></div>
+              <div className="text-white text-4xl font-sans font-black mb-8">€500<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'One-time investment' : 'Εφάπαξ επένδυση'}</span></div>
               <ul className="space-y-4 mb-10 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Full AI Tool Access' : 'Πλήρης πρόσβαση σε εργαλεία'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Learn Sora, Kling, Hedra' : 'Εκμάθηση Sora, Kling, Hedra'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Nano Banana & Seeddream' : 'Nano Banana & Seeddream'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Full AI Tool Access' : 'Πλήρης πρόσβαση σε εργαλεία'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Learn Sora, Kling, Hedra' : 'Εκμάθηση Sora, Kling, Hedra'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Nano Banana & Seeddream' : 'Nano Banana & Seeddream'}</li>
               </ul>
-              <a href="#the-agora" className="w-full mt-auto text-center bg-[#0055FF] text-white py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(0,85,255,0.4)] rounded-sm">{lang === 'EN' ? 'Start Learning' : 'Ξεκινήστε'}</a>
-            </div>
-
-            {/* Pillar 3: Websites */}
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl relative overflow-hidden h-full">
-              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Websites' : 'Ιστοσελίδες'}</h4>
-              <div className="text-white text-4xl font-sans font-black mb-8">Custom<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'Tailored to your exact needs' : 'Βάσει των αναγκών σας'}</span></div>
-              <ul className="space-y-4 mb-10 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full"></span> {lang === 'EN' ? 'High-Performance UI/UX' : 'Υψηλής απόδοσης UI/UX'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full"></span> {lang === 'EN' ? 'Full Development & Backend' : 'Πλήρης Κατασκευή & Backend'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full"></span> {lang === 'EN' ? 'Next.js Modern Architecture' : 'Σύγχρονη αρχιτεκτονική Next.js'}</li>
-              </ul>
-              <a href="#the-agora" className="w-full mt-auto text-center border border-zinc-700 text-zinc-400 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:border-[#0055FF] hover:text-[#0055FF] transition-all rounded-sm">{lang === 'EN' ? 'Get a Quote' : 'Λήψη Προσφοράς'}</a>
+              <a href="#the-agora" className="w-full mt-auto text-center border border-zinc-700 text-zinc-400 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:border-[#0055FF] hover:text-[#0055FF] transition-all rounded-sm">{lang === 'EN' ? 'Start Learning' : 'Ξεκινήστε'}</a>
             </div>
 
           </div>
@@ -549,7 +531,7 @@ export default function Home() {
                     <label htmlFor="project_type" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Service Required' : 'ΕΠΙΛΟΓΗ ΥΠΗΡΕΣΙΑΣ'}</label>
                     <div className="relative">
                         <select id="project_type" name="project_type" className="w-full bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm appearance-none cursor-pointer">
-                            <option value="website">{lang === 'EN' ? 'Web Architecture (Website/E-Shop)' : 'Κατασκευή Web (Ιστοσελίδα/E-Shop)'}</option>
+                            <option value="website">{lang === 'EN' ? 'Professional Website (€350)' : 'Επαγγελματική Ιστοσελίδα (€350)'}</option>
                             <option value="social">{lang === 'EN' ? 'Social Media / Content Empire' : 'Παραγωγή Content / Social Media'}</option>
                             <option value="education">{lang === 'EN' ? 'AI Learning Atelier (Mentorship)' : 'AI Learning Atelier (Εκπαίδευση)'}</option>
                         </select>
