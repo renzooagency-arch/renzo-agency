@@ -204,6 +204,8 @@ export default function Home() {
             <a href="#prices" className="hidden md:block text-zinc-400 hover:text-[#0055FF] text-xs font-bold tracking-widest uppercase transition-colors">{lang === 'EN' ? 'VIEW PACKAGES →' : 'ΔΕΙΤΕ ΤΑ ΠΑΚΕΤΑ →'}</a>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {/* Card 1: Custom Web Development */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
               <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase text-white">CUSTOM WEB<br/>DEVELOPMENT</h4>
@@ -219,21 +221,39 @@ export default function Home() {
                 </div>
               </a>
             </div>
+            
+            {/* 🔥 NEW CARD: LANDING PAGE 🔥 */}
             <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 md:p-14 flex flex-col hover:border-[#0055FF] hover:bg-zinc-900 transition-all duration-500 shadow-2xl group relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#0055FF]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0055FF] to-transparent opacity-0 group-hover:opacity-100 transition duration-500"></div>
-              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase text-white">HIGH-PERFORMANCE<br/>E-SHOPS</h4>
-              <p className="text-zinc-400 text-sm md:text-base mb-10 leading-relaxed font-light">{lang === 'EN' ? "We design e-commerce stores built 100% around Conversion Rate. We minimize checkout friction." : "Σχεδιάζουμε ηλεκτρονικά καταστήματα στημένα 100% γύρω από το Conversion Rate. Ελαχιστοποιούμε το friction."}</p>
+              
+              {/* Glowing Urgency Badge */}
+              <div className="mb-6 self-start border border-[#0055FF] text-[#0055FF] text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-2 rounded-full shadow-[0_0_15px_rgba(0,85,255,0.3)] animate-pulse bg-[#0055FF]/5">
+                {lang === 'EN' ? 'LIMITED TIME OFFER' : 'ΠΡΟΣΦΟΡΑ ΓΙΑ ΛΙΓΟ ΚΑΙΡΟ'}
+              </div>
+
+              <h4 className="text-3xl md:text-4xl font-black mb-6 leading-tight tracking-tighter uppercase text-white">
+                LANDING<br/>PAGE
+              </h4>
+              <p className="text-zinc-400 text-sm md:text-base mb-10 leading-relaxed font-light">
+                {lang === 'EN' 
+                  ? 'We design high-converting, single-page websites built specifically to capture leads and drive instant sales. Zero friction.' 
+                  : 'Σχεδιάζουμε μονοσέλιδα websites υψηλής μετατρεψιμότητας, στημένα 100% για να φέρνουν leads και άμεσες πωλήσεις. Zero friction.'}
+              </p>
               <ul className="space-y-4 mb-16 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Conversion Rate Optimization</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> Secure Payment APIs</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Conversion-Optimized Design' : 'Conversion-Optimized Σχεδιασμός'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Lead Generation Forms' : 'Φόρμες Lead Generation'}</li>
               </ul>
               <a href="#prices" className="mt-auto pt-6 border-t border-zinc-800/50 flex items-center justify-between cursor-pointer group/btn">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors">{lang === 'EN' ? 'Custom Quote' : 'Custom Προσφορά'}</span>
+                <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 group-hover/btn:text-[#0055FF] transition-colors">
+                  {lang === 'EN' ? 'From €199' : 'Από €199'}
+                </span>
                 <div className="w-10 h-10 rounded-full border border-zinc-700 text-zinc-400 flex items-center justify-center group-hover/btn:border-[#0055FF] group-hover/btn:text-[#0055FF] transition-all">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </div>
               </a>
             </div>
+
           </div>
         </div>
       </section>
@@ -426,7 +446,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NEW PRICING SECTION (3 PILLARS) */}
+      {/* PRICING SECTION (3 PILLARS) */}
       <section id="prices" className="py-32 px-6 relative z-10 bg-[#030303] border-b border-zinc-900/50">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20 text-center">
