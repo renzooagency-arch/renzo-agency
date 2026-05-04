@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   try {
     // 3. Read the data sent from your website's form
     const body = await request.json();
-    const { name, email, project_type, message, honeypot } = body;
+   const { name, email, phone, project_type, message, honeypot } = body;
 
     // 4. THE ANTI-BOT HONEYPOT TRAP
     // If a bot fills out our invisible field, we pretend it worked but delete the data.
@@ -33,6 +33,7 @@ export async function POST(request: Request) {
     await addDoc(collection(db, "leads"), {
       name: name || "",
       email: email || "",
+      Phone: phone || "",
       projectType: project_type || "",
       message: message || "",
       status: "New Lead",

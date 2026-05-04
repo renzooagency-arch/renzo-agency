@@ -41,6 +41,7 @@ export default function Home() {
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
+      phone: formData.get('phone'), // <-- ADDED PHONE HERE
       project_type: formData.get('project_type'),
       message: formData.get('message'),
       honeypot: formData.get('honeypot'),
@@ -527,6 +528,22 @@ export default function Home() {
                   <div className="flex flex-col gap-2"><label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label><input type="text" id="name" name="name" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} /></div>
                   <div className="flex flex-col gap-2"><label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label><input type="email" id="email" name="email" required className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" placeholder="hello@example.com" /></div>
                   
+                  {/* 🔥 NEW PHONE INPUT 🔥 */}
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="phone" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">
+                      {lang === 'EN' ? 'Phone Number' : 'Τηλέφωνο'}
+                    </label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone" 
+                      required 
+                      className="bg-black border border-zinc-800 px-5 py-4 text-white focus:outline-none focus:border-[#0055FF] focus:bg-zinc-900 transition-all rounded-sm placeholder:opacity-40" 
+                      placeholder={lang === 'EN' ? '+30 690 000 0000' : '+30 690 000 0000'} 
+                    />
+                  </div>
+                  {/* 🔥 END NEW PHONE INPUT 🔥 */}
+
                   <div className="flex flex-col gap-2">
                     <label htmlFor="project_type" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Service Required' : 'ΕΠΙΛΟΓΗ ΥΠΗΡΕΣΙΑΣ'}</label>
                     <div className="relative">
