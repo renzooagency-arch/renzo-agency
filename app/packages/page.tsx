@@ -20,11 +20,31 @@ export default function PricesPage() {
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    return () => { window.removeEventListener("scroll", handleScroll); observer.disconnect(); };
   }, []);
 
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white relative overflow-hidden">
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-fade-up { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-100 { transition-delay: 100ms; }
+        .reveal-delay-200 { transition-delay: 200ms; }
+      `}} />
       
       {/* Dynamic Scrolling Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
@@ -60,7 +80,7 @@ export default function PricesPage() {
       <section className="relative z-10 pt-20 pb-32 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-20 animate-fade-up opacity-0">
             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
               {lang === 'EN' ? 'WEBSITE' : 'ΠΑΚΕΤΑ'}<br/>
               <span className="text-[#0055FF]">{lang === 'EN' ? 'PACKAGES' : 'ΙΣΤΟΣΕΛΙΔΩΝ'}</span>
@@ -74,7 +94,7 @@ export default function PricesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
             
             {/* Essential Card */}
-            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors">
+            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors reveal reveal-delay-100">
               <h3 className="text-2xl font-black uppercase tracking-wide mb-2">ESSENTIAL</h3>
               <p className="text-zinc-500 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'The foundation for a strong corporate identity.' : 'Τα θεμέλια για μια ισχυρή εταιρική ταυτότητα.'}</p>
               
@@ -99,7 +119,7 @@ export default function PricesPage() {
             </div>
 
             {/* Professional Card (Glowing) */}
-            <div className="bg-[#080808]/90 backdrop-blur-md border border-[#0055FF] rounded-2xl p-8 flex flex-col relative shadow-[0_0_40px_rgba(0,85,255,0.2)] transform lg:-translate-y-4 z-10">
+            <div className="bg-[#080808]/90 backdrop-blur-md border border-[#0055FF] rounded-2xl p-8 flex flex-col relative shadow-[0_0_40px_rgba(0,85,255,0.2)] transform lg:-translate-y-4 z-10 reveal reveal-delay-200">
               <div className="absolute top-6 right-6 bg-[#0055FF] text-white text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-sm">
                 {lang === 'EN' ? 'MOST WANTED' : 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ'}
               </div>
@@ -128,7 +148,7 @@ export default function PricesPage() {
             </div>
 
             {/* Enterprise Card */}
-            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors">
+            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors reveal reveal-delay-300">
               <h3 className="text-2xl font-black uppercase tracking-wide mb-2">ENTERPRISE</h3>
               <p className="text-zinc-500 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'Cutting-edge technology without limits.' : 'Τεχνολογία αιχμής χωρίς όρια.'}</p>
               
@@ -155,7 +175,7 @@ export default function PricesPage() {
           </div>
 
           {/* NEW BOOKING BUTTON - Smooth glides back to landing page booking form */}
-          <div className="mt-20 text-center">
+          <div className="mt-20 text-center reveal">
             <a href="/#the-agora" className="inline-block bg-[#0055FF] text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 rounded-sm shadow-[0_0_20px_rgba(0,85,255,0.3)] hover:scale-105">
               {lang === 'EN' ? 'Book My Digital Architecture' : 'ΚΡΑΤΗΣΗ ΨΗΦΙΑΚΗΣ ΑΡΧΙΤΕΚΤΟΝΙΚΗΣ'}
             </a>

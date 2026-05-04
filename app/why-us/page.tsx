@@ -11,11 +11,31 @@ export default function WhyUsPage() {
     setMounted(true);
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    return () => { window.removeEventListener("scroll", handleScroll); observer.disconnect(); };
   }, []);
 
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white relative overflow-x-hidden">
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-fade-up { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-100 { transition-delay: 100ms; }
+        .reveal-delay-200 { transition-delay: 200ms; }
+      `}} />
       
       {/* Global Background (Matches Home Page) */}
       <div 
@@ -57,7 +77,7 @@ export default function WhyUsPage() {
       </nav>
 
       {/* Header */}
-      <section className="pt-32 pb-16 px-6 text-center relative z-10">
+      <section className="pt-32 pb-16 px-6 text-center relative z-10 animate-fade-up opacity-0">
         <h1 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase mb-6 text-white drop-shadow-2xl">
           {lang === 'EN' ? 'WHY' : 'ΓΙΑΤΙ'} <br/>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0055FF] to-blue-400">
@@ -75,7 +95,7 @@ export default function WhyUsPage() {
       <section className="pb-32 px-6 relative z-10">
         <div className="max-w-5xl mx-auto">
           
-          <div className="bg-zinc-950/70 backdrop-blur-xl border border-zinc-800/50 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="bg-zinc-950/70 backdrop-blur-xl border border-zinc-800/50 rounded-2xl overflow-hidden shadow-2xl reveal reveal-delay-100">
             
             {/* Table Header */}
             <div className="grid grid-cols-2 bg-black border-b border-zinc-800">
@@ -155,7 +175,7 @@ export default function WhyUsPage() {
 
           </div>
 
-          <div className="mt-16 text-center">
+          <div className="mt-16 text-center reveal">
             <a href="/#the-agora" className="inline-block bg-[#0055FF] text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.3)] hover:scale-105 rounded-sm">
               {lang === 'EN' ? 'Experience The Difference' : 'Ζηστε Τη Διαφορα'}
             </a>

@@ -15,7 +15,17 @@ export default function Home() {
     setMounted(true);
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    return () => { window.removeEventListener("scroll", handleScroll); observer.disconnect(); };
   }, []);
 
   useEffect(() => {
@@ -87,8 +97,18 @@ export default function Home() {
         html { scroll-behavior: smooth; }
         @keyframes floatCube { 0% { transform: translateY(110vh) rotateX(0deg) rotateY(0deg); opacity: 0; } 20% { opacity: 0.1; } 80% { opacity: 0.1; } 100% { transform: translateY(-20vh) rotateX(360deg) rotateY(360deg); opacity: 0; } }
         @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
         .cube { position: fixed; bottom: -100px; background: transparent; border: 1px solid rgba(0, 85, 255, 0.4); pointer-events: none; z-index: 0; }
         .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; }
+        .animate-fade-up { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-100 { transition-delay: 100ms; }
+        .reveal-delay-200 { transition-delay: 200ms; }
+        .reveal-delay-300 { transition-delay: 300ms; }
       `}} />
 
       {/* Global Background */}
@@ -172,13 +192,13 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10">
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)]">
+          <div className="inline-block border border-[#0055FF]/30 bg-[#0055FF]/10 backdrop-blur-md px-5 py-2 rounded-sm mb-10 shadow-[0_0_15px_rgba(0,85,255,0.15)] animate-fade-up opacity-0">
             <span className="text-[10px] font-sans font-black tracking-widest text-blue-200 uppercase flex items-center gap-2"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'WEB • CONTENT • EDUCATION' : 'WEB • ΠΕΡΙΕΧΟΜΕΝΟ • ΕΚΠΑΙΔΕΥΣΗ'}</span>
           </div>
-          <h2 className="text-6xl md:text-[8rem] font-serif leading-[0.95] tracking-tight mb-8 drop-shadow-2xl">
+          <h2 className="text-6xl md:text-[8rem] font-serif leading-[0.95] tracking-tight mb-8 drop-shadow-2xl animate-fade-up delay-100 opacity-0">
             {lang === 'EN' ? 'Architects of' : 'Αρχιτεκτονες του'} <br /><span className="font-sans font-black italic text-transparent bg-clip-text bg-gradient-to-r from-white via-[#0055FF] to-[#002266]">{lang === 'EN' ? 'The Web.' : 'Ιστου.'}</span>
           </h2>
-          <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between w-full border-t border-zinc-700 pt-8 mt-12 relative z-20">
+          <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between w-full border-t border-zinc-700 pt-8 mt-12 relative z-20 animate-fade-up delay-200 opacity-0">
             <p className="text-xl md:text-2xl text-white font-serif tracking-tight leading-snug drop-shadow-md max-w-2xl">
               {lang === 'EN' ? 'We engineer digital ecosystems. From high-performance websites to AI-driven social media content and elite creator education.' : 'Σχεδιάζουμε ψηφιακά οικοσυστήματα. Από ιστοσελίδες υψηλής απόδοσης μέχρι AI social media περιεχόμενο και εκπαίδευση.'}
             </p>
@@ -196,7 +216,7 @@ export default function Home() {
       {/* PILLAR 1: WEB ARCHITECTURE (MASSIVE SINGLE CARD) */}
       <section id="web" className="py-32 px-6 relative z-10 bg-zinc-950/70 backdrop-blur-md border-y border-zinc-900/50">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8">
+          <div className="mb-16 flex flex-col md:flex-row items-start md:items-end justify-between border-b border-zinc-800 pb-8 reveal">
             <div>
               <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mb-2">PILLAR 01 • ENGINEERING</p>
               <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter uppercase text-white drop-shadow-xl">{lang === 'EN' ? 'WEB ARCHITECTURE' : 'ΚΑΤΑΣΚΕΥΗ WEB'}</h3>
@@ -269,7 +289,7 @@ export default function Home() {
       {/* PILLAR 2: SOCIAL MEDIA CONTENT EMPIRE */}
       <section id="social" className="py-32 px-6 relative z-10 bg-[#030303]/90 border-b border-zinc-900/50">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
+          <div className="mb-16 reveal">
             <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mb-2">PILLAR 02 • SOCIAL MEDIA</p>
             <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter text-white drop-shadow-xl">{lang === 'EN' ? 'THE CONTENT' : 'ΑΥΤΟΚΡΑΤΟΡΙΑ'} <span className="font-serif italic font-light text-[#0055FF]">{lang === 'EN' ? 'Empire.' : 'Περιεχομένου.'}</span></h3>
             <p className="text-zinc-400 text-lg mt-6 max-w-2xl font-light">
@@ -278,7 +298,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div className="lg:col-span-5 bg-black border border-zinc-800 rounded-2xl p-10 relative hover:border-[#0055FF]/50 transition-colors duration-500 flex flex-col">
+            <div className="lg:col-span-5 bg-black border border-zinc-800 rounded-2xl p-10 relative hover:border-[#0055FF]/50 transition-colors duration-500 flex flex-col reveal reveal-delay-100">
               <h4 className="text-3xl font-serif text-white mb-2 mt-4">{lang === 'EN' ? 'Social Media Pack' : 'Πακέτο Social Media'}</h4>
               <p className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase mb-8">{lang === 'EN' ? 'AI-ENHANCED VIDEO PRODUCTION' : 'ΠΑΡΑΓΩΓΗ ΒΙΝΤΕΟ ΜΕ AI'}</p>
               
@@ -307,7 +327,7 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="lg:col-span-7 flex flex-col justify-center space-y-12">
+            <div className="lg:col-span-7 flex flex-col justify-center space-y-12 reveal reveal-delay-200">
               <div>
                 <h4 className="text-[10px] text-[#0055FF] font-bold tracking-[0.3em] uppercase mb-4">{lang === 'EN' ? 'WHY VIDEO DOMINATES' : 'ΓΙΑΤΙ ΤΟ ΒΙΝΤΕΟ ΚΥΡΙΑΡΧΕΙ'}</h4>
                 <p className="text-zinc-300 text-lg font-light leading-relaxed">
@@ -346,7 +366,7 @@ export default function Home() {
       {/* PILLAR 3: AI LEARNING ATELIER */}
       <section id="education" className="py-32 px-6 relative z-10 bg-zinc-950/40 backdrop-blur-md border-b border-zinc-900/50">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
+          <div className="mb-16 reveal">
             <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mb-2">PILLAR 03 • EDUCATION</p>
             <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter text-white drop-shadow-xl">{lang === 'EN' ? 'AI LEARNING' : 'AI LEARNING'} <span className="font-serif italic font-light text-[#0055FF]">{lang === 'EN' ? 'Atelier.' : 'Atelier.'}</span></h3>
             <p className="text-zinc-400 text-lg mt-6 max-w-2xl font-light">
@@ -354,7 +374,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-y border-zinc-800 bg-black py-8 px-4 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 border-y border-zinc-800 bg-black py-8 px-4 mb-16 reveal reveal-delay-100">
             <div className="flex flex-col items-center justify-center text-center p-4">
               <span className="text-5xl font-serif text-white mb-2">3</span>
               <span className="text-[10px] text-[#0055FF] font-bold tracking-[0.2em] uppercase">{lang === 'EN' ? 'LIVE CALLS' : 'LIVE ΣΥΝΕΔΡΙΕΣ'}</span>
@@ -370,7 +390,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            <div className="lg:col-span-4 space-y-8">
+            <div className="lg:col-span-4 space-y-8 reveal reveal-delay-200">
               <p className="text-xl text-zinc-300 font-light leading-relaxed">
                 {lang === 'EN' ? 'This is not a course. This is a private mentorship. You work directly with a Renzo expert across three intensive live sessions — leaving each one with skills, not just theory.' : 'Δεν είναι απλά ένα μάθημα. Είναι ιδιωτικό mentorship. Δουλεύετε απευθείας με έναν expert του Renzo σε τρεις εντατικές συνεδρίες — φεύγοντας με πρακτικές ικανότητες.'}
               </p>
@@ -387,7 +407,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <div className="lg:col-span-8 flex flex-col justify-between">
+            <div className="lg:col-span-8 flex flex-col justify-between reveal reveal-delay-300">
               <div className="space-y-12">
                 <div className="flex gap-6">
                   <div className="text-4xl font-serif text-zinc-700 italic">01</div>
@@ -432,7 +452,7 @@ export default function Home() {
       {/* PRICING SECTION (REORDERED: WEBSITE FIRST, HIGHLIGHTED) */}
       <section id="prices" className="py-32 px-6 relative z-10 bg-[#030303] border-b border-zinc-900/50">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20 text-center">
+          <div className="mb-20 text-center reveal">
             <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mb-2">{lang === 'EN' ? 'INVESTMENT' : 'ΕΠΕΝΔΥΣΗ'}</p>
             <h3 className="text-5xl md:text-7xl font-sans font-black tracking-tighter text-white drop-shadow-xl">
               {lang === 'EN' ? 'OUR' : 'ΤΑ'} <span className="font-serif italic font-light text-[#0055FF]">{lang === 'EN' ? 'Prices.' : 'Πακέτα.'}</span>
@@ -442,7 +462,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
             
             {/* 1. Website (HIGHLIGHTED) */}
-            <div className="bg-black border-2 border-[#0055FF] rounded-[2rem] p-10 flex flex-col shadow-[0_0_40px_rgba(0,85,255,0.25)] relative transform md:-translate-y-4 h-full">
+            <div className="bg-black border-2 border-[#0055FF] rounded-[2rem] p-10 flex flex-col shadow-[0_0_40px_rgba(0,85,255,0.25)] relative transform md:-translate-y-4 h-full reveal reveal-delay-100">
               <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#0055FF] text-white px-4 py-1 text-[9px] font-black tracking-widest uppercase rounded-sm whitespace-nowrap shadow-[0_0_15px_rgba(0,85,255,0.5)]">
                 {lang === 'EN' ? 'MOST POPULAR' : 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ'}
               </div>
@@ -457,7 +477,7 @@ export default function Home() {
             </div>
 
             {/* 2. Marketing */}
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-zinc-600 transition-all duration-500 shadow-2xl relative overflow-hidden h-full">
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-zinc-600 transition-all duration-500 shadow-2xl relative overflow-hidden h-full reveal reveal-delay-200">
               <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Marketing' : 'Marketing'}</h4>
               <div className="text-white text-4xl font-sans font-black mb-8">€500<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'Per project / month' : 'Ανά project / μήνα'}</span></div>
               <ul className="space-y-4 mb-10 flex-grow">
@@ -469,7 +489,7 @@ export default function Home() {
             </div>
 
             {/* 3. AI Learner */}
-            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-zinc-600 transition-all duration-500 shadow-2xl relative overflow-hidden h-full">
+            <div className="bg-zinc-950/70 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col hover:border-zinc-600 transition-all duration-500 shadow-2xl relative overflow-hidden h-full reveal reveal-delay-300">
               <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'AI Learner' : 'AI Learner'}</h4>
               <div className="text-white text-4xl font-sans font-black mb-8">€500<span className="text-sm text-zinc-500 font-light block mt-1">{lang === 'EN' ? 'One-time investment' : 'Εφάπαξ επένδυση'}</span></div>
               <ul className="space-y-4 mb-10 flex-grow">
@@ -487,11 +507,11 @@ export default function Home() {
       {/* FAQ SECTION */}
       <section id="faq" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-zinc-950/30 backdrop-blur-md">
         <div className="max-w-3xl mx-auto">
-          <div className="mb-16 text-center">
+          <div className="mb-16 text-center reveal">
             <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">FAQ</h2>
             <h3 className="text-4xl md:text-6xl font-serif tracking-tight text-white mb-2">{lang === 'EN' ? 'Frequently Asked' : 'Συχνές'} <span className="italic font-light text-zinc-500">{lang === 'EN' ? 'Questions.' : 'Ερωτήσεις.'}</span></h3>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-4 reveal reveal-delay-100">
             {faqs.map((faq, index) => (
               <div key={index} className={`border ${openFaq === index ? 'border-zinc-700 bg-zinc-900/50' : 'border-zinc-800/80 bg-black/40'} rounded-xl overflow-hidden transition-all duration-300 hover:border-zinc-700`}>
                 <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
@@ -512,13 +532,13 @@ export default function Home() {
       {/* THE AGORA (Booking Form) */}
       <section id="the-agora" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-[#030303]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20 text-center">
+          <div className="mb-20 text-center reveal">
             <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-6">{lang === 'EN' ? 'The' : 'Η'} <span className="text-[#0055FF] italic font-light">{lang === 'EN' ? 'Agora.' : 'Αγορά.'}</span></h2>
             <p className="text-zinc-400 text-lg max-w-xl mx-auto">{lang === 'EN' ? 'Ready to construct your digital future? Select a service and reach out to the studio.' : 'Είστε έτοιμοι να χτίσετε το ψηφιακό σας μέλλον; Επιλέξτε υπηρεσία και επικοινωνήστε.'}</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
-            <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl rounded-xl">
+            <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl rounded-xl reveal reveal-delay-100">
               {isSent ? (
                 <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center"><div className="w-20 h-20 rounded-full border border-[#0055FF] flex items-center justify-center mb-6 text-[#0055FF] text-4xl shadow-[0_0_30px_rgba(0,85,255,0.2)]">✓</div><h3 className="text-2xl font-serif italic mb-4">{lang === 'EN' ? 'Transmission Successful' : 'Επιτυχής Μετάδοση'}</h3><p className="text-zinc-400 font-light">{lang === 'EN' ? 'Our architects will review your request and make contact shortly.' : 'Οι συνεργάτες μας θα εξετάσουν το αίτημά σας και θα επικοινωνήσουν.'}</p></div>
               ) : (
@@ -561,7 +581,7 @@ export default function Home() {
               )}
             </div>
 
-            <div className="flex flex-col justify-between space-y-8">
+            <div className="flex flex-col justify-between space-y-8 reveal reveal-delay-200">
               <div className="space-y-6">
                 <div className="inline-block border border-zinc-800 bg-zinc-900/50 px-4 py-1.5 rounded-sm"><span className="text-[10px] font-mono tracking-widest text-[#0055FF] uppercase">{lang === 'EN' ? 'Coordinates' : 'Συντεταγμένες'}</span></div>
                 <h4 className="text-3xl font-serif text-white leading-snug">Leof. Andrea Papandreou 179<br /><span className="text-zinc-500 font-sans font-light text-xl tracking-wide">Ilion 131 21, Athens, Greece</span></h4>
