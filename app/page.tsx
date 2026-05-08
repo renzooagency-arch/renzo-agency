@@ -13,7 +13,16 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrollY(window.scrollY);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
@@ -151,7 +160,7 @@ export default function Home() {
       `}} />
 
       {/* Global Background */}
-      <div className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out" style={{ transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`, opacity: mounted ? Math.min(0.8, 0.4 + scrollY / 1500) : 0 }}>
+      <div className="fixed inset-0 z-[1] pointer-events-none" style={{ transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`, opacity: mounted ? Math.min(0.8, 0.4 + scrollY / 1500) : 0 }}>
         <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/70 to-[#030303] z-10"></div>
         <div className="blueprint-grid"></div>
@@ -232,7 +241,7 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10 overflow-hidden">
         <div 
-          className="max-w-7xl mx-auto w-full relative z-10 transition-transform duration-75 ease-out"
+          className="max-w-7xl mx-auto w-full relative z-10"
           style={{ transform: `translateY(${scrollY * 0.35}px) scale(${1 - scrollY * 0.0005})`, opacity: Math.max(0, 1 - scrollY / 700) }}
         >
           <div className="inline-block border border-[#0055FF] bg-[#0055FF]/20 backdrop-blur-md px-6 py-3 rounded-sm mb-10 shadow-[0_0_20px_rgba(0,85,255,0.4)] animate-pulse opacity-0" style={{animationFillMode: 'forwards'}}>
@@ -251,7 +260,7 @@ export default function Home() {
       </section>
 
       <div 
-        className="w-full overflow-hidden bg-[#0055FF] py-6 border-y border-blue-400/30 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)] transition-transform duration-75"
+        className="w-full overflow-hidden bg-[#0055FF] py-6 border-y border-blue-400/30 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)]"
         style={{ transform: `skewY(${Math.min(3, Math.max(-3, (scrollY - 300) * 0.005))}deg)` }}
       >
         <div className="flex gap-16 animate-marquee whitespace-nowrap text-white font-mono text-xl tracking-widest">
