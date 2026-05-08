@@ -91,24 +91,30 @@ export default function PricesPage() {
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
             
-            {/* Essential Card */}
-            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors reveal reveal-delay-100">
-              <h3 className="text-2xl font-black uppercase tracking-wide mb-2">ESSENTIAL</h3>
+            {/* Simple Card */}
+            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-[#0055FF]/50 transition-colors duration-500 reveal reveal-delay-100">
+              <div className="mb-4 inline-block border border-zinc-700 text-zinc-400 text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-zinc-900/50 self-start">
+                {lang === 'EN' ? 'SALE ACTIVE' : 'ΣΕ ΕΚΠΤΩΣΗ'}
+              </div>
+              <h3 className="text-2xl font-black uppercase tracking-wide mb-2">SIMPLE</h3>
               <p className="text-zinc-500 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'The foundation for a strong corporate identity.' : 'Τα θεμέλια για μια ισχυρή εταιρική ταυτότητα.'}</p>
               
               <div className="mb-10">
                 <p className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase mb-1">INVESTMENT</p>
-                <p className="text-5xl font-black">350€</p>
+                <div className="flex items-end gap-3">
+                  <p className="text-5xl font-black">350€</p>
+                  <p className="text-xl text-zinc-600 line-through mb-1">500€</p>
+                </div>
               </div>
 
               <ul className="space-y-4 flex-grow">
                 {[
                   lang === 'EN' ? 'Custom UI/UX Design' : 'Custom Σχεδιασμός UI/UX',
                   lang === 'EN' ? 'Responsive Architecture' : 'Responsive Αρχιτεκτονική',
-                  lang === 'EN' ? 'Basic SEO' : 'Βασικό SEO',
-                  lang === 'EN' ? 'Contact Systems' : 'Συστήματα Επικοινωνίας',
+                  lang === 'EN' ? 'Basic SEO Setup' : 'Βασικό SEO',
+                  lang === 'EN' ? 'Contact / Booking Systems' : 'Συστήματα Επικοινωνίας',
                   lang === 'EN' ? 'High Speed Hosting Setup' : 'Ρύθμιση High Speed Hosting'
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-xs text-zinc-300 font-medium">
@@ -118,54 +124,36 @@ export default function PricesPage() {
               </ul>
             </div>
 
-            {/* Professional Card (Glowing) */}
+            {/* Premium Card (Glowing) */}
             <div className="bg-[#080808]/90 backdrop-blur-md border border-[#0055FF] rounded-2xl p-8 flex flex-col relative shadow-[0_0_40px_rgba(0,85,255,0.2)] transform lg:-translate-y-4 z-10 reveal reveal-delay-200">
-              <div className="absolute top-6 right-6 bg-[#0055FF] text-white text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-sm">
-                {lang === 'EN' ? 'MOST WANTED' : 'ΔΗΜΟΦΙΛΕΣΤΕΡΟ'}
+              <div className="absolute top-6 right-6 bg-[#0055FF] text-white text-[9px] font-black tracking-widest uppercase px-3 py-1 rounded-sm shadow-[0_0_15px_rgba(0,85,255,0.5)]">
+                {lang === 'EN' ? 'PREMIUM CHOICE' : 'PREMIUM ΕΠΙΛΟΓΗ'}
+              </div>
+              <div className="mb-4 inline-block border border-[#0055FF] text-[#0055FF] text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-[#0055FF]/10 self-start animate-pulse">
+                {lang === 'EN' ? 'SALE ACTIVE' : 'ΣΕ ΕΚΠΤΩΣΗ'}
               </div>
               
-              <h3 className="text-2xl font-black uppercase tracking-wide mb-2 mt-2">PROFESSIONAL</h3>
-              <p className="text-zinc-400 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'The choice of Market Leaders.' : 'Η επιλογή των Market Leaders.'}</p>
+              <h3 className="text-2xl font-black uppercase tracking-wide mb-2 mt-2">PREMIUM</h3>
+              <p className="text-zinc-400 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'Premium visuals & superior user experience.' : 'Premium γραφικά & κορυφαία εμπειρία χρήστη.'}</p>
               
               <div className="mb-10">
                 <p className="text-[10px] text-[#0055FF] font-bold tracking-[0.2em] uppercase mb-1">INVESTMENT</p>
-                <p className="text-5xl font-black">450€</p>
+                <div className="flex items-end gap-3">
+                  <p className="text-5xl font-black text-white">550€</p>
+                  <p className="text-xl text-zinc-600 line-through mb-1">800€</p>
+                </div>
               </div>
 
               <ul className="space-y-4 flex-grow">
                 {[
-                  lang === 'EN' ? 'Advanced Framer/React Motion' : 'Προηγμένα Animations',
-                  lang === 'EN' ? 'Dynamic CMS' : 'Δυναμικό CMS',
+                  lang === 'EN' ? 'Everything in Simple, plus:' : 'Όλα τα του Simple, και:',
+                  lang === 'EN' ? 'Premium Visuals & Motion Graphics' : 'Premium Γραφικά & Animations',
+                  lang === 'EN' ? 'Advanced User Experience (UX)' : 'Προηγμένη Εμπειρία Χρήστη (UX)',
+                  lang === 'EN' ? 'Dynamic CMS Integration' : 'Δυναμικό CMS',
                   lang === 'EN' ? 'Full SEO Strategy' : 'Πλήρης Στρατηγική SEO',
-                  lang === 'EN' ? 'Premium Animations' : 'Premium Animations',
-                  lang === 'EN' ? 'Conversion Optimization' : 'Βελτιστοποίηση Μετατροπών'
+                  lang === 'EN' ? 'Conversion Rate Optimization' : 'Βελτιστοποίηση Μετατροπών'
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-xs text-white font-medium">
-                    <BlueCheckmark /> {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Enterprise Card */}
-            <div className="bg-[#080808]/80 backdrop-blur-sm border border-zinc-800/50 rounded-2xl p-8 flex flex-col hover:border-zinc-700 transition-colors reveal reveal-delay-300">
-              <h3 className="text-2xl font-black uppercase tracking-wide mb-2">ENTERPRISE</h3>
-              <p className="text-zinc-500 text-xs font-light mb-10 h-8">{lang === 'EN' ? 'Cutting-edge technology without limits.' : 'Τεχνολογία αιχμής χωρίς όρια.'}</p>
-              
-              <div className="mb-10">
-                <p className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase mb-1">INVESTMENT</p>
-                <p className="text-5xl font-black">Custom</p>
-              </div>
-
-              <ul className="space-y-4 flex-grow">
-                {[
-                  lang === 'EN' ? 'Custom Web Applications' : 'Custom Web Εφαρμογές',
-                  lang === 'EN' ? 'Database Logic' : 'Λογική Βάσης Δεδομένων',
-                  lang === 'EN' ? 'Unrivaled Load Times' : 'Ασυναγώνιστοι Χρόνοι Φόρτωσης',
-                  lang === 'EN' ? 'Full API Integration' : 'Πλήρης Διασύνδεση API',
-                  lang === 'EN' ? '24/7 Priority Ops' : '24/7 Υποστήριξη Priority'
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-xs text-zinc-300 font-medium">
                     <BlueCheckmark /> {item}
                   </li>
                 ))}
