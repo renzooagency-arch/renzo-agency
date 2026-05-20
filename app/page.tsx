@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [lang, setLang] = useState<'EN' | 'GR'>('EN');
+  const bgRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const [lang, setLang] = useState<'EN' | 'GR'>('GR');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -17,12 +19,24 @@ export default function Home() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
+          const y = window.scrollY;
+          if (bgRef.current) {
+            bgRef.current.style.transform = `translateY(${y * 0.15}px) scale(${1 + y * 0.0002})`;
+            bgRef.current.style.opacity = Math.min(0.8, 0.4 + y / 1500).toString();
+          }
+          if (heroRef.current) {
+            heroRef.current.style.transform = `translateY(${y * 0.35}px) scale(${1 - y * 0.0005})`;
+            heroRef.current.style.opacity = Math.max(0, 1 - y / 700).toString();
+          }
+          if (marqueeRef.current) {
+            marqueeRef.current.style.transform = `skewY(${Math.min(3, Math.max(-3, (y - 300) * 0.005))}deg)`;
+          }
           ticking = false;
         });
         ticking = true;
       }
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
@@ -160,7 +174,7 @@ export default function Home() {
       `}} />
 
       {/* Global Background */}
-      <div className="fixed inset-0 z-[1] pointer-events-none" style={{ transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`, opacity: mounted ? Math.min(0.8, 0.4 + scrollY / 1500) : 0 }}>
+      <div ref={bgRef} className="fixed inset-0 z-[1] pointer-events-none" style={{ opacity: mounted ? 0.4 : 0 }}>
         <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/70 to-[#030303] z-10"></div>
         <div className="blueprint-grid"></div>
@@ -241,8 +255,8 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 pt-20 z-10 overflow-hidden">
         <div 
+          ref={heroRef}
           className="max-w-7xl mx-auto w-full relative z-10"
-          style={{ transform: `translateY(${scrollY * 0.35}px) scale(${1 - scrollY * 0.0005})`, opacity: Math.max(0, 1 - scrollY / 700) }}
         >
           <div className="inline-block border border-[#0055FF] bg-[#0055FF]/20 backdrop-blur-md px-6 py-3 rounded-sm mb-10 shadow-[0_0_20px_rgba(0,85,255,0.4)] animate-pulse opacity-0" style={{animationFillMode: 'forwards'}}>
             <span className="text-[10px] font-sans font-black tracking-[0.3em] text-white uppercase flex items-center gap-3"><span className="w-2 h-2 bg-[#0055FF] rounded-full shadow-[0_0_15px_#0055FF]"></span> {lang === 'EN' ? 'WEB • CONTENT • EDUCATION' : 'WEB • ΠΕΡΙΕΧΟΜΕΝΟ • ΕΚΠΑΙΔΕΥΣΗ'}</span>
@@ -260,8 +274,8 @@ export default function Home() {
       </section>
 
       <div 
+        ref={marqueeRef}
         className="w-full overflow-hidden bg-[#0055FF] py-6 border-y border-blue-400/30 z-20 relative shadow-[0_0_40px_rgba(0,85,255,0.3)]"
-        style={{ transform: `skewY(${Math.min(3, Math.max(-3, (scrollY - 300) * 0.005))}deg)` }}
       >
         <div className="flex gap-16 animate-marquee whitespace-nowrap text-white font-mono text-xl tracking-widest">
           {['WEB ARCHITECTURE', 'AI CONTENT CREATION', 'MENTORSHIP', 'SOCIAL DOMINANCE', 'WEB ARCHITECTURE', 'AI CONTENT CREATION', 'MENTORSHIP', 'SOCIAL DOMINANCE'].map((item, idx) => (<React.Fragment key={idx}><span>{item}</span> {idx < 7 && <span>•</span>}</React.Fragment>))}

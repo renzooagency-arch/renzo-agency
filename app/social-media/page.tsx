@@ -1,15 +1,29 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 export default function SocialMediaPage() {
   const [mounted, setMounted] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [lang, setLang] = useState<'EN' | 'GR'>('EN');
+  const bgRef = useRef<HTMLDivElement>(null);
+  const [lang, setLang] = useState<'EN' | 'GR'>('GR');
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrollY(window.scrollY);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (bgRef.current) {
+            bgRef.current.style.transform = `translateY(${y * 0.15}px) scale(${1 + y * 0.0002})`;
+            bgRef.current.style.opacity = Math.min(0.8, 0.4 + y / 1500).toString();
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
@@ -39,11 +53,9 @@ export default function SocialMediaPage() {
       
       {/* Global Background */}
       <div 
+        ref={bgRef}
         className="fixed inset-0 z-[1] pointer-events-none transition-transform duration-75 ease-out"
-        style={{
-          transform: `translateY(${scrollY * 0.15}px) scale(${1 + scrollY * 0.0002})`,
-          opacity: mounted ? Math.min(0.8, 0.4 + scrollY / 1500) : 0
-        }}
+        style={{ opacity: mounted ? 0.4 : 0 }}
       >
         <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/80 to-[#030303] z-10"></div>

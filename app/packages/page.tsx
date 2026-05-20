@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 // Component function to create a unified blue checkmark style like the reference
@@ -13,12 +13,24 @@ const BlueCheckmark = () => (
 );
 
 export default function PricesPage() {
-  const [lang, setLang] = useState<'EN' | 'GR'>('EN');
-  const [scrollY, setScrollY] = useState(0);
+  const [lang, setLang] = useState<'EN' | 'GR'>('GR');
+  const bgRef = useRef<HTMLImageElement>(null);
 
   // Track the user's scroll position to dynamically change background visibility
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (bgRef.current) {
+            bgRef.current.style.opacity = Math.min(0.6, 0.15 + window.scrollY / 800).toString();
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
@@ -50,11 +62,12 @@ export default function PricesPage() {
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/80 via-[#030303]/90 to-[#030303] z-10"></div>
         <img 
+          ref={bgRef}
           src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" 
           alt="Background" 
           className="w-full h-[120vh] object-cover grayscale transition-opacity duration-100 ease-out" 
           // Opacity starts at 15% and increases up to 60% as you scroll down
-          style={{ opacity: Math.min(0.6, 0.15 + scrollY / 800) }}
+          style={{ opacity: 0.15 }}
         />
       </div>
 
