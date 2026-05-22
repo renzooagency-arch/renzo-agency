@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import MatrixRain from '../components/MatrixRain';
+import NeuralNetwork from '../components/NeuralNetwork';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -178,7 +178,7 @@ export default function Home() {
         <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" alt="The Parthenon" className="w-full h-[120vh] object-cover opacity-40 grayscale contrast-[1.4] blur-[2px]" />
       </div>
 
-      {mounted && <MatrixRain mousePos={mousePos} />}
+      {mounted && <NeuralNetwork mousePos={mousePos} />}
 
       {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
@@ -269,7 +269,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center reveal">
           <p className="text-[#0055FF] font-bold tracking-widest text-[10px] uppercase mb-4">{lang === 'EN' ? 'WHO I AM' : 'ΠΟΙΟΣ ΕΙΜΑΙ'}</p>
           <h3 className="text-4xl md:text-5xl font-serif text-white mb-8 leading-snug">
-            {lang === 'EN' ? 'A 17-year-old visionary building the digital infrastructure of tomorrow.' : 'Ένας 17χρονος visionary που χτίζει την ψηφιακή υποδομή του αύριο.'}
+            {lang === 'EN' ? 'A 17 year old with a passion for building professional looking websites and marketing businesses online.' : 'Ένας 17χρονος με πάθος για την κατασκευή επαγγελματικών ιστοσελίδων και το marketing επιχειρήσεων online.'}
           </h3>
           <p className="text-zinc-400 text-lg leading-relaxed mb-10">
             {lang === 'EN' ? "I am a 17-year-old website designer and engineer with an obsession for perfection. I craft premium, high-converting digital ecosystems that don't just look stunning, but dominate markets. Every line of code, every pixel, and every animation is meticulously designed to elevate your brand to the absolute top." : "Είμαι ένας 17χρονος website designer και engineer με εμμονή στην τελειότητα. Κατασκευάζω premium, υψηλής μετατρεψιμότητας ψηφιακά οικοσυστήματα που δεν είναι απλώς εντυπωσιακά, αλλά κυριαρχούν στις αγορές. Κάθε γραμμή κώδικα, κάθε pixel και κάθε animation σχεδιάζεται με απόλυτη λεπτομέρεια για να ανεβάσει το brand σας στην κορυφή."}
