@@ -187,12 +187,12 @@ export default function Home() {
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
           </a>
 
-          <div className="hidden md:flex space-x-6 lg:space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="/why-us" className="hover:text-[#0055FF] transition duration-300">Why Us</a>
+          <div className="hidden md:flex space-x-6 lg:space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400 items-center">
             <a href="/websites" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Website' : 'Ιστοσελιδες'}</a>
             <a href="/social-media" className="hover:text-[#0055FF] transition duration-300">Social</a>
             <a href="/learner" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
             <a href="/packages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
+            <a href="/why-us" className="hover:text-[#0055FF] transition duration-300">WHY US</a>
             <a href="#faq" className="hover:text-[#0055FF] transition duration-300">FAQ</a>
           </div>
 
@@ -222,13 +222,12 @@ export default function Home() {
         {/* Mobile Menu */}
         <div className={`md:hidden fixed inset-0 h-screen w-screen bg-[#030303]/98 backdrop-blur-3xl z-40 flex flex-col items-center justify-center transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
           <div className="flex flex-col items-center space-y-8 text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">Why Us</a>
             <a href="/websites" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Website' : 'Ιστοσελιδες'}</a>
             <a href="/social-media" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">Social</a>
             <a href="/learner" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
             <a href="/packages" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
+            <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#0055FF] transition duration-300">WHY US</a>
             <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">FAQ</a>
-            <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">INSTAGRAM</a>
             <a href="#the-agora" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] border border-[#0055FF] px-8 py-3 rounded-sm hover:bg-[#0055FF] hover:text-white transition duration-300 mt-4">{lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}</a>
           </div>
         </div>

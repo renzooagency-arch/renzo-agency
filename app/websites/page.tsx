@@ -5,25 +5,10 @@ import React, { useEffect, useState, useRef } from 'react';
 export default function WebsitesPage() {
   const [mounted, setMounted] = useState(false);
   const [lang, setLang] = useState<'EN' | 'GR'>('GR');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setMounted(true);
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMobileMenuOpen]);
 
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white overflow-x-hidden relative">
@@ -43,12 +28,6 @@ export default function WebsitesPage() {
       `}} />
 
       {/* Global Background */}
-      <div 
-        className="pointer-events-none fixed inset-0 z-[2] opacity-70 mix-blend-screen transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0,85,255,0.15), transparent 40%)`
-        }}
-      />
       <div className="fixed inset-0 z-[1] pointer-events-none" style={{ opacity: mounted ? 0.4 : 0 }}>
         <div className="absolute inset-0 bg-[#0055FF]/10 mix-blend-color z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/70 to-[#030303] z-10"></div>
@@ -56,29 +35,15 @@ export default function WebsitesPage() {
         <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=2000&auto=format&fit=crop" alt="The Parthenon" className="w-full h-[120vh] object-cover opacity-40 grayscale contrast-[1.4] blur-[2px]" />
       </div>
 
-      {/* Navigation */}
       <nav className="fixed w-full top-0 z-50 bg-[#030303]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center relative z-50">
           <a href="/" className="text-2xl font-serif font-bold tracking-widest uppercase flex items-center gap-2 group cursor-pointer hover:opacity-80 transition-all focus:outline-none">
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
           </a>
 
-          <div className="hidden md:flex space-x-6 lg:space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="/why-us" className="hover:text-[#0055FF] transition duration-300">Why Us</a>
-            <a href="/websites" className="text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Website' : 'Ιστοσελιδες'}</a>
-            <a href="/social-media" className="hover:text-[#0055FF] transition duration-300">Social</a>
-            <a href="/learner" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
-            <a href="/packages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
-            <a href="/#faq" className="hover:text-[#0055FF] transition duration-300">FAQ</a>
-          </div>
-
-          <div className="flex items-center gap-3 md:gap-4">
-            <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#0055FF] transition-colors p-1" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
+          <div className="flex items-center gap-4 md:gap-6">
+            <a href="/" className="hidden md:block text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-[#0055FF] transition-colors">
+              {lang === 'EN' ? '← Back to Home' : '← Πίσω στην Αρχική'}
             </a>
             <div className="flex bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden text-[10px] font-bold tracking-widest uppercase">
               <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
@@ -87,23 +52,6 @@ export default function WebsitesPage() {
             <a href="/#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
               {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
             </a>
-            <button className="md:hidden text-zinc-400 hover:text-white p-2 transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className={`md:hidden fixed inset-0 h-screen w-screen bg-[#030303]/98 backdrop-blur-3xl z-40 flex flex-col items-center justify-center transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-          <div className="flex flex-col items-center space-y-8 text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">Why Us</a>
-            <a href="/websites" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Website' : 'Ιστοσελιδες'}</a>
-            <a href="/social-media" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">Social</a>
-            <a href="/learner" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
-            <a href="/packages" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
-            <a href="/#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">FAQ</a>
-            <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">INSTAGRAM</a>
-            <a href="/#the-agora" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] border border-[#0055FF] px-8 py-3 rounded-sm hover:bg-[#0055FF] hover:text-white transition duration-300 mt-4">{lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}</a>
           </div>
         </div>
       </nav>

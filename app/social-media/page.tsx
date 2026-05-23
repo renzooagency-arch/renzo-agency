@@ -106,12 +106,12 @@ export default function SocialMediaPage() {
               
               <div className="mb-8 border-b border-zinc-800 pb-8">
                 <span className="text-6xl font-sans font-black tracking-tighter text-white">500€</span>
-                <span className="text-zinc-500 text-sm block mt-2">{lang === 'EN' ? '10 videos — one-time investment' : '10 βίντεο — εφάπαξ επένδυση'}</span>
+                <span className="text-zinc-500 text-sm block mt-2">{lang === 'EN' ? '8 videos — one-time investment' : '8 βίντεο — εφάπαξ επένδυση'}</span>
               </div>
 
               <ul className="space-y-5 flex-grow mb-10">
                 {[
-                  lang === 'EN' ? '10 professionally produced short-form videos' : '10 επαγγελματικά short-form βίντεο',
+                  lang === 'EN' ? '8 professionally produced short-form videos' : '8 επαγγελματικά short-form βίντεο',
                   lang === 'EN' ? 'AI-generated visuals & motion graphics' : 'AI γραφικά & motion graphics',
                   lang === 'EN' ? 'Platform-optimised for Insta, TikTok & LinkedIn' : 'Βελτιστοποιημένα για Insta, TikTok & LinkedIn',
                   lang === 'EN' ? 'Captions, hooks & CTAs engineered to convert' : 'Captions & hooks σχεδιασμένα για πωλήσεις',
@@ -139,11 +139,11 @@ export default function SocialMediaPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="border border-zinc-800 bg-zinc-900/30 p-8 flex flex-col items-center justify-center text-center rounded-lg">
-                  <span className="text-5xl font-sans font-black text-white mb-2">3×</span>
-                  <span className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase">{lang === 'EN' ? 'MORE REACH' : 'ΠΕΡΙΣΣΟΤΕΡΗ ΑΠΗΧΗΣΗ'}</span>
+                  <span className="text-5xl font-sans font-black text-white mb-2">250k</span>
+                  <span className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase">{lang === 'EN' ? 'VIEWS GUARANTEED OR MONEY BACK' : 'ΠΡΟΒΟΛΕΣ ΕΓΓΥΗΜΕΝΑ Η ΕΠΙΣΤΡΟΦΗ'}</span>
                 </div>
                 <div className="border border-zinc-800 bg-zinc-900/30 p-8 flex flex-col items-center justify-center text-center rounded-lg">
-                  <span className="text-5xl font-sans font-black text-white mb-2">10</span>
+                  <span className="text-5xl font-sans font-black text-white mb-2">8</span>
                   <span className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase">{lang === 'EN' ? 'VIDEOS DELIVERED' : 'ΒΙΝΤΕΟ ΣΥΝΟΛΙΚΑ'}</span>
                 </div>
                 <div className="border border-zinc-800 bg-[#0055FF]/10 p-8 flex flex-col items-center justify-center text-center rounded-lg">
@@ -151,7 +151,7 @@ export default function SocialMediaPage() {
                   <span className="text-[10px] text-[#0055FF] font-bold tracking-[0.2em] uppercase">{lang === 'EN' ? 'ENHANCED' : 'ΕΝΙΣΧΥΜΕΝΟ'}</span>
                 </div>
                 <div className="border border-zinc-800 bg-zinc-900/30 p-8 flex flex-col items-center justify-center text-center rounded-lg">
-                  <span className="text-4xl font-sans font-black text-white mb-2">€50</span>
+                  <span className="text-4xl font-sans font-black text-white mb-2">€40</span>
                   <span className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase">{lang === 'EN' ? 'PER VIDEO' : 'ΑΝΑ ΒΙΝΤΕΟ'}</span>
                 </div>
               </div>

@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 export default function PackagesPage() {
   const [mounted, setMounted] = useState(false);
   const [lang, setLang] = useState<'EN' | 'GR'>('GR');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -16,14 +15,6 @@ export default function PackagesPage() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMobileMenuOpen]);
 
   return (
     <main className="font-sans antialiased bg-[#030303] text-[#FAFAFA] min-h-screen selection:bg-[#0055FF] selection:text-white overflow-x-hidden relative">
@@ -72,22 +63,9 @@ export default function PackagesPage() {
             RENZO <span className="w-1.5 h-1.5 rounded-full bg-[#0055FF] mt-1 group-hover:animate-ping shadow-[0_0_10px_#0055FF]"></span>
           </a>
 
-          <div className="hidden md:flex space-x-6 lg:space-x-8 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="/why-us" className="hover:text-[#0055FF] transition duration-300">Why Us</a>
-            <a href="/websites" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Website' : 'Ιστοσελιδες'}</a>
-            <a href="/social-media" className="hover:text-[#0055FF] transition duration-300">Social</a>
-            <a href="/learner" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
-            <a href="/packages" className="text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
-            <a href="/#faq" className="hover:text-[#0055FF] transition duration-300">FAQ</a>
-          </div>
-
-          <div className="flex items-center gap-3 md:gap-4">
-            <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-[#0055FF] transition-colors p-1" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
+          <div className="flex items-center gap-4 md:gap-6">
+            <a href="/" className="hidden md:block text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-400 hover:text-[#0055FF] transition-colors">
+              {lang === 'EN' ? '← Back to Home' : '← Πίσω στην Αρχική'}
             </a>
             <div className="flex bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden text-[10px] font-bold tracking-widest uppercase">
               <button onClick={() => setLang('EN')} className={`px-3 py-2 transition-all ${lang === 'EN' ? 'bg-[#0055FF] text-white' : 'text-zinc-500 hover:text-white'}`}>EN</button>
@@ -96,23 +74,6 @@ export default function PackagesPage() {
             <a href="/#the-agora" className="hidden md:block border border-[#0055FF] text-[#0055FF] px-6 py-2.5 text-[10px] font-bold tracking-widest hover:bg-[#0055FF] hover:text-white transition-all duration-300 uppercase">
               {lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}
             </a>
-            <button className="md:hidden text-zinc-400 hover:text-white p-2 transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className={`md:hidden fixed inset-0 h-screen w-screen bg-[#030303]/98 backdrop-blur-3xl z-40 flex flex-col items-center justify-center transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-          <div className="flex flex-col items-center space-y-8 text-sm font-bold tracking-[0.3em] uppercase text-zinc-400">
-            <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">Why Us</a>
-            <a href="/websites" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Website' : 'Ιστοσελιδες'}</a>
-            <a href="/social-media" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">Social</a>
-            <a href="/learner" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
-            <a href="/packages" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
-            <a href="/#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">FAQ</a>
-            <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="hover:text-[#0055FF] transition duration-300">INSTAGRAM</a>
-            <a href="/#the-agora" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] border border-[#0055FF] px-8 py-3 rounded-sm hover:bg-[#0055FF] hover:text-white transition duration-300 mt-4">{lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}</a>
           </div>
         </div>
       </nav>
@@ -127,7 +88,7 @@ export default function PackagesPage() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start max-w-7xl mx-auto">
 
             {/* 1. Simple Website */}
             <div className="cyber-card bg-zinc-950/80 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.8)] relative h-full">
@@ -166,6 +127,40 @@ export default function PackagesPage() {
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Full SEO & Optimization' : 'Πλήρης Στρατηγική SEO & Μετατροπών'}</li>
               </ul>
               <a href="/#the-agora" className="w-full mt-auto text-center bg-[#0055FF] text-white py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(0,85,255,0.4)] rounded-sm">{lang === 'EN' ? 'Get Started' : 'Ξεκινήστε'}</a>
+            </div>
+
+            {/* 3. AI Learner */}
+            <div className="cyber-card bg-zinc-950/80 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.8)] relative h-full">
+              <div className="mb-4 inline-block border border-zinc-700 text-zinc-400 text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-zinc-900/50 self-start">
+                {lang === 'EN' ? 'EDUCATION' : 'ΕΚΠΑΙΔΕΥΣΗ'}
+              </div>
+              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'AI Learner' : 'AI Μαθητής'}</h4>
+              <div className="flex items-end gap-3 mb-8">
+                <div className="text-white text-4xl font-sans font-black">€500</div>
+              </div>
+              <ul className="space-y-4 mb-10 flex-grow">
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Private 1-on-1 Mentorship' : 'Ιδιωτικό 1-on-1 Mentorship'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Master AI Tools (Midjourney, Runway)' : 'Εκμάθηση AI (Midjourney, Runway)'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Professional Grade Video Creation' : 'Επαγγελματική Δημιουργία Βίντεο'}</li>
+              </ul>
+              <a href="/#the-agora" className="w-full mt-auto text-center border border-zinc-700 text-zinc-400 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:border-[#0055FF] hover:text-[#0055FF] transition-all rounded-sm">{lang === 'EN' ? 'Select Plan' : 'Επιλογή'}</a>
+            </div>
+
+            {/* 4. Marketing */}
+            <div className="cyber-card bg-zinc-950/80 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.8)] relative h-full">
+              <div className="mb-4 inline-block border border-zinc-700 text-zinc-400 text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-zinc-900/50 self-start">
+                {lang === 'EN' ? 'GROWTH' : 'ΑΝΑΠΤΥΞΗ'}
+              </div>
+              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Marketing' : 'Marketing'}</h4>
+              <div className="flex items-end gap-3 mb-8">
+                <div className="text-white text-4xl font-sans font-black">€500</div>
+              </div>
+              <ul className="space-y-4 mb-10 flex-grow">
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? '8 Professional AI Videos' : '8 Επαγγελματικά AI Βίντεο'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-[#0055FF] font-bold"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? '250,000 Views Guaranteed in 3 months' : 'Εγγύηση 250.000 Προβολών σε 3 μήνες'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Or Your Money Back' : 'Ή Επιστροφή Χρημάτων'}</li>
+              </ul>
+              <a href="/#the-agora" className="w-full mt-auto text-center border border-zinc-700 text-zinc-400 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:border-[#0055FF] hover:text-[#0055FF] transition-all rounded-sm">{lang === 'EN' ? 'Select Plan' : 'Επιλογή'}</a>
             </div>
 
           </div>
