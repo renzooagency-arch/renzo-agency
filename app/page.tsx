@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import NeuralNetwork from '../components/NeuralNetwork';
+import NeuralNetwork from '../components/NeuralNetwork'; // Βεβαιώσου ότι το path είναι σωστό για το project σου
+import QuoteGenerator from '../components/QuoteGenerator';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -9,8 +10,6 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const [lang, setLang] = useState<'EN' | 'GR'>('GR');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSent, setIsSent] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -61,35 +60,6 @@ export default function Home() {
       document.body.style.overflow = 'unset';
     }
   }, [isMobileMenuOpen]);
-
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'), // <-- ADDED PHONE HERE
-      project_type: formData.get('project_type'),
-      message: formData.get('message'),
-      honeypot: formData.get('honeypot'),
-    };
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) { setIsSent(true); }
-      else { alert("Transmission failed. Please try again."); }
-    } catch (error) {
-      console.error(error);
-      alert("Network error. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const faqs = [
     {
@@ -192,8 +162,8 @@ export default function Home() {
             <a href="/social-media" className="hover:text-[#0055FF] transition duration-300">Social</a>
             <a href="/learner" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
             <a href="/packages" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
-            <a href="/why-us" className="hover:text-[#0055FF] transition duration-300">WHY US</a>
-            <a href="#faq" className="hover:text-[#0055FF] transition duration-300">FAQ</a>
+            <a href="/why-us" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'WHY US' : 'ΓΙΑΤΙ ΕΜΑΣ'}</a>
+            <a href="#faq" className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'FAQ' : 'ΕΡΩΤΗΣΕΙΣ'}</a>
           </div>
 
           <div className="flex items-center gap-3 md:gap-4">
@@ -226,8 +196,8 @@ export default function Home() {
             <a href="/social-media" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">Social</a>
             <a href="/learner" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Learn' : 'Μαθηση'}</a>
             <a href="/packages" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'Prices' : 'Τιμες'}</a>
-            <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#0055FF] transition duration-300">WHY US</a>
-            <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">FAQ</a>
+            <a href="/why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#0055FF] transition duration-300">{lang === 'EN' ? 'WHY US' : 'ΓΙΑΤΙ ΕΜΑΣ'}</a>
+            <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-white transition duration-300">{lang === 'EN' ? 'FAQ' : 'ΕΡΩΤΗΣΕΙΣ'}</a>
             <a href="#the-agora" onClick={() => setIsMobileMenuOpen(false)} className="text-[#0055FF] border border-[#0055FF] px-8 py-3 rounded-sm hover:bg-[#0055FF] hover:text-white transition duration-300 mt-4">{lang === 'EN' ? 'Start a Project' : 'Ξεκινηστε'}</a>
           </div>
         </div>
@@ -280,7 +250,7 @@ export default function Home() {
       <section id="faq" className="py-32 px-6 relative z-10 border-t border-zinc-900 bg-zinc-950/30 backdrop-blur-md">
         <div className="max-w-3xl mx-auto">
           <div className="mb-16 text-center reveal">
-            <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">FAQ</h2>
+            <h2 className="text-sm font-mono tracking-[0.3em] text-[#0055FF] uppercase mb-4">{lang === 'EN' ? 'FAQ' : 'ΕΡΩΤΗΣΕΙΣ'}</h2>
             <h3 className="text-4xl md:text-6xl font-serif tracking-tight text-white mb-2">{lang === 'EN' ? 'Frequently Asked' : 'Συχνές'} <span className="italic font-light text-zinc-500">{lang === 'EN' ? 'Questions.' : 'Ερωτήσεις.'}</span></h3>
           </div>
           <div className="space-y-4 reveal reveal-delay-100">
@@ -310,48 +280,8 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-            <div className="bg-zinc-950 border border-zinc-800/80 p-8 lg:p-12 relative shadow-2xl rounded-xl reveal reveal-delay-100">
-              {isSent ? (
-                <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center"><div className="w-20 h-20 rounded-full border border-[#0055FF] flex items-center justify-center mb-6 text-[#0055FF] text-4xl shadow-[0_0_30px_rgba(0,85,255,0.2)]">✓</div><h3 className="text-2xl font-serif italic mb-4">{lang === 'EN' ? 'Transmission Successful' : 'Επιτυχής Μετάδοση'}</h3><p className="text-zinc-400 font-light">{lang === 'EN' ? 'Our architects will review your request and make contact shortly.' : 'Οι συνεργάτες μας θα εξετάσουν το αίτημά σας και θα επικοινωνήσουν.'}</p></div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  <input type="text" name="honeypot" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
-
-                  <div className="flex flex-col gap-2"><label htmlFor="name" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Name' : 'Όνομα'}</label><input type="text" id="name" name="name" required className="bg-transparent border-b-2 border-zinc-800 px-2 py-3 text-white focus:outline-none focus:border-[#0055FF] transition-colors rounded-none placeholder:opacity-30" placeholder={lang === 'EN' ? 'Your name...' : 'Το όνομά σας...'} /></div>
-                  <div className="flex flex-col gap-2"><label htmlFor="email" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Email' : 'Email'}</label><input type="email" id="email" name="email" required className="bg-transparent border-b-2 border-zinc-800 px-2 py-3 text-white focus:outline-none focus:border-[#0055FF] transition-colors rounded-none placeholder:opacity-30" placeholder="hello@example.com" /></div>
-
-                  {/* 🔥 NEW PHONE INPUT 🔥 */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="phone" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">
-                      {lang === 'EN' ? 'Phone Number' : 'Τηλέφωνο'}
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      className="bg-transparent border-b-2 border-zinc-800 px-2 py-3 text-white focus:outline-none focus:border-[#0055FF] transition-colors rounded-none placeholder:opacity-30"
-                      placeholder={lang === 'EN' ? '+30 690 000 0000' : '+30 690 000 0000'}
-                    />
-                  </div>
-                  {/* 🔥 END NEW PHONE INPUT 🔥 */}
-
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="project_type" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Service Required' : 'ΕΠΙΛΟΓΗ ΥΠΗΡΕΣΙΑΣ'}</label>
-                    <div className="relative">
-                      <select id="project_type" name="project_type" className="w-full bg-black border-b-2 border-zinc-800 px-2 py-3 text-white focus:outline-none focus:border-[#0055FF] transition-colors rounded-none appearance-none cursor-pointer">
-                        <option value="website_simple">{lang === 'EN' ? 'Simple Website (€350)' : 'Simple Ιστοσελίδα (€350)'}</option>
-                        <option value="website_premium">{lang === 'EN' ? 'Premium Website (€550)' : 'Premium Ιστοσελίδα (€550)'}</option>
-                        <option value="social">{lang === 'EN' ? 'Social Media / Content Empire' : 'Παραγωγή Content / Social Media'}</option>
-                        <option value="education">{lang === 'EN' ? 'AI Learning Atelier (Mentorship)' : 'AI Learning Atelier (Εκπαίδευση)'}</option>
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-[#0055FF]"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg></div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-2"><label htmlFor="message" className="text-[10px] font-bold tracking-[0.2em] text-[#0055FF] uppercase">{lang === 'EN' ? 'Project Details' : 'Λεπτομέρειες'}</label><textarea id="message" name="message" required rows={4} className="bg-transparent border-b-2 border-zinc-800 px-2 py-3 text-white focus:outline-none focus:border-[#0055FF] transition-colors resize-none rounded-none placeholder:opacity-30" placeholder={lang === 'EN' ? 'Tell us what we are building or learning...' : 'Πείτε μας τι θέλετε να χτίσουμε ή να μάθετε...'}></textarea></div>
-                  <button type="submit" disabled={isSubmitting} className="mt-6 bg-[#0055FF] text-white px-8 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(0,85,255,0.2)]">{isSubmitting ? (lang === 'EN' ? 'Transmitting...' : 'Αποστολή...') : (lang === 'EN' ? 'Send to Studio' : 'Αποστολή στο Στούντιο')}</button>
-                </form>
-              )}
+            <div className="reveal reveal-delay-100">
+              <QuoteGenerator lang={lang} />
             </div>
 
             <div className="flex flex-col justify-between space-y-8 reveal reveal-delay-200">
@@ -368,11 +298,24 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative z-10 border-t border-zinc-900 py-12 bg-black flex flex-col items-center justify-center gap-6">
-        <p className="text-zinc-600 text-[10px] font-bold tracking-[0.3em] uppercase text-center"><span className="text-[#0055FF] mr-2">🏛️</span> © {new Date().getFullYear()} RENZO AGENCY. {lang === 'EN' ? 'DIGITAL INFRASTRUCTURE.' : 'ΨΗΦΙΑΚΗ ΥΠΟΔΟΜΗ.'}</p>
-        <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-[#0055FF] text-[10px] font-bold tracking-[0.3em] uppercase transition-colors">
-          INSTAGRAM
-        </a>
+      <footer className="relative z-10 border-t border-zinc-900 py-12 bg-black px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-zinc-600 text-[10px] font-bold tracking-[0.3em] uppercase text-center md:text-left">
+            <span className="text-[#0055FF] mr-2">🏛️</span> © {new Date().getFullYear()} RENZO AGENCY. {lang === 'EN' ? 'DIGITAL INFRASTRUCTURE.' : 'ΨΗΦΙΑΚΗ ΥΠΟΔΟΜΗ.'}
+          </p>
+          
+          <div className="flex gap-6 items-center">
+            {/* 🔥 NEW PRIVACY POLICY LINK 🔥 */}
+            <a href="/privacy" className="text-zinc-400 hover:text-[#0055FF] text-[10px] font-bold tracking-[0.3em] uppercase transition-colors">
+              {lang === 'EN' ? 'Privacy Policy' : 'Πολιτικη Απορρητου'}
+            </a>
+            {/* 🔥 END NEW PRIVACY POLICY LINK 🔥 */}
+
+            <a href="https://www.instagram.com/renzo.agency_/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-[#0055FF] text-[10px] font-bold tracking-[0.3em] uppercase transition-colors">
+              INSTAGRAM
+            </a>
+          </div>
+        </div>
       </footer>
     </main>
   );

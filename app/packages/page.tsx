@@ -95,10 +95,9 @@ export default function PackagesPage() {
               <div className="mb-4 inline-block border border-zinc-700 text-zinc-400 text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-zinc-900/50 self-start">
                 {lang === 'EN' ? 'SALE ACTIVE' : 'ΣΕ ΕΚΠΤΩΣΗ'}
               </div>
-              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Unique Website' : 'Μοναδική Ιστοσελίδα'}</h4>
+              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Landing Page' : 'Landing Page'}</h4>
               <div className="flex items-end gap-3 mb-8">
-                <div className="text-white text-4xl font-sans font-black">€350</div>
-                <div className="text-zinc-500 text-lg line-through mb-1">€500</div>
+                <div className="text-white text-4xl font-sans font-black">€350-€500</div>
               </div>
               <ul className="space-y-4 mb-10 flex-grow">
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Custom UI/UX Design' : 'Custom Σχεδιασμός UI/UX'}</li>
@@ -116,10 +115,9 @@ export default function PackagesPage() {
               <div className="mb-4 inline-block border border-[#0055FF] text-[#0055FF] text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-[#0055FF]/10 animate-pulse self-start mt-2">
                 {lang === 'EN' ? 'SALE ACTIVE' : 'ΣΕ ΕΚΠΤΩΣΗ'}
               </div>
-              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Premium Website' : 'Premium Ιστοσελίδα'}</h4>
+              <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'E-Shop / E-Commerce' : 'Ηλεκτρονικό Κατάστημα'}</h4>
               <div className="flex items-end gap-3 mb-8">
-                <div className="text-[#0055FF] text-4xl font-sans font-black">€550</div>
-                <div className="text-zinc-500 text-lg line-through mb-1">€800</div>
+                <div className="text-[#0055FF] text-4xl font-sans font-black">€500+</div>
               </div>
               <ul className="space-y-4 mb-10 flex-grow">
                 <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Everything is upgraded' : 'Όλα ειναι αναβαθμισμένα'}</li>
