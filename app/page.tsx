@@ -63,12 +63,20 @@ export default function Home() {
 
   const faqs = [
     {
-      en: { q: "How long does it take to build a custom website?", a: "Most digital infrastructures are designed, developed, and launched within 1 to 3 business days, depending on the complexity and scope of the project." },
-      gr: { q: "Πόσος χρόνος χρειάζεται για την κατασκευή μιας ιστοσελίδας;", a: "Οι περισσότερες ψηφιακές υποδομές σχεδιάζονται, αναπτύσσονται και παραδίδονται μέσα σε 1 με 3 εργάσιμες ημέρες, ανάλογα με την πολυπλοκότητα του έργου." }
+      en: { q: "How long does it take to build a custom website?", a: "Most digital infrastructures are designed, developed, and launched within 1 to 3 business days, depending on the complexity and scope of the project. We can even build your website in a single day if needed!" },
+      gr: { q: "Πόσος χρόνος χρειάζεται για την κατασκευή μιας ιστοσελίδας;", a: "Οι περισσότερες ψηφιακές υποδομές σχεδιάζονται, αναπτύσσονται και παραδίδονται μέσα σε 1 με 3 εργάσιμες ημέρες, ανάλογα με την πολυπλοκότητα του έργου. Αν χρειαστεί, μπορούμε να κατασκευάσουμε την ιστοσελίδα σας ακόμα και σε μία ημέρα!" }
     },
     {
       en: { q: "Do I need technical knowledge to manage my website?", a: "Not at all. We build ecosystems that are extremely easy to manage. We handle the complex engineering, so you can focus purely on scaling your business." },
       gr: { q: "Χρειάζεται να έχω τεχνικές γνώσεις για τη διαχείριση;", a: "Καθόλου. Δημιουργούμε οικοσυστήματα που είναι εξαιρετικά εύκολα στη διαχείριση. Εμείς αναλαμβάνουμε το τεχνικό κομμάτι, για να εστιάσετε στην επιχείρησή σας." }
+    },
+    {
+      en: { q: "I don't have pictures for my business, can you make them?", a: "Yes! If you don't have any photos, our advanced AI systems can generate high-quality, custom images for your brand." },
+      gr: { q: "Δεν έχω φωτογραφίες για την επιχείρησή μου, μπορείτε να τις δημιουργήσετε;", a: "Ναι! Αν δεν έχετε φωτογραφίες, τα προηγμένα συστήματα AI μας μπορούν να δημιουργήσουν υψηλής ποιότητας, προσαρμοσμένες εικόνες για το brand σας." }
+    },
+    {
+      en: { q: "Can you help with Logo Creation and Rebranding?", a: "Absolutely. We can handle the creation of your new logo and a full rebranding to elevate your visual identity." },
+      gr: { q: "Μπορείτε να βοηθήσετε με τη Δημιουργία Λογοτύπου και το Rebranding;", a: "Απολύτως. Μπορούμε να αναλάβουμε τη δημιουργία του νέου σας λογοτύπου και ένα πλήρες rebranding για να αναβαθμίσουμε την οπτική σας ταυτότητα." }
     },
     {
       en: { q: "Can you teach my team how to make AI videos?", a: "Yes. Our AI Learning Atelier is a private 1-on-1 mentorship program where we train you on industry-leading tools like Midjourney, Runway, and CapCut." },

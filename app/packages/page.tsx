@@ -91,20 +91,23 @@ export default function PackagesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start max-w-7xl mx-auto">
 
             {/* 1. Simple Website */}
-            <div className="cyber-card bg-zinc-950/80 backdrop-blur-md border border-zinc-800/50 rounded-[2rem] p-10 flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.8)] relative h-full">
-              <div className="mb-4 inline-block border border-zinc-700 text-zinc-400 text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-zinc-900/50 self-start">
+            <div className="cyber-card bg-black border-2 border-[#0055FF] rounded-[2rem] p-10 flex flex-col shadow-[0_0_50px_rgba(0,85,255,0.3)] relative h-full">
+              <div className="mb-4 inline-block border border-[#0055FF] text-[#0055FF] text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1 rounded-full bg-[#0055FF]/10 animate-pulse self-start mt-2">
                 {lang === 'EN' ? 'SALE ACTIVE' : 'ΣΕ ΕΚΠΤΩΣΗ'}
               </div>
               <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'Landing Page' : 'Landing Page'}</h4>
               <div className="flex items-end gap-3 mb-8">
-                <div className="text-white text-4xl font-sans font-black">€350-€500</div>
+                <div className="text-[#0055FF] text-4xl font-sans font-black">€350-€500</div>
               </div>
               <ul className="space-y-4 mb-10 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Custom UI/UX Design' : 'Custom Σχεδιασμός UI/UX'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? 'Basic SEO Setup' : 'Βασικό SEO'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-400"><span className="w-1.5 h-1.5 bg-zinc-600 rounded-full"></span> {lang === 'EN' ? '1 Year Free Domain & Hosting' : '1 Χρόνος Δωρεάν Domain & Hosting'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Custom UI/UX Design' : 'Custom Σχεδιασμός UI/UX'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'SEO Optimization' : 'Βελτιστοποίηση SEO'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Image Creation Specifically For Your Business' : 'Δημιουργία Εικόνων Ειδικά Για Την Επιχείρησή Σας'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Rebranding Or Creating Your New Logo' : 'Rebranding Ή Δημιουργία Νέου Λογοτύπου'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Domain & Hosting' : 'Domain & Hosting'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Premium Copywriting' : 'Premium Copywriting (Συγγραφή Κειμένων)'}</li>
               </ul>
-              <a href="/#the-agora" className="w-full mt-auto text-center border border-zinc-700 text-zinc-400 py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:border-[#0055FF] hover:text-[#0055FF] transition-all rounded-sm">{lang === 'EN' ? 'Select Plan' : 'Επιλογή'}</a>
+              <a href="/#the-agora" className="w-full mt-auto text-center bg-[#0055FF] text-white py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(0,85,255,0.4)] rounded-sm">{lang === 'EN' ? 'Select Plan' : 'Επιλογή'}</a>
             </div>
 
             {/* 2. Premium Website (HIGHLIGHTED) */}
@@ -117,12 +120,16 @@ export default function PackagesPage() {
               </div>
               <h4 className="text-2xl font-black mb-2 tracking-tighter uppercase text-white">{lang === 'EN' ? 'E-Shop / E-Commerce' : 'Ηλεκτρονικό Κατάστημα'}</h4>
               <div className="flex items-end gap-3 mb-8">
-                <div className="text-[#0055FF] text-4xl font-sans font-black">€500+</div>
+                <div className="text-[#0055FF] text-4xl font-sans font-black">€550+</div>
               </div>
               <ul className="space-y-4 mb-10 flex-grow">
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Everything is upgraded' : 'Όλα ειναι αναβαθμισμένα'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Premium Visuals & UX' : 'Premium Γραφικά & Εμπειρία Χρήστη (UX)'}</li>
-                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Full SEO & Optimization' : 'Πλήρης Στρατηγική SEO & Μετατροπών'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Custom UI/UX Design' : 'Custom Σχεδιασμός UI/UX'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'SEO Optimization' : 'Βελτιστοποίηση SEO'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Image Creation Specifically For Your Business' : 'Δημιουργία Εικόνων Ειδικά Για Την Επιχείρησή Σας'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Rebranding Or Creating Your New Logo' : 'Rebranding Ή Δημιουργία Νέου Λογοτύπου'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Domain & Hosting' : 'Domain & Hosting'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Premium Copywriting' : 'Premium Copywriting (Συγγραφή Κειμένων)'}</li>
+                <li className="flex items-center gap-4 text-sm font-medium text-zinc-300"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full shadow-[0_0_10px_#0055FF]"></span> {lang === 'EN' ? 'Full E-Commerce Capabilities' : 'Πλήρεις Δυνατότητες E-Commerce'}</li>
               </ul>
               <a href="/#the-agora" className="w-full mt-auto text-center bg-[#0055FF] text-white py-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(0,85,255,0.4)] rounded-sm">{lang === 'EN' ? 'Get Started' : 'Ξεκινήστε'}</a>
             </div>

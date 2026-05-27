@@ -123,6 +123,16 @@ export default function WebsitesPage() {
                     <div className="mt-1.5 w-2 h-2 bg-zinc-700 rounded-full flex-shrink-0"></div>
                     <span className="leading-snug text-zinc-400">{lang === 'EN' ? 'Advanced SEO Setup for Google Ranking' : 'Βελτιστοποίηση SEO Για Την Google'}</span>
                   </li>
+                  {/* Irresistible Trigger 6 */}
+                  <li className="flex items-start gap-4 text-base font-medium text-zinc-300">
+                    <div className="mt-1.5 w-2 h-2 bg-zinc-700 rounded-full flex-shrink-0"></div>
+                    <span className="leading-snug text-zinc-400">{lang === 'EN' ? 'Custom AI Image Generation (If you lack photos)' : 'Δημιουργία Custom Εικόνων με AI (Αν λείπουν φωτογραφίες)'}</span>
+                  </li>
+                  {/* Irresistible Trigger 7 */}
+                  <li className="flex items-start gap-4 text-base font-medium text-zinc-300">
+                    <div className="mt-1.5 w-2 h-2 bg-zinc-700 rounded-full flex-shrink-0"></div>
+                    <span className="leading-snug text-zinc-400">{lang === 'EN' ? 'Logo Creation & Brand Identity Rebranding' : 'Σχεδιασμός Λογοτύπου & Πλήρες Rebranding'}</span>
+                  </li>
                 </ul>
                 <a href="/#the-agora" className="w-full mt-10 lg:hidden text-center block bg-[#0055FF] text-white px-10 py-5 text-[10px] font-bold tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,85,255,0.4)] rounded-sm">
                   {lang === 'EN' ? 'CLAIM THIS OFFER' : 'ΚΑΤΟΧΥΡΩΣΗ ΠΡΟΣΦΟΡΑΣ'}
